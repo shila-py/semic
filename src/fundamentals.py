@@ -37,18 +37,27 @@ def find_pn(ni=None,na=None,nd=None):
    return n,p
 
 def eg_temp(temp):
+   '''
+   '''
    eg = 1.17 - 4.73e-4*(temp**2/(temp+636))
    return eg
 
 def nc_temp(temp):
+   '''
+   '''
    nc = 6.2e15*temp**(3/2)
    return nc
 
 def nv_temp(temp):
+   '''
+   '''
    nv = 3.5e15*temp**(3/2)
    return nv
 
 def find_ic(i_sat, vbe, temp):
+   '''
+   
+   '''
    kt = constants.codata.value('Boltzmann constant in eV/K') * temp
    ic = i_sat * exp((vbe/kt)-1)
    return ic
