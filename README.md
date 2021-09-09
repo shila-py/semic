@@ -10,4 +10,5 @@ Added dynamics.py and fundamentals.py
 dynamics.py contains several equations for hole dynamics (Group Velocity, Acceleration Theorem, Momentum relation, Energy of an electron. All of these are related to k, the wavector of a spatial wave. WIP
 
 fundamentals.py contains several equations for finding the electron and hole (n and p) concentrations. WIP
+
 ...
