@@ -19,4 +19,10 @@ Added comments for functions
 
 Worked on __init__.py
 
+##### Date: 9/10/2021 (Sept. 10, 2021)
+
+Added Bose-Einstein distribution to fundamentals.py
+
+Renamed fermi_dirac_df() to fermi_dirac()
+
 ...
