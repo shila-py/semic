@@ -91,7 +91,7 @@ def find_ic(i_sat=None, vbe=None, temp=None):
    ic = i_sat * exp((vbe/kt)-1)
    return ic
 
-def fermi_dirac_df(E=None,Ef=None,temp=None):
+def fermi_dirac(E=None,Ef=None,temp=None):
    '''
    Function to find the average number of electrons in state f
    using the Fermi-Dirac distribution function.
