@@ -126,7 +126,7 @@ def bose_einstein(omega=None, temp=None):
 
    f_be(hbar*w) = 1/(exp((h_bar*omega)/(k_b*temp)) - 1)
    '''
-   kT = constants.codata.value('Boltzmann constant in eV/K') * temps
+   kT = constants.codata.value('Boltzmann constant in eV/K') * temp
    h_bar = constants.codata.value('reduced Planck constant in eV s')
 
    f_be = 1/(exp((h_bar*omega)/kT) - 1)
