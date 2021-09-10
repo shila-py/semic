@@ -14,18 +14,29 @@ from math import sqrt,exp
 
 
 
-def find_pn(ni=None,na=None,nd=None):
+def find_pn(temp=None,eg=None,ni=None,na=None,nd=None):
    '''
-   Function to find n and p concentrations
+   Function to find n and p concentrations.
+   
+   temp : Temperature in Kelvin
+   
+   eg : Bandgap value in eV
+   
+   ni: Intrinsic concentration
+   
+   na: Acceptor concentration
+   
+   nd: Donor concentration
+   
+   Returns n and p concentrations as a tuple (n,p)
    '''
    #constants
-   k = constants.codata.value('Boltzmann constant in eV/K')
-
-   temp = float(input("Enter temperature (in Kelvin) : "))
-   eg = float(input("Enter bandgap value (in eV) : "))
-   nc = float(input("Enter Nc (#/cm^3) : "))
-   nv = float(input("Enter Nv (#/cm^3) : "))
-   ni = sqrt(nc * nv)*exp(-eg/(2*k*temp))
+   #k = constants.codata.value('Boltzmann constant in eV/K')
+   #temp = float(input("Enter temperature (in Kelvin) : "))
+   #eg = float(input("Enter bandgap value (in eV) : "))
+   #nc = float(input("Enter Nc (#/cm^3) : "))
+   #nv = float(input("Enter Nv (#/cm^3) : "))
+   #ni = sqrt(nc * nv)*exp(-eg/(2*k*temp))
 
    if na > nd:
       p = ((na-nd) + sqrt((na-nd)**2 + 4*(ni**2))) / 2.0
@@ -36,27 +47,45 @@ def find_pn(ni=None,na=None,nd=None):
       
    return n,p
 
-def eg_temp(temp):
+def eg_temp(temp=None):
    '''
+   Function to find the bandgap value from temperature in Kelvin.
+   
+   temp: Temperature in Kelvin
    '''
    eg = 1.17 - 4.73e-4*(temp**2/(temp+636))
    return eg
 
-def nc_temp(temp):
+def nc_temp(temp=None):
    '''
+   Function to find thermal effective density of states in conduction band
+   from temperature in Kelvin.
+   
+   temp: Temperature in Kelvin
    '''
    nc = 6.2e15*temp**(3/2)
    return nc
 
-def nv_temp(temp):
+def nv_temp(temp=None):
    '''
+   Function to find thermal effective density of states in valence band
+   from temperature in Kelvin.
+   
+   temp: Temperature in Kelvin
    '''
    nv = 3.5e15*temp**(3/2)
    return nv
 
-def find_ic(i_sat, vbe, temp):
+def find_ic(i_sat=None, vbe=None, temp=None):
    '''
+   Function to find the collector current of a bipolar transistor.
    
+   i_sat: The saturation current
+   
+   vbe: The DC voltage between the base and the emitter of a bipolar
+        transistor.
+   
+   temp: The temperature in Kelvin
    '''
    kt = constants.codata.value('Boltzmann constant in eV/K') * temp
    ic = i_sat * exp((vbe/kt)-1)
