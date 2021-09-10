@@ -133,3 +133,28 @@ def bose_einstein(omega=None, temp=None):
 
    return f_be
 
+def n0(Nc=None,Ec=None,Ef=None,temp=None):
+   '''
+   Function to find Equilibrium electron density
+   in the conduction band.
+
+   Nc: Thermal effective density of states in the
+       conduction band.
+   
+   Ec: Conduction band edge energy in a semiconductor.
+       This is the potential energy of electrons, including
+       electrostatic potential.
+
+   Ef: Fermi energy, or the chemical potential for electrons.
+
+   k_b: Boltzmann's constant in eV/K
+
+   temp: Temperature in Kelvin
+
+   n0 = Nc*exp(-(Ec-Ef)/(k_b*temp))
+   '''
+   kT = constants.codata.value('Boltzmann constant in eV/K') * temp
+   n_0 = Nc*exp(-(Ec-Ef)/kT)
+
+   return n_0
+
