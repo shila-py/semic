@@ -111,3 +111,25 @@ def fermi_dirac(E=None,Ef=None,temp=None):
 
    return f_fd
 
+def bose_einstein(omega=None, temp=None):
+   '''
+   Function to find the average number of bosons in state f
+   using the Bose-Einstein Distribution function.
+
+   hbar: Reduced Planck Constant in eV s
+
+   omega (w) : angular frequency in radians per second
+
+   k_b: Boltzmann Constant in eV/K
+
+   temp: Temperature in Kelvin
+
+   f_be(hbar*w) = 1/(exp((h_bar*omega)/(k_b*temp)) - 1)
+   '''
+   kT = constants.codata.value('Boltzmann constant in eV/K') * temps
+   h_bar = constants.codata.value('reduced Planck constant in eV s')
+
+   f_be = 1/(exp((h_bar*omega)/kT) - 1)
+
+   return f_be
+
