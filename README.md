@@ -17,4 +17,6 @@ Reworked find_pn() function in fundamentals.py
 
 Added comments for functions
 
+Worked on __init__.py
+
 ...
