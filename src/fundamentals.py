@@ -91,3 +91,23 @@ def find_ic(i_sat=None, vbe=None, temp=None):
    ic = i_sat * exp((vbe/kt)-1)
    return ic
 
+def fermi_dirac_df(E=None,Ef=None,temp=None):
+   '''
+   Function to find the average number of electrons in state f
+   using the Fermi-Dirac distribution function.
+
+   E: Energy in eV
+
+   Ef: Fermi energy, or chemical potential of electrons, in eV
+
+   temp: temperature in Kelvin
+
+   k: Boltzmann's constant in eV/K
+
+   f_df(E) = 1/(1+exp((E-Ef)/k*temp))
+   '''
+   kT = constants.codata.value('Boltzmann constant in eV/K') * temp
+   f_fd = 1/(1+exp((E-Ef)/(kT)))
+
+   return f_fd
+
