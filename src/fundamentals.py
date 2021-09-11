@@ -10,7 +10,7 @@
 ##########################################
 
 from scipy import constants
-from math import sqrt,exp
+from math import pi, sqrt,exp
 
 
 
@@ -157,4 +157,25 @@ def n0(Nc=None,Ec=None,Ef=None,temp=None):
    n_0 = Nc*exp(-(Ec-Ef)/kT)
 
    return n_0
+
+def find_nc(mass_c=None,temp=None):
+   '''
+   Function to find thermal effective density of states in
+   conduction band.
+
+   mass_c: The effective mass of a carrier in the conduction band
+
+   k_b: Boltzmann constant in eV/K
+
+   temp: Temperature in Kelvin
+
+   hbar: reduced Planck constant in eV s
+
+   Nc = 2*[mass_c*k_b*temp/(2pi*hbar^2)]^(3/2)
+   '''
+   kT = constants.codata.value('Boltzmann constant in eV/K') * temp
+   h_bar = constants.codata.value('reduced Planck constant in eV s')
+   Nc = 2*((mass_c*kT/(2*pi*(h_bar**2)))**(3/2))
+
+   return Nc
 
