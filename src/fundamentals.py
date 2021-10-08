@@ -179,3 +179,65 @@ def find_nc(mass_c=None,temp=None):
 
    return Nc
 
+def p0(Nv=None,Ev=None,Ef=None,temp=None):
+   '''
+   Function to find the Equilibrium hole density
+   in the valence band.
+
+   Nv: Thermal effective density of states in valence band
+
+   Ev: Valence band edge energy in a semiconductor.
+       This is the potential energy of electrons, including
+       electrostatic potential.
+   
+   k_b: Boltzmann constant in eV/K
+
+   temp: Temperature in Kelvin
+
+   p0 = Nv*exp(Ev-Ef/k_b*temp)
+   '''
+
+   kT = constants.codata.value('Boltzmann constant in eV/K') * temp
+   p_0 = Nv*exp((Ev-Ef)/kT)
+
+   return p_0
+
+def find_nv(mass_v=None,temp=None):
+   '''
+   Function to find the thermal effective density
+   of states in valence band.
+
+   mass_v: The effective mass of of carrier in valence band
+
+   temp: Temperature in Kelvin
+
+   k_b: Boltzmann constant in eV/K
+
+   hbar: reduced Planck constant in eV s
+
+   Nv = 2*[mass_v*k_b*temp/(2pi*hbar^2)]^(3/2)
+   '''
+
+   kT = constants.codata.value('Boltzmann constant in eV/K') * temp
+   h_bar = constants.codata.value('reduced Planck constant in eV s')
+
+   Nv = 2*(mass_v*kT/(2*pi*(h_bar**2)))**(3/2)
+
+   return Nv
+
+
+def ni(n_0 = None, p_0 = None):
+   '''
+   Function to find the intrinsic carrier density
+
+   n_0 = Equilibrium carrier density of electrons in conduction band
+
+   p_0 = Equilibrium carrier density of holes in valence band
+
+   ni = sqrt(n_0*p_0)
+   '''
+
+   n_i = sqrt(n_0 * p_0)
+
+   return n_i
+
