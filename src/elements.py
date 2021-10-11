@@ -10,4 +10,5 @@
 ##########################################
 
 class Si:
-   
+   def __init___(self,radius,bonding,Eg):
+      pass

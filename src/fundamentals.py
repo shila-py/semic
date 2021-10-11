@@ -10,7 +10,7 @@
 ##########################################
 
 from scipy import constants
-from math import pi, sqrt,exp
+from numpy import pi,sqrt,exp
 
 
 
