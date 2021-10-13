@@ -10,5 +10,6 @@
 ##########################################
 
 class Si:
-   def __init___(self,radius,bonding,Eg):
-      pass
+   group = '4'
+   def __init___(self,temp):
+      self.temp = temp
