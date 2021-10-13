@@ -25,4 +25,6 @@ Added Bose-Einstein distribution to fundamentals.py
 
 Renamed fermi_dirac_df() to fermi_dirac()
 
+Added n0 and Nc functions.
+
 ...
