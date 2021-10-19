@@ -6,7 +6,7 @@
 # Changelog: 
 # 4/25/2021 - Started Package
 # 10/10/2021 - Started periodic table of elements (materials.py)
-# 
+# 10/19/2021 - Added more functionality
 ##########################################
 
 CRYSTAL_ORIENTATION = ['FCC', 'BCC', '']
