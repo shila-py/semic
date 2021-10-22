@@ -46,7 +46,7 @@ class Si:
       '''
       Silicon material properties at 300 Kelvin
       '''
-      self.__abstemp = 300 #Kelvin
+      self.abstemp = 300 #Kelvin
       self.__density = 2.329 #g cm^-3
       self.__bandGap = 1.12 #eV
       self.__gapType = 'Indirect'
@@ -73,7 +73,7 @@ class Si:
       self.__augerRecombinationCoefficientP = 3.0E-31 #cm^6 s^-1
 
    def setTemp(self, absTemp):
-      self.__abstemp = absTemp
+      self.abstemp = absTemp
    
    def setDensity(self, density):
       self.__density = density
