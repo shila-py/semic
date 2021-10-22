@@ -28,7 +28,43 @@ GROUP = ['I','II','III','IV','V','VI','VII','VIII',
 CREATE YOUR OWN SEMICONDUCTOR
 '''
 class Semiconductor:
-   pass
+   '''
+   Material Properties and Object Parameters for a Custom Semiconductor
+   '''
+
+   group = GROUP[13] #Empty
+   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
+   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+
+   def __init__(self):
+      '''
+      Custom semiconductor material properties at 300 Kelvin
+      '''
+      self.abstemp = 0 #Kelvin
+      self.density = 0 #g cm^-3
+      self.bandGap = 0 #eV
+      self.gapType = '' #Direct/Indirect
+      self.debyeTemp = 0 #Kelvin
+      self.intrinsicDebyeLength = 0 #microns
+      self.electronAffinity = 0 #eV
+      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 0 #Angstroms
+      self.boltzmannTemp = 0 #eV
+      self.intrinsicCarrierConcentration = 0 #cm^-3
+      self.conductionDensityOfStates = 0 #cm^-3
+      self.valenceDensityOfStates = 0 #cm^-3
+      self.intrinsicResistivity = 0 #Ohm-cm
+      self.opticalPhononEnergy = 0 #eV
+      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 0 #V cm^-1
+      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalDiffusivity = 0 #cm^2 s^-1
+      self.linearThermalExpansion = 0 #degC^-1
+      self.tempDependenceOfBandGap = 0 #eV K^-1
+      self.refractionIndex = 0
+      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
 
 '''
 BEGIN ELEMENTAL SEMICONDUCTORS
@@ -47,105 +83,107 @@ class Si:
       Silicon material properties at 300 Kelvin
       '''
       self.abstemp = 300 #Kelvin
-      self.__density = 2.329 #g cm^-3
-      self.__bandGap = 1.12 #eV
-      self.__gapType = 'Indirect'
-      self.__debyeTemp = 640 #Kelvin
-      self.__intrinsicDebyeLength = 24 #microns
-      self.__electronAffinity = 4.05 #eV
-      self.__dieletricConstant = 11.7 #Epsilon_R a.k.a K (Kappa)
-      self.__latticeConstant = 5.43095 #Angstroms
-      self.__boltzmannTemp = 0.0259 #eV
-      self.__intrinsicCarrierConcentration = 1E10 #cm^-3
-      self.__conductionDensityOfStates = 2.8E19 #cm^-3
-      self.__valenceDensityOfStates = 1.0E19 #cm^-3
-      self.__intrinsicResistivity = 2.3E5 #Ohm-cm
-      self.__opticalPhononEnergy = 0.063 #eV
-      self.__electronDriftMobility = 1500 #cm^2 V^-1 s^-1
-      self.__holeDriftMobility = 475 #cm^2 V^-1 s^-1
-      self.__approxBreakdownField = 3E5 #V cm^-1
-      self.__thermalConductivity = 148 #W m^-1 K^-1
-      self.__thermalDiffusivity = 0.8 #cm^2 s^-1
-      self.__linearThermalExpansion = 2.6E-6 #degC^-1
-      self.__tempDependenceOfBandGap = -2.3E-4 #eV K^-1
-      self.__refractionIndex = 3.42
-      self.__augerRecombinationCoefficientN = 1.1E-30 #cm^6 s^-1
-      self.__augerRecombinationCoefficientP = 3.0E-31 #cm^6 s^-1
-
+      self.density = 2.329 #g cm^-3
+      self.bandGap = 1.12 #eV
+      self.gapType = 'Indirect'
+      self.debyeTemp = 640 #Kelvin
+      self.intrinsicDebyeLength = 24 #microns
+      self.electronAffinity = 4.05 #eV
+      self.dieletricConstant = 11.7 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 5.43095 #Angstroms
+      self.boltzmannTemp = 0.0259 #eV
+      self.intrinsicCarrierConcentration = 1E10 #cm^-3
+      self.conductionDensityOfStates = 2.8E19 #cm^-3
+      self.valenceDensityOfStates = 1.0E19 #cm^-3
+      self.intrinsicResistivity = 2.3E5 #Ohm-cm
+      self.opticalPhononEnergy = 0.063 #eV
+      self.electronDriftMobility = 1500 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 475 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 3E5 #V cm^-1
+      self.thermalConductivity = 148 #W m^-1 K^-1
+      self.thermalDiffusivity = 0.8 #cm^2 s^-1
+      self.linearThermalExpansion = 2.6E-6 #degC^-1
+      self.tempDependenceOfBandGap = -2.3E-4 #eV K^-1
+      self.refractionIndex = 3.42
+      self.augerRecombinationCoefficientN = 1.1E-30 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 3.0E-31 #cm^6 s^-1
+   
+   '''
    def setTemp(self, absTemp):
       self.abstemp = absTemp
    
    def setDensity(self, density):
-      self.__density = density
+      self.density = density
 
    def setBandgap(self, eg):
-      self.__bandGap = eg
+      self.bandGap = eg
    
    def setGapType(self, gapType):
-      self.__gapType = gapType
+      self.gapType = gapType
    
    def setDebyeTemp(self, debyeTemp):
-      self.__debyeTemp = debyeTemp
+      self.debyeTemp = debyeTemp
    
    def setIntrinsicDebyeLength(self, debyeLength):
-      self.__intrinsicDebyeLength = debyeLength
+      self.intrinsicDebyeLength = debyeLength
 
    def setElectronAffinity(self, electronAffinity):
-      self.__electronAffinity = electronAffinity
+      self.electronAffinity = electronAffinity
 
    def setDieletricConstant(self, k):
-      self.__dieletricConstant = k
+      self.dieletricConstant = k
    
    def setLatticeConstant(self, a):
-      self.__latticeConstant = a
+      self.latticeConstant = a
 
    def setBoltzmannTemp(self, kbT):
-      self.__boltzmannTemp = kbT
+      self.boltzmannTemp = kbT
    
    def setIntrinsicCarrierConcentration(self, ni):
-      self.__intrinsicCarrierConcentration = ni
+      self.intrinsicCarrierConcentration = ni
    
    def setConductionDensityOfStates(self,Nc):
-      self.__conductionDensityOfStates = Nc
+      self.conductionDensityOfStates = Nc
    
    def setValenceDensityOfStates(self,Nv):
-      self.__valenceDensityOfStates = Nv
+      self.valenceDensityOfStates = Nv
    
    def setIntrinsicResistivity(self, rho):
-      self.__intrinsicResistivity = rho
+      self.intrinsicResistivity = rho
    
    def setOpticalPhononEnergy(self, energy):
-      self.__opticalPhononEnergy = energy
+      self.opticalPhononEnergy = energy
    
    def setElectronDriftMobility(self, mu_n):
-      self.__electronDriftMobility = mu_n
+      self.electronDriftMobility = mu_n
 
    def setHoleDriftMobility(self, mu_p):
-      self.__holeDriftMobility = mu_p
+      self.holeDriftMobility = mu_p
 
    def setApproxBreakdownField(self, field):
-      self.__approxBreakdownField = field
+      self.approxBreakdownField = field
 
    def setThermalConductivity(self, tc):
-      self.__thermalConductivity = tc
+      self.thermalConductivity = tc
    
    def setThermalDiffusivity(self, td):
-      self.__thermalDiffusivity = td
+      self.thermalDiffusivity = td
 
    def setLinearThermalExpansion(self, lte):
-      self.__linearThermalExpansion = lte
+      self.linearThermalExpansion = lte
 
    def setTempDependenceOfBandGap(self, tEg):
-      self.__tempDependenceOfBandGap = tEg
+      self.tempDependenceOfBandGap = tEg
    
    def setRefractionIndex(self, n):
-      self.__refractionIndex = n
+      self.refractionIndex = n
    
    def setAugerRecombinationCoefficientN(self, Cn):
-      self.__augerRecombinationCoefficientN = Cn
+      self.augerRecombinationCoefficientN = Cn
    
    def setAugerRecombinationCoefficientP(self, Cp):
-      self.__augerRecombinationCoefficientP = Cp
+      self.augerRecombinationCoefficientP = Cp
+'''
 
 class Ge:
    #Crystal_Structure : Diamond
