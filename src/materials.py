@@ -9,14 +9,24 @@
 # 10/19/2021 - Added more functionality
 ##########################################
 
-CRYSTAL_ORIENTATION = ['FCC', 'BCC', '']
+CRYSTAL_ORIENTATION = ['Simple Cubic','Face-centered Cubic', 
+                       'Body-centered Cubic', 'Simple Tetragonal',
+                       'Body-centered Tetragonal', 'Simple Orthorhombic',
+                       'Base-centered Orthorhombic', 'Body-centered Orthorhombic',
+                       'Face-centered Orthorhombic', 'Simple Monoclinic',
+                       'Base-centered Monoclinic', 'Triclinic', 'Trigonal',
+                       'Hexagonal', '']
+
+ALLOYS = ['Binary', 'Ternary', 'Quaternary', '']
+
 GROUP = ['I','II','III','IV','V','VI','VII','VIII',
-         'II-VI','III-V']
+         'II-VI','III-V','IV-IV','IV-VI',ALLOYS, '']
+
 
 class Si:
 
    group = GROUP[3]
-   crystal_orientation = CRYSTAL_ORIENTATION[0]
+   crystal_orientation = CRYSTAL_ORIENTATION[1] #FCC
 
    def __init__(self):
       self.__abstemp = 300 #Kelvin
@@ -32,17 +42,5 @@ class Si:
    def setDieletricConstant(self, epsilon_r):
       self.__dieletricConstant = epsilon_r
 
-class Ga:
-
-   group = GROUP[2]
-   crystal_orientation = CRYSTAL_ORIENTATION[1]
-
-   def __init__(self):
-      self.__abstemp = 300 #Kelvin
-      self.__Eg = 123 #eV
-
-   def setTemp(self, absTemp):
-      self.__abstemp = absTemp
-   
-   def setBandgap(self, eg):
-      self.__Eg = eg
+class Ge:
+   pass
