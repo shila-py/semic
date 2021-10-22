@@ -49,6 +49,9 @@ class Si:
 
 class Ge:
    #Crystal_Structure : Diamond
+   group = GROUP[3] # Group IV Semiconductor
+   crystal_structure = CRYSTAL_STRUCTURE[0] #Diamond
+   crystal_orientation = CRYSTAL_ORIENTATION[1] #
    pass
 '''
 END OF ELEMENTAL SEMICONDUCTORS
