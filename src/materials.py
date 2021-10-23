@@ -38,7 +38,8 @@ class Semiconductor:
 
    def __init__(self):
       '''
-      Custom semiconductor material properties at 300 Kelvin
+      Custom semiconductor material properties
+      All properties are initialized to 0. 
       '''
       self.abstemp = 0 #Kelvin
       self.density = 0 #g cm^-3
@@ -103,7 +104,6 @@ class Si:
       self.thermalConductivity = 148 #W m^-1 K^-1
       self.thermalDiffusivity = 0.8 #cm^2 s^-1
       self.linearThermalExpansion = 2.6E-6 #degC^-1
-      self.tempDependenceOfBandGap = -2.3E-4 #eV K^-1
       self.refractionIndex = 3.42
       self.augerRecombinationCoefficientN = 1.1E-30 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 3.0E-31 #cm^6 s^-1
@@ -171,9 +171,6 @@ class Si:
 
    def setLinearThermalExpansion(self, lte):
       self.linearThermalExpansion = lte
-
-   def setTempDependenceOfBandGap(self, tEg):
-      self.tempDependenceOfBandGap = tEg
    
    def setRefractionIndex(self, n):
       self.refractionIndex = n
@@ -183,14 +180,45 @@ class Si:
    
    def setAugerRecombinationCoefficientP(self, Cp):
       self.augerRecombinationCoefficientP = Cp
-'''
+   '''
 
 class Ge:
    #Crystal_Structure : Diamond
+
    group = GROUP[3] # Group IV Semiconductor
    crystal_structure = CRYSTAL_STRUCTURE[0] #Diamond
    crystal_orientation = CRYSTAL_ORIENTATION[1] #Face-centered Cubic
-   pass
+
+   def __init__(self):
+      '''
+      Germanium material properties at 300 Kelvin
+      '''
+      self.abstemp = 300 #Kelvin
+      self.density = 5.3267 #g cm^-3
+      self.bandGap = 0.661 #eV
+      self.gapType = 'Indirect'
+      self.debyeTemp = 374 #Kelvin
+      self.intrinsicDebyeLength = 0.68 #microns
+      self.electronAffinity = 4.0 #eV
+      self.dieletricConstant = 16.0 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 5.658 #Angstroms
+      self.boltzmannTemp = 0.0259 #eV
+      self.intrinsicCarrierConcentration = 2.4E13 #cm^-3
+      self.conductionDensityOfStates = 1.04E19 #cm^-3
+      self.valenceDensityOfStates = 6.0E18 #cm^-3
+      self.intrinsicResistivity = 46 #Ohm-cm
+      self.opticalPhononEnergy = 0.037 #eV
+      self.electronDriftMobility = 3900 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 1900 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 1E5 #V cm^-1
+      self.thermalConductivity = 0.6 #W cm^-1 K^-1
+      self.thermalDiffusivity = 0.36 #cm^2 s^-1
+      self.linearThermalExpansion = 5.8E-6 #degC^-1
+      self.refractionIndex = 4.00
+      self.augerRecombinationCoefficientN = 1E-30 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 1E-30 #cm^6 s^-1
+   
+
 '''
 END OF ELEMENTAL SEMICONDUCTORS
 '''
