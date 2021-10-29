@@ -8,3 +8,14 @@
 # 10/28/2021 - Started quantum mechanics (quantum.py)
 # 10/28/2021 - Added more functionality
 ##########################################
+
+from sympy.physics.quantum.dagger import Dagger
+from sympy.physics.quantum.state import Bra, Ket
+from sympy.physics.quantum.operator import Operator
+from sympy.physics.quantum import InnerProduct, OuterProduct
+
+def wavefunction():
+   pass
+
+def hermitian():
+   pass
