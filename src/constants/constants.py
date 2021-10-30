@@ -1,13 +1,25 @@
 ##########################################
 # Semiconductor Calculations Package
 # Author: Nithin Kumar Santha Kumar
-# Date: 10/10/2021
+# Date: 10/30/2021
 ##########################################
 # Changelog: 
 # 4/25/2021 - Started Package
 # 10/30/2021 - Started constants (constants.py)
 # 10/30/2021 - Added more functionality
 ##########################################
+"""
+All constant values are from the 2018 CODATA publication.
+More information on CODATA and their publication can be found at:
+   https://physics.nist.gov/cuu/Constants/index.html and
+   https://www.nist.gov/programs-projects/codata-values-fundamental-physical-constants
+
+Any fundamental adjustments of constants will be made after the 2022 CODATA publication of 
+fundamental constants.
+
+Errata will be corrected on a more frequent basis.
+"""
+
 
 constants = {
             "Speed of light in vacuum" : 299792548,
