@@ -17,5 +17,3 @@ from sympy.physics.quantum import InnerProduct, OuterProduct
 def wavefunction():
    pass
 
-def hermitian():
-   pass
