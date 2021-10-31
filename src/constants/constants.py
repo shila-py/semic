@@ -59,8 +59,20 @@ def units(key):
    """
    return constants[key][1]
 
-def find_constant():
+def list_constants():
    """
-   Function to find a constant in the dictionary
+   Lists all the constants in the constants dictionary
    """
-   pass
+   lst = list(constants.keys())
+   print(lst)
+
+def find_constants(search_term):
+   """
+   Finds constants based on search term
+   """
+   if search_term is None:
+      list_constants()
+   else:
+      for key in constants:
+         if search_term.lower() in key.lower():
+            print(key)
