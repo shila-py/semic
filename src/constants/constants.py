@@ -44,7 +44,9 @@ constants = {
             "Classical electron wavelength" : [2.8179403262e-15, "m"],
             "Characteristic impedance of vacuum" : [376.730313668, "ohm"],
             "Bohr radius" : [5.29177210903e-11, "m"],
-            "Electron volt in J" : [1.602176634e-19, "J"], 
+            "Electron volt in J" : [1.602176634e-19, "J"],
+            "Proton mass" : [1.67262192369e-27, "kg"],
+            "Neutron mass" : [1.67492749804e-27, "kg"], 
 }
 
 def value(key):
