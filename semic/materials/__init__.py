@@ -6,4 +6,3 @@ __all__ = [
            'HgS','PbS','PbSe','PbTe','SiGe','AlGaAs','AlGaN','AlGaSb','CdMnTe',
            'GaAsP','HgCdTe','InAlAs','InGaAs','InGaN','AlGaAsSb','GaInAsP'
            ]
-
