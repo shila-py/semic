@@ -9,13 +9,13 @@
 # 10/19/2021 - Added more functionality
 ##########################################
 
-CRYSTAL_ORIENTATION = ['Simple Cubic','Face-centered Cubic', 
-                       'Body-centered Cubic', 'Simple Tetragonal',
-                       'Body-centered Tetragonal', 'Simple Orthorhombic',
-                       'Base-centered Orthorhombic', 'Body-centered Orthorhombic',
-                       'Face-centered Orthorhombic', 'Simple Monoclinic',
-                       'Base-centered Monoclinic', 'Triclinic', 'Trigonal',
-                       'Hexagonal', '']
+CRYSTAL_ORIENTATION = ['Simple Cubic','Face-centered Cubic', #1
+                       'Body-centered Cubic', 'Simple Tetragonal', #3
+                       'Body-centered Tetragonal', 'Simple Orthorhombic', #5
+                       'Base-centered Orthorhombic', 'Body-centered Orthorhombic', #7
+                       'Face-centered Orthorhombic', 'Simple Monoclinic', #9
+                       'Base-centered Monoclinic', 'Triclinic', 'Trigonal', #12
+                       'Hexagonal', ''] #14
 
 CRYSTAL_STRUCTURE = ['Diamond', 'Zincblende', 'Wurzite', 'Rock-Salt', '']
 
@@ -66,7 +66,6 @@ class Semiconductor:
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
-
 '''
 BEGIN ELEMENTAL SEMICONDUCTORS
 '''
@@ -107,80 +106,6 @@ class Si:
       self.refractionIndex = 3.42
       self.augerRecombinationCoefficientN = 1.1E-30 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 3.0E-31 #cm^6 s^-1
-   
-   '''
-   def setTemp(self, absTemp):
-      self.abstemp = absTemp
-   
-   def setDensity(self, density):
-      self.density = density
-
-   def setBandgap(self, eg):
-      self.bandGap = eg
-   
-   def setGapType(self, gapType):
-      self.gapType = gapType
-   
-   def setDebyeTemp(self, debyeTemp):
-      self.debyeTemp = debyeTemp
-   
-   def setIntrinsicDebyeLength(self, debyeLength):
-      self.intrinsicDebyeLength = debyeLength
-
-   def setElectronAffinity(self, electronAffinity):
-      self.electronAffinity = electronAffinity
-
-   def setDieletricConstant(self, k):
-      self.dieletricConstant = k
-   
-   def setLatticeConstant(self, a):
-      self.latticeConstant = a
-
-   def setBoltzmannTemp(self, kbT):
-      self.boltzmannTemp = kbT
-   
-   def setIntrinsicCarrierConcentration(self, ni):
-      self.intrinsicCarrierConcentration = ni
-   
-   def setConductionDensityOfStates(self,Nc):
-      self.conductionDensityOfStates = Nc
-   
-   def setValenceDensityOfStates(self,Nv):
-      self.valenceDensityOfStates = Nv
-   
-   def setIntrinsicResistivity(self, rho):
-      self.intrinsicResistivity = rho
-   
-   def setOpticalPhononEnergy(self, energy):
-      self.opticalPhononEnergy = energy
-   
-   def setElectronDriftMobility(self, mu_n):
-      self.electronDriftMobility = mu_n
-
-   def setHoleDriftMobility(self, mu_p):
-      self.holeDriftMobility = mu_p
-
-   def setApproxBreakdownField(self, field):
-      self.approxBreakdownField = field
-
-   def setThermalConductivity(self, tc):
-      self.thermalConductivity = tc
-   
-   def setThermalDiffusivity(self, td):
-      self.thermalDiffusivity = td
-
-   def setLinearThermalExpansion(self, lte):
-      self.linearThermalExpansion = lte
-   
-   def setRefractionIndex(self, n):
-      self.refractionIndex = n
-   
-   def setAugerRecombinationCoefficientN(self, Cn):
-      self.augerRecombinationCoefficientN = Cn
-   
-   def setAugerRecombinationCoefficientP(self, Cp):
-      self.augerRecombinationCoefficientP = Cp
-   '''
 
 class Ge:
    '''
@@ -218,8 +143,6 @@ class Ge:
       self.refractionIndex = 4.00
       self.augerRecombinationCoefficientN = 1E-30 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 1E-30 #cm^6 s^-1
-   
-
 '''
 END OF ELEMENTAL SEMICONDUCTORS
 '''
@@ -231,78 +154,890 @@ BEGIN COMPOUND SEMICONDUCTORS
 IV-IV
 '''
 class SiC:
-   #Group: IV-IV
-   pass
+   '''
+   Material Properties and Object Parameters for Silicon Carbide Polytypes (3C,4H,6H)
+   Properties will be displayed as so: [3C value, 4H value, 6H value]
+
+   '''
+   group = GROUP[10] # IV-IV Semiconductor
+   crystal_structure = [CRYSTAL_STRUCTURE[1],CRYSTAL_STRUCTURE[2],CRYSTAL_STRUCTURE[2]] #Zincblende,Wurtzite,Wurtzite
+   crystal_orientation = [CRYSTAL_ORIENTATION[1],CRYSTAL_ORIENTATION[14],CRYSTAL_ORIENTATION[14]] #Cubic, Hexagonal, Hexagonal
+
+   def __init__(self):
+      '''
+      Silicon Carbide material properties at 300 Kelvin for 3C,4H,6H
+      '''
+      self.abstemp = 300 #Kelvin
+      self.density = [3.21,3.211,3.211] #g cm^-3
+      self.bandGap = 0 #eV
+      self.gapType = ''
+      self.debyeTemp = 0 #Kelvin
+      self.intrinsicDebyeLength = 0 #microns
+      self.electronAffinity = 0 #eV
+      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 0 #Angstroms
+      self.boltzmannTemp = 0 #eV
+      self.intrinsicCarrierConcentration = 0 #cm^-3
+      self.conductionDensityOfStates = 0 #cm^-3
+      self.valenceDensityOfStates = 0 #cm^-3
+      self.intrinsicResistivity = 0 #Ohm-cm
+      self.opticalPhononEnergy = 0 #eV
+      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 0 #V cm^-1
+      self.thermalConductivity = 0 #W cm^-1 K^-1
+      self.thermalDiffusivity = 0 #cm^2 s^-1
+      self.linearThermalExpansion = 0 #degC^-1
+      self.refractionIndex = 0
+      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
 '''
 III-V
 '''
 class AlP:
-   pass
+   '''
+   Material Properties and Object Parameters for a Custom Semiconductor
+   '''
+
+   group = GROUP[13] #Empty
+   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
+   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+
+   def __init__(self):
+      '''
+      Custom semiconductor material properties
+      All properties are initialized to 0. 
+      '''
+      self.abstemp = 0 #Kelvin
+      self.density = 0 #g cm^-3
+      self.bandGap = 0 #eV
+      self.gapType = '' #Direct/Indirect
+      self.debyeTemp = 0 #Kelvin
+      self.intrinsicDebyeLength = 0 #microns
+      self.electronAffinity = 0 #eV
+      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 0 #Angstroms
+      self.boltzmannTemp = 0 #eV
+      self.intrinsicCarrierConcentration = 0 #cm^-3
+      self.conductionDensityOfStates = 0 #cm^-3
+      self.valenceDensityOfStates = 0 #cm^-3
+      self.intrinsicResistivity = 0 #Ohm-cm
+      self.opticalPhononEnergy = 0 #eV
+      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 0 #V cm^-1
+      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalDiffusivity = 0 #cm^2 s^-1
+      self.linearThermalExpansion = 0 #degC^-1
+      self.tempDependenceOfBandGap = 0 #eV K^-1
+      self.refractionIndex = 0
+      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
 
 class AlAs:
-   pass
+   '''
+   Material Properties and Object Parameters for a Custom Semiconductor
+   '''
+
+   group = GROUP[13] #Empty
+   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
+   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+
+   def __init__(self):
+      '''
+      Custom semiconductor material properties
+      All properties are initialized to 0. 
+      '''
+      self.abstemp = 0 #Kelvin
+      self.density = 0 #g cm^-3
+      self.bandGap = 0 #eV
+      self.gapType = '' #Direct/Indirect
+      self.debyeTemp = 0 #Kelvin
+      self.intrinsicDebyeLength = 0 #microns
+      self.electronAffinity = 0 #eV
+      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 0 #Angstroms
+      self.boltzmannTemp = 0 #eV
+      self.intrinsicCarrierConcentration = 0 #cm^-3
+      self.conductionDensityOfStates = 0 #cm^-3
+      self.valenceDensityOfStates = 0 #cm^-3
+      self.intrinsicResistivity = 0 #Ohm-cm
+      self.opticalPhononEnergy = 0 #eV
+      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 0 #V cm^-1
+      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalDiffusivity = 0 #cm^2 s^-1
+      self.linearThermalExpansion = 0 #degC^-1
+      self.tempDependenceOfBandGap = 0 #eV K^-1
+      self.refractionIndex = 0
+      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
 
 class AlSb:
-   pass
+   '''
+   Material Properties and Object Parameters for a Custom Semiconductor
+   '''
+
+   group = GROUP[13] #Empty
+   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
+   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+
+   def __init__(self):
+      '''
+      Custom semiconductor material properties
+      All properties are initialized to 0. 
+      '''
+      self.abstemp = 0 #Kelvin
+      self.density = 0 #g cm^-3
+      self.bandGap = 0 #eV
+      self.gapType = '' #Direct/Indirect
+      self.debyeTemp = 0 #Kelvin
+      self.intrinsicDebyeLength = 0 #microns
+      self.electronAffinity = 0 #eV
+      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 0 #Angstroms
+      self.boltzmannTemp = 0 #eV
+      self.intrinsicCarrierConcentration = 0 #cm^-3
+      self.conductionDensityOfStates = 0 #cm^-3
+      self.valenceDensityOfStates = 0 #cm^-3
+      self.intrinsicResistivity = 0 #Ohm-cm
+      self.opticalPhononEnergy = 0 #eV
+      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 0 #V cm^-1
+      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalDiffusivity = 0 #cm^2 s^-1
+      self.linearThermalExpansion = 0 #degC^-1
+      self.tempDependenceOfBandGap = 0 #eV K^-1
+      self.refractionIndex = 0
+      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
 
 class GaN:
-   pass
+   '''
+   Material Properties and Object Parameters for a Custom Semiconductor
+   '''
+
+   group = GROUP[13] #Empty
+   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
+   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+
+   def __init__(self):
+      '''
+      Custom semiconductor material properties
+      All properties are initialized to 0. 
+      '''
+      self.abstemp = 0 #Kelvin
+      self.density = 0 #g cm^-3
+      self.bandGap = 0 #eV
+      self.gapType = '' #Direct/Indirect
+      self.debyeTemp = 0 #Kelvin
+      self.intrinsicDebyeLength = 0 #microns
+      self.electronAffinity = 0 #eV
+      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 0 #Angstroms
+      self.boltzmannTemp = 0 #eV
+      self.intrinsicCarrierConcentration = 0 #cm^-3
+      self.conductionDensityOfStates = 0 #cm^-3
+      self.valenceDensityOfStates = 0 #cm^-3
+      self.intrinsicResistivity = 0 #Ohm-cm
+      self.opticalPhononEnergy = 0 #eV
+      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 0 #V cm^-1
+      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalDiffusivity = 0 #cm^2 s^-1
+      self.linearThermalExpansion = 0 #degC^-1
+      self.tempDependenceOfBandGap = 0 #eV K^-1
+      self.refractionIndex = 0
+      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
 
 class GaP:
-   pass
+   '''
+   Material Properties and Object Parameters for a Custom Semiconductor
+   '''
+
+   group = GROUP[13] #Empty
+   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
+   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+
+   def __init__(self):
+      '''
+      Custom semiconductor material properties
+      All properties are initialized to 0. 
+      '''
+      self.abstemp = 0 #Kelvin
+      self.density = 0 #g cm^-3
+      self.bandGap = 0 #eV
+      self.gapType = '' #Direct/Indirect
+      self.debyeTemp = 0 #Kelvin
+      self.intrinsicDebyeLength = 0 #microns
+      self.electronAffinity = 0 #eV
+      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 0 #Angstroms
+      self.boltzmannTemp = 0 #eV
+      self.intrinsicCarrierConcentration = 0 #cm^-3
+      self.conductionDensityOfStates = 0 #cm^-3
+      self.valenceDensityOfStates = 0 #cm^-3
+      self.intrinsicResistivity = 0 #Ohm-cm
+      self.opticalPhononEnergy = 0 #eV
+      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 0 #V cm^-1
+      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalDiffusivity = 0 #cm^2 s^-1
+      self.linearThermalExpansion = 0 #degC^-1
+      self.tempDependenceOfBandGap = 0 #eV K^-1
+      self.refractionIndex = 0
+      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
 
 class GaAs:
    #Crystal Structure : Zincblende
-   pass
+   '''
+   Material Properties and Object Parameters for a Custom Semiconductor
+   '''
+
+   group = GROUP[13] #Empty
+   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
+   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+
+   def __init__(self):
+      '''
+      Custom semiconductor material properties
+      All properties are initialized to 0. 
+      '''
+      self.abstemp = 0 #Kelvin
+      self.density = 0 #g cm^-3
+      self.bandGap = 0 #eV
+      self.gapType = '' #Direct/Indirect
+      self.debyeTemp = 0 #Kelvin
+      self.intrinsicDebyeLength = 0 #microns
+      self.electronAffinity = 0 #eV
+      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 0 #Angstroms
+      self.boltzmannTemp = 0 #eV
+      self.intrinsicCarrierConcentration = 0 #cm^-3
+      self.conductionDensityOfStates = 0 #cm^-3
+      self.valenceDensityOfStates = 0 #cm^-3
+      self.intrinsicResistivity = 0 #Ohm-cm
+      self.opticalPhononEnergy = 0 #eV
+      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 0 #V cm^-1
+      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalDiffusivity = 0 #cm^2 s^-1
+      self.linearThermalExpansion = 0 #degC^-1
+      self.tempDependenceOfBandGap = 0 #eV K^-1
+      self.refractionIndex = 0
+      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
 
 class GaSb:
-   pass
+   '''
+   Material Properties and Object Parameters for a Custom Semiconductor
+   '''
+
+   group = GROUP[13] #Empty
+   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
+   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+
+   def __init__(self):
+      '''
+      Custom semiconductor material properties
+      All properties are initialized to 0. 
+      '''
+      self.abstemp = 0 #Kelvin
+      self.density = 0 #g cm^-3
+      self.bandGap = 0 #eV
+      self.gapType = '' #Direct/Indirect
+      self.debyeTemp = 0 #Kelvin
+      self.intrinsicDebyeLength = 0 #microns
+      self.electronAffinity = 0 #eV
+      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 0 #Angstroms
+      self.boltzmannTemp = 0 #eV
+      self.intrinsicCarrierConcentration = 0 #cm^-3
+      self.conductionDensityOfStates = 0 #cm^-3
+      self.valenceDensityOfStates = 0 #cm^-3
+      self.intrinsicResistivity = 0 #Ohm-cm
+      self.opticalPhononEnergy = 0 #eV
+      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 0 #V cm^-1
+      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalDiffusivity = 0 #cm^2 s^-1
+      self.linearThermalExpansion = 0 #degC^-1
+      self.tempDependenceOfBandGap = 0 #eV K^-1
+      self.refractionIndex = 0
+      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
 
 class InP:
-   pass
+   '''
+   Material Properties and Object Parameters for a Custom Semiconductor
+   '''
+
+   group = GROUP[13] #Empty
+   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
+   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+
+   def __init__(self):
+      '''
+      Custom semiconductor material properties
+      All properties are initialized to 0. 
+      '''
+      self.abstemp = 0 #Kelvin
+      self.density = 0 #g cm^-3
+      self.bandGap = 0 #eV
+      self.gapType = '' #Direct/Indirect
+      self.debyeTemp = 0 #Kelvin
+      self.intrinsicDebyeLength = 0 #microns
+      self.electronAffinity = 0 #eV
+      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 0 #Angstroms
+      self.boltzmannTemp = 0 #eV
+      self.intrinsicCarrierConcentration = 0 #cm^-3
+      self.conductionDensityOfStates = 0 #cm^-3
+      self.valenceDensityOfStates = 0 #cm^-3
+      self.intrinsicResistivity = 0 #Ohm-cm
+      self.opticalPhononEnergy = 0 #eV
+      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 0 #V cm^-1
+      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalDiffusivity = 0 #cm^2 s^-1
+      self.linearThermalExpansion = 0 #degC^-1
+      self.tempDependenceOfBandGap = 0 #eV K^-1
+      self.refractionIndex = 0
+      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
 
 class InAs:
-   pass
+   '''
+   Material Properties and Object Parameters for a Custom Semiconductor
+   '''
+
+   group = GROUP[13] #Empty
+   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
+   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+
+   def __init__(self):
+      '''
+      Custom semiconductor material properties
+      All properties are initialized to 0. 
+      '''
+      self.abstemp = 0 #Kelvin
+      self.density = 0 #g cm^-3
+      self.bandGap = 0 #eV
+      self.gapType = '' #Direct/Indirect
+      self.debyeTemp = 0 #Kelvin
+      self.intrinsicDebyeLength = 0 #microns
+      self.electronAffinity = 0 #eV
+      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 0 #Angstroms
+      self.boltzmannTemp = 0 #eV
+      self.intrinsicCarrierConcentration = 0 #cm^-3
+      self.conductionDensityOfStates = 0 #cm^-3
+      self.valenceDensityOfStates = 0 #cm^-3
+      self.intrinsicResistivity = 0 #Ohm-cm
+      self.opticalPhononEnergy = 0 #eV
+      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 0 #V cm^-1
+      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalDiffusivity = 0 #cm^2 s^-1
+      self.linearThermalExpansion = 0 #degC^-1
+      self.tempDependenceOfBandGap = 0 #eV K^-1
+      self.refractionIndex = 0
+      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
 
 class InSb:
-   pass
+   '''
+   Material Properties and Object Parameters for a Custom Semiconductor
+   '''
+
+   group = GROUP[13] #Empty
+   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
+   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+
+   def __init__(self):
+      '''
+      Custom semiconductor material properties
+      All properties are initialized to 0. 
+      '''
+      self.abstemp = 0 #Kelvin
+      self.density = 0 #g cm^-3
+      self.bandGap = 0 #eV
+      self.gapType = '' #Direct/Indirect
+      self.debyeTemp = 0 #Kelvin
+      self.intrinsicDebyeLength = 0 #microns
+      self.electronAffinity = 0 #eV
+      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 0 #Angstroms
+      self.boltzmannTemp = 0 #eV
+      self.intrinsicCarrierConcentration = 0 #cm^-3
+      self.conductionDensityOfStates = 0 #cm^-3
+      self.valenceDensityOfStates = 0 #cm^-3
+      self.intrinsicResistivity = 0 #Ohm-cm
+      self.opticalPhononEnergy = 0 #eV
+      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 0 #V cm^-1
+      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalDiffusivity = 0 #cm^2 s^-1
+      self.linearThermalExpansion = 0 #degC^-1
+      self.tempDependenceOfBandGap = 0 #eV K^-1
+      self.refractionIndex = 0
+      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
 '''
 II-VI
 '''
 class ZnO:
-   pass
+   '''
+   Material Properties and Object Parameters for a Custom Semiconductor
+   '''
+
+   group = GROUP[13] #Empty
+   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
+   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+
+   def __init__(self):
+      '''
+      Custom semiconductor material properties
+      All properties are initialized to 0. 
+      '''
+      self.abstemp = 0 #Kelvin
+      self.density = 0 #g cm^-3
+      self.bandGap = 0 #eV
+      self.gapType = '' #Direct/Indirect
+      self.debyeTemp = 0 #Kelvin
+      self.intrinsicDebyeLength = 0 #microns
+      self.electronAffinity = 0 #eV
+      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 0 #Angstroms
+      self.boltzmannTemp = 0 #eV
+      self.intrinsicCarrierConcentration = 0 #cm^-3
+      self.conductionDensityOfStates = 0 #cm^-3
+      self.valenceDensityOfStates = 0 #cm^-3
+      self.intrinsicResistivity = 0 #Ohm-cm
+      self.opticalPhononEnergy = 0 #eV
+      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 0 #V cm^-1
+      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalDiffusivity = 0 #cm^2 s^-1
+      self.linearThermalExpansion = 0 #degC^-1
+      self.tempDependenceOfBandGap = 0 #eV K^-1
+      self.refractionIndex = 0
+      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
 
 class ZnS:
-   pass
+   '''
+   Material Properties and Object Parameters for a Custom Semiconductor
+   '''
+
+   group = GROUP[13] #Empty
+   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
+   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+
+   def __init__(self):
+      '''
+      Custom semiconductor material properties
+      All properties are initialized to 0. 
+      '''
+      self.abstemp = 0 #Kelvin
+      self.density = 0 #g cm^-3
+      self.bandGap = 0 #eV
+      self.gapType = '' #Direct/Indirect
+      self.debyeTemp = 0 #Kelvin
+      self.intrinsicDebyeLength = 0 #microns
+      self.electronAffinity = 0 #eV
+      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 0 #Angstroms
+      self.boltzmannTemp = 0 #eV
+      self.intrinsicCarrierConcentration = 0 #cm^-3
+      self.conductionDensityOfStates = 0 #cm^-3
+      self.valenceDensityOfStates = 0 #cm^-3
+      self.intrinsicResistivity = 0 #Ohm-cm
+      self.opticalPhononEnergy = 0 #eV
+      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 0 #V cm^-1
+      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalDiffusivity = 0 #cm^2 s^-1
+      self.linearThermalExpansion = 0 #degC^-1
+      self.tempDependenceOfBandGap = 0 #eV K^-1
+      self.refractionIndex = 0
+      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
 
 class ZnSe:
-   pass
+   '''
+   Material Properties and Object Parameters for a Custom Semiconductor
+   '''
+
+   group = GROUP[13] #Empty
+   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
+   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+
+   def __init__(self):
+      '''
+      Custom semiconductor material properties
+      All properties are initialized to 0. 
+      '''
+      self.abstemp = 0 #Kelvin
+      self.density = 0 #g cm^-3
+      self.bandGap = 0 #eV
+      self.gapType = '' #Direct/Indirect
+      self.debyeTemp = 0 #Kelvin
+      self.intrinsicDebyeLength = 0 #microns
+      self.electronAffinity = 0 #eV
+      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 0 #Angstroms
+      self.boltzmannTemp = 0 #eV
+      self.intrinsicCarrierConcentration = 0 #cm^-3
+      self.conductionDensityOfStates = 0 #cm^-3
+      self.valenceDensityOfStates = 0 #cm^-3
+      self.intrinsicResistivity = 0 #Ohm-cm
+      self.opticalPhononEnergy = 0 #eV
+      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 0 #V cm^-1
+      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalDiffusivity = 0 #cm^2 s^-1
+      self.linearThermalExpansion = 0 #degC^-1
+      self.tempDependenceOfBandGap = 0 #eV K^-1
+      self.refractionIndex = 0
+      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
 
 class ZnTe:
-   pass
+   '''
+   Material Properties and Object Parameters for a Custom Semiconductor
+   '''
+
+   group = GROUP[13] #Empty
+   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
+   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+
+   def __init__(self):
+      '''
+      Custom semiconductor material properties
+      All properties are initialized to 0. 
+      '''
+      self.abstemp = 0 #Kelvin
+      self.density = 0 #g cm^-3
+      self.bandGap = 0 #eV
+      self.gapType = '' #Direct/Indirect
+      self.debyeTemp = 0 #Kelvin
+      self.intrinsicDebyeLength = 0 #microns
+      self.electronAffinity = 0 #eV
+      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 0 #Angstroms
+      self.boltzmannTemp = 0 #eV
+      self.intrinsicCarrierConcentration = 0 #cm^-3
+      self.conductionDensityOfStates = 0 #cm^-3
+      self.valenceDensityOfStates = 0 #cm^-3
+      self.intrinsicResistivity = 0 #Ohm-cm
+      self.opticalPhononEnergy = 0 #eV
+      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 0 #V cm^-1
+      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalDiffusivity = 0 #cm^2 s^-1
+      self.linearThermalExpansion = 0 #degC^-1
+      self.tempDependenceOfBandGap = 0 #eV K^-1
+      self.refractionIndex = 0
+      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
 
 class CdS:
-   pass
+   '''
+   Material Properties and Object Parameters for a Custom Semiconductor
+   '''
+
+   group = GROUP[13] #Empty
+   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
+   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+
+   def __init__(self):
+      '''
+      Custom semiconductor material properties
+      All properties are initialized to 0. 
+      '''
+      self.abstemp = 0 #Kelvin
+      self.density = 0 #g cm^-3
+      self.bandGap = 0 #eV
+      self.gapType = '' #Direct/Indirect
+      self.debyeTemp = 0 #Kelvin
+      self.intrinsicDebyeLength = 0 #microns
+      self.electronAffinity = 0 #eV
+      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 0 #Angstroms
+      self.boltzmannTemp = 0 #eV
+      self.intrinsicCarrierConcentration = 0 #cm^-3
+      self.conductionDensityOfStates = 0 #cm^-3
+      self.valenceDensityOfStates = 0 #cm^-3
+      self.intrinsicResistivity = 0 #Ohm-cm
+      self.opticalPhononEnergy = 0 #eV
+      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 0 #V cm^-1
+      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalDiffusivity = 0 #cm^2 s^-1
+      self.linearThermalExpansion = 0 #degC^-1
+      self.tempDependenceOfBandGap = 0 #eV K^-1
+      self.refractionIndex = 0
+      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
 
 class CdSe:
-   pass
+   '''
+   Material Properties and Object Parameters for a Custom Semiconductor
+   '''
+
+   group = GROUP[13] #Empty
+   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
+   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+
+   def __init__(self):
+      '''
+      Custom semiconductor material properties
+      All properties are initialized to 0. 
+      '''
+      self.abstemp = 0 #Kelvin
+      self.density = 0 #g cm^-3
+      self.bandGap = 0 #eV
+      self.gapType = '' #Direct/Indirect
+      self.debyeTemp = 0 #Kelvin
+      self.intrinsicDebyeLength = 0 #microns
+      self.electronAffinity = 0 #eV
+      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 0 #Angstroms
+      self.boltzmannTemp = 0 #eV
+      self.intrinsicCarrierConcentration = 0 #cm^-3
+      self.conductionDensityOfStates = 0 #cm^-3
+      self.valenceDensityOfStates = 0 #cm^-3
+      self.intrinsicResistivity = 0 #Ohm-cm
+      self.opticalPhononEnergy = 0 #eV
+      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 0 #V cm^-1
+      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalDiffusivity = 0 #cm^2 s^-1
+      self.linearThermalExpansion = 0 #degC^-1
+      self.tempDependenceOfBandGap = 0 #eV K^-1
+      self.refractionIndex = 0
+      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
 
 class CdTe:
-   pass
+   '''
+   Material Properties and Object Parameters for a Custom Semiconductor
+   '''
+
+   group = GROUP[13] #Empty
+   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
+   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+
+   def __init__(self):
+      '''
+      Custom semiconductor material properties
+      All properties are initialized to 0. 
+      '''
+      self.abstemp = 0 #Kelvin
+      self.density = 0 #g cm^-3
+      self.bandGap = 0 #eV
+      self.gapType = '' #Direct/Indirect
+      self.debyeTemp = 0 #Kelvin
+      self.intrinsicDebyeLength = 0 #microns
+      self.electronAffinity = 0 #eV
+      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 0 #Angstroms
+      self.boltzmannTemp = 0 #eV
+      self.intrinsicCarrierConcentration = 0 #cm^-3
+      self.conductionDensityOfStates = 0 #cm^-3
+      self.valenceDensityOfStates = 0 #cm^-3
+      self.intrinsicResistivity = 0 #Ohm-cm
+      self.opticalPhononEnergy = 0 #eV
+      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 0 #V cm^-1
+      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalDiffusivity = 0 #cm^2 s^-1
+      self.linearThermalExpansion = 0 #degC^-1
+      self.tempDependenceOfBandGap = 0 #eV K^-1
+      self.refractionIndex = 0
+      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
 
 class HgS:
-   pass
+   '''
+   Material Properties and Object Parameters for a Custom Semiconductor
+   '''
+
+   group = GROUP[13] #Empty
+   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
+   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+
+   def __init__(self):
+      '''
+      Custom semiconductor material properties
+      All properties are initialized to 0. 
+      '''
+      self.abstemp = 0 #Kelvin
+      self.density = 0 #g cm^-3
+      self.bandGap = 0 #eV
+      self.gapType = '' #Direct/Indirect
+      self.debyeTemp = 0 #Kelvin
+      self.intrinsicDebyeLength = 0 #microns
+      self.electronAffinity = 0 #eV
+      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 0 #Angstroms
+      self.boltzmannTemp = 0 #eV
+      self.intrinsicCarrierConcentration = 0 #cm^-3
+      self.conductionDensityOfStates = 0 #cm^-3
+      self.valenceDensityOfStates = 0 #cm^-3
+      self.intrinsicResistivity = 0 #Ohm-cm
+      self.opticalPhononEnergy = 0 #eV
+      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 0 #V cm^-1
+      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalDiffusivity = 0 #cm^2 s^-1
+      self.linearThermalExpansion = 0 #degC^-1
+      self.tempDependenceOfBandGap = 0 #eV K^-1
+      self.refractionIndex = 0
+      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
 '''
 IV-VI
 '''
 class PbS:
-   pass
+   '''
+   Material Properties and Object Parameters for a Custom Semiconductor
+   '''
+
+   group = GROUP[13] #Empty
+   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
+   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+
+   def __init__(self):
+      '''
+      Custom semiconductor material properties
+      All properties are initialized to 0. 
+      '''
+      self.abstemp = 0 #Kelvin
+      self.density = 0 #g cm^-3
+      self.bandGap = 0 #eV
+      self.gapType = '' #Direct/Indirect
+      self.debyeTemp = 0 #Kelvin
+      self.intrinsicDebyeLength = 0 #microns
+      self.electronAffinity = 0 #eV
+      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 0 #Angstroms
+      self.boltzmannTemp = 0 #eV
+      self.intrinsicCarrierConcentration = 0 #cm^-3
+      self.conductionDensityOfStates = 0 #cm^-3
+      self.valenceDensityOfStates = 0 #cm^-3
+      self.intrinsicResistivity = 0 #Ohm-cm
+      self.opticalPhononEnergy = 0 #eV
+      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 0 #V cm^-1
+      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalDiffusivity = 0 #cm^2 s^-1
+      self.linearThermalExpansion = 0 #degC^-1
+      self.tempDependenceOfBandGap = 0 #eV K^-1
+      self.refractionIndex = 0
+      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
 
 class PbSe:
-   pass
+   '''
+   Material Properties and Object Parameters for a Custom Semiconductor
+   '''
+
+   group = GROUP[13] #Empty
+   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
+   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+
+   def __init__(self):
+      '''
+      Custom semiconductor material properties
+      All properties are initialized to 0. 
+      '''
+      self.abstemp = 0 #Kelvin
+      self.density = 0 #g cm^-3
+      self.bandGap = 0 #eV
+      self.gapType = '' #Direct/Indirect
+      self.debyeTemp = 0 #Kelvin
+      self.intrinsicDebyeLength = 0 #microns
+      self.electronAffinity = 0 #eV
+      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 0 #Angstroms
+      self.boltzmannTemp = 0 #eV
+      self.intrinsicCarrierConcentration = 0 #cm^-3
+      self.conductionDensityOfStates = 0 #cm^-3
+      self.valenceDensityOfStates = 0 #cm^-3
+      self.intrinsicResistivity = 0 #Ohm-cm
+      self.opticalPhononEnergy = 0 #eV
+      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 0 #V cm^-1
+      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalDiffusivity = 0 #cm^2 s^-1
+      self.linearThermalExpansion = 0 #degC^-1
+      self.tempDependenceOfBandGap = 0 #eV K^-1
+      self.refractionIndex = 0
+      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
 
 class PbTe:
-   pass
+   '''
+   Material Properties and Object Parameters for a Custom Semiconductor
+   '''
+
+   group = GROUP[13] #Empty
+   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
+   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+
+   def __init__(self):
+      '''
+      Custom semiconductor material properties
+      All properties are initialized to 0. 
+      '''
+      self.abstemp = 0 #Kelvin
+      self.density = 0 #g cm^-3
+      self.bandGap = 0 #eV
+      self.gapType = '' #Direct/Indirect
+      self.debyeTemp = 0 #Kelvin
+      self.intrinsicDebyeLength = 0 #microns
+      self.electronAffinity = 0 #eV
+      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 0 #Angstroms
+      self.boltzmannTemp = 0 #eV
+      self.intrinsicCarrierConcentration = 0 #cm^-3
+      self.conductionDensityOfStates = 0 #cm^-3
+      self.valenceDensityOfStates = 0 #cm^-3
+      self.intrinsicResistivity = 0 #Ohm-cm
+      self.opticalPhononEnergy = 0 #eV
+      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 0 #V cm^-1
+      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalDiffusivity = 0 #cm^2 s^-1
+      self.linearThermalExpansion = 0 #degC^-1
+      self.tempDependenceOfBandGap = 0 #eV K^-1
+      self.refractionIndex = 0
+      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
 '''
 END COMPOUND SEMICONDUCTORS
 '''
@@ -315,46 +1050,490 @@ Binary
 '''
 class SiGe:
    # 1-x : x
-   pass
+   '''
+   Material Properties and Object Parameters for a Custom Semiconductor
+   '''
+
+   group = GROUP[13] #Empty
+   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
+   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+
+   def __init__(self):
+      '''
+      Custom semiconductor material properties
+      All properties are initialized to 0. 
+      '''
+      self.abstemp = 0 #Kelvin
+      self.density = 0 #g cm^-3
+      self.bandGap = 0 #eV
+      self.gapType = '' #Direct/Indirect
+      self.debyeTemp = 0 #Kelvin
+      self.intrinsicDebyeLength = 0 #microns
+      self.electronAffinity = 0 #eV
+      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 0 #Angstroms
+      self.boltzmannTemp = 0 #eV
+      self.intrinsicCarrierConcentration = 0 #cm^-3
+      self.conductionDensityOfStates = 0 #cm^-3
+      self.valenceDensityOfStates = 0 #cm^-3
+      self.intrinsicResistivity = 0 #Ohm-cm
+      self.opticalPhononEnergy = 0 #eV
+      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 0 #V cm^-1
+      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalDiffusivity = 0 #cm^2 s^-1
+      self.linearThermalExpansion = 0 #degC^-1
+      self.tempDependenceOfBandGap = 0 #eV K^-1
+      self.refractionIndex = 0
+      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
 '''
 Ternary
 '''
 class AlGaAs:
    # x : 1-x : 1
-   pass
+   '''
+   Material Properties and Object Parameters for a Custom Semiconductor
+   '''
+
+   group = GROUP[13] #Empty
+   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
+   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+
+   def __init__(self):
+      '''
+      Custom semiconductor material properties
+      All properties are initialized to 0. 
+      '''
+      self.abstemp = 0 #Kelvin
+      self.density = 0 #g cm^-3
+      self.bandGap = 0 #eV
+      self.gapType = '' #Direct/Indirect
+      self.debyeTemp = 0 #Kelvin
+      self.intrinsicDebyeLength = 0 #microns
+      self.electronAffinity = 0 #eV
+      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 0 #Angstroms
+      self.boltzmannTemp = 0 #eV
+      self.intrinsicCarrierConcentration = 0 #cm^-3
+      self.conductionDensityOfStates = 0 #cm^-3
+      self.valenceDensityOfStates = 0 #cm^-3
+      self.intrinsicResistivity = 0 #Ohm-cm
+      self.opticalPhononEnergy = 0 #eV
+      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 0 #V cm^-1
+      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalDiffusivity = 0 #cm^2 s^-1
+      self.linearThermalExpansion = 0 #degC^-1
+      self.tempDependenceOfBandGap = 0 #eV K^-1
+      self.refractionIndex = 0
+      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
 
 class AlGaN:
    # x : 1-x : 1
-   pass
+   '''
+   Material Properties and Object Parameters for a Custom Semiconductor
+   '''
+
+   group = GROUP[13] #Empty
+   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
+   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+
+   def __init__(self):
+      '''
+      Custom semiconductor material properties
+      All properties are initialized to 0. 
+      '''
+      self.abstemp = 0 #Kelvin
+      self.density = 0 #g cm^-3
+      self.bandGap = 0 #eV
+      self.gapType = '' #Direct/Indirect
+      self.debyeTemp = 0 #Kelvin
+      self.intrinsicDebyeLength = 0 #microns
+      self.electronAffinity = 0 #eV
+      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 0 #Angstroms
+      self.boltzmannTemp = 0 #eV
+      self.intrinsicCarrierConcentration = 0 #cm^-3
+      self.conductionDensityOfStates = 0 #cm^-3
+      self.valenceDensityOfStates = 0 #cm^-3
+      self.intrinsicResistivity = 0 #Ohm-cm
+      self.opticalPhononEnergy = 0 #eV
+      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 0 #V cm^-1
+      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalDiffusivity = 0 #cm^2 s^-1
+      self.linearThermalExpansion = 0 #degC^-1
+      self.tempDependenceOfBandGap = 0 #eV K^-1
+      self.refractionIndex = 0
+      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
 
 class AlGaSb:
-   pass
+   '''
+   Material Properties and Object Parameters for a Custom Semiconductor
+   '''
+
+   group = GROUP[13] #Empty
+   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
+   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+
+   def __init__(self):
+      '''
+      Custom semiconductor material properties
+      All properties are initialized to 0. 
+      '''
+      self.abstemp = 0 #Kelvin
+      self.density = 0 #g cm^-3
+      self.bandGap = 0 #eV
+      self.gapType = '' #Direct/Indirect
+      self.debyeTemp = 0 #Kelvin
+      self.intrinsicDebyeLength = 0 #microns
+      self.electronAffinity = 0 #eV
+      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 0 #Angstroms
+      self.boltzmannTemp = 0 #eV
+      self.intrinsicCarrierConcentration = 0 #cm^-3
+      self.conductionDensityOfStates = 0 #cm^-3
+      self.valenceDensityOfStates = 0 #cm^-3
+      self.intrinsicResistivity = 0 #Ohm-cm
+      self.opticalPhononEnergy = 0 #eV
+      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 0 #V cm^-1
+      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalDiffusivity = 0 #cm^2 s^-1
+      self.linearThermalExpansion = 0 #degC^-1
+      self.tempDependenceOfBandGap = 0 #eV K^-1
+      self.refractionIndex = 0
+      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
 
 class CdMnTe:
-   pass
+   '''
+   Material Properties and Object Parameters for a Custom Semiconductor
+   '''
+
+   group = GROUP[13] #Empty
+   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
+   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+
+   def __init__(self):
+      '''
+      Custom semiconductor material properties
+      All properties are initialized to 0. 
+      '''
+      self.abstemp = 0 #Kelvin
+      self.density = 0 #g cm^-3
+      self.bandGap = 0 #eV
+      self.gapType = '' #Direct/Indirect
+      self.debyeTemp = 0 #Kelvin
+      self.intrinsicDebyeLength = 0 #microns
+      self.electronAffinity = 0 #eV
+      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 0 #Angstroms
+      self.boltzmannTemp = 0 #eV
+      self.intrinsicCarrierConcentration = 0 #cm^-3
+      self.conductionDensityOfStates = 0 #cm^-3
+      self.valenceDensityOfStates = 0 #cm^-3
+      self.intrinsicResistivity = 0 #Ohm-cm
+      self.opticalPhononEnergy = 0 #eV
+      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 0 #V cm^-1
+      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalDiffusivity = 0 #cm^2 s^-1
+      self.linearThermalExpansion = 0 #degC^-1
+      self.tempDependenceOfBandGap = 0 #eV K^-1
+      self.refractionIndex = 0
+      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
 
 class GaAsP:
-   pass
+   '''
+   Material Properties and Object Parameters for a Custom Semiconductor
+   '''
+
+   group = GROUP[13] #Empty
+   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
+   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+
+   def __init__(self):
+      '''
+      Custom semiconductor material properties
+      All properties are initialized to 0. 
+      '''
+      self.abstemp = 0 #Kelvin
+      self.density = 0 #g cm^-3
+      self.bandGap = 0 #eV
+      self.gapType = '' #Direct/Indirect
+      self.debyeTemp = 0 #Kelvin
+      self.intrinsicDebyeLength = 0 #microns
+      self.electronAffinity = 0 #eV
+      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 0 #Angstroms
+      self.boltzmannTemp = 0 #eV
+      self.intrinsicCarrierConcentration = 0 #cm^-3
+      self.conductionDensityOfStates = 0 #cm^-3
+      self.valenceDensityOfStates = 0 #cm^-3
+      self.intrinsicResistivity = 0 #Ohm-cm
+      self.opticalPhononEnergy = 0 #eV
+      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 0 #V cm^-1
+      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalDiffusivity = 0 #cm^2 s^-1
+      self.linearThermalExpansion = 0 #degC^-1
+      self.tempDependenceOfBandGap = 0 #eV K^-1
+      self.refractionIndex = 0
+      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
 
 class HgCdTe:
-   pass
+   '''
+   Material Properties and Object Parameters for a Custom Semiconductor
+   '''
+
+   group = GROUP[13] #Empty
+   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
+   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+
+   def __init__(self):
+      '''
+      Custom semiconductor material properties
+      All properties are initialized to 0. 
+      '''
+      self.abstemp = 0 #Kelvin
+      self.density = 0 #g cm^-3
+      self.bandGap = 0 #eV
+      self.gapType = '' #Direct/Indirect
+      self.debyeTemp = 0 #Kelvin
+      self.intrinsicDebyeLength = 0 #microns
+      self.electronAffinity = 0 #eV
+      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 0 #Angstroms
+      self.boltzmannTemp = 0 #eV
+      self.intrinsicCarrierConcentration = 0 #cm^-3
+      self.conductionDensityOfStates = 0 #cm^-3
+      self.valenceDensityOfStates = 0 #cm^-3
+      self.intrinsicResistivity = 0 #Ohm-cm
+      self.opticalPhononEnergy = 0 #eV
+      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 0 #V cm^-1
+      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalDiffusivity = 0 #cm^2 s^-1
+      self.linearThermalExpansion = 0 #degC^-1
+      self.tempDependenceOfBandGap = 0 #eV K^-1
+      self.refractionIndex = 0
+      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
 
 class InAlAs:
-   pass
+   '''
+   Material Properties and Object Parameters for a Custom Semiconductor
+   '''
+
+   group = GROUP[13] #Empty
+   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
+   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+
+   def __init__(self):
+      '''
+      Custom semiconductor material properties
+      All properties are initialized to 0. 
+      '''
+      self.abstemp = 0 #Kelvin
+      self.density = 0 #g cm^-3
+      self.bandGap = 0 #eV
+      self.gapType = '' #Direct/Indirect
+      self.debyeTemp = 0 #Kelvin
+      self.intrinsicDebyeLength = 0 #microns
+      self.electronAffinity = 0 #eV
+      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 0 #Angstroms
+      self.boltzmannTemp = 0 #eV
+      self.intrinsicCarrierConcentration = 0 #cm^-3
+      self.conductionDensityOfStates = 0 #cm^-3
+      self.valenceDensityOfStates = 0 #cm^-3
+      self.intrinsicResistivity = 0 #Ohm-cm
+      self.opticalPhononEnergy = 0 #eV
+      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 0 #V cm^-1
+      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalDiffusivity = 0 #cm^2 s^-1
+      self.linearThermalExpansion = 0 #degC^-1
+      self.tempDependenceOfBandGap = 0 #eV K^-1
+      self.refractionIndex = 0
+      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
 
 class InGaAs:
-   pass
+   '''
+   Material Properties and Object Parameters for a Custom Semiconductor
+   '''
+
+   group = GROUP[13] #Empty
+   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
+   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+
+   def __init__(self):
+      '''
+      Custom semiconductor material properties
+      All properties are initialized to 0. 
+      '''
+      self.abstemp = 0 #Kelvin
+      self.density = 0 #g cm^-3
+      self.bandGap = 0 #eV
+      self.gapType = '' #Direct/Indirect
+      self.debyeTemp = 0 #Kelvin
+      self.intrinsicDebyeLength = 0 #microns
+      self.electronAffinity = 0 #eV
+      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 0 #Angstroms
+      self.boltzmannTemp = 0 #eV
+      self.intrinsicCarrierConcentration = 0 #cm^-3
+      self.conductionDensityOfStates = 0 #cm^-3
+      self.valenceDensityOfStates = 0 #cm^-3
+      self.intrinsicResistivity = 0 #Ohm-cm
+      self.opticalPhononEnergy = 0 #eV
+      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 0 #V cm^-1
+      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalDiffusivity = 0 #cm^2 s^-1
+      self.linearThermalExpansion = 0 #degC^-1
+      self.tempDependenceOfBandGap = 0 #eV K^-1
+      self.refractionIndex = 0
+      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
 
 class InGaN:
-   pass
+   '''
+   Material Properties and Object Parameters for a Custom Semiconductor
+   '''
+
+   group = GROUP[13] #Empty
+   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
+   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+
+   def __init__(self):
+      '''
+      Custom semiconductor material properties
+      All properties are initialized to 0. 
+      '''
+      self.abstemp = 0 #Kelvin
+      self.density = 0 #g cm^-3
+      self.bandGap = 0 #eV
+      self.gapType = '' #Direct/Indirect
+      self.debyeTemp = 0 #Kelvin
+      self.intrinsicDebyeLength = 0 #microns
+      self.electronAffinity = 0 #eV
+      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 0 #Angstroms
+      self.boltzmannTemp = 0 #eV
+      self.intrinsicCarrierConcentration = 0 #cm^-3
+      self.conductionDensityOfStates = 0 #cm^-3
+      self.valenceDensityOfStates = 0 #cm^-3
+      self.intrinsicResistivity = 0 #Ohm-cm
+      self.opticalPhononEnergy = 0 #eV
+      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 0 #V cm^-1
+      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalDiffusivity = 0 #cm^2 s^-1
+      self.linearThermalExpansion = 0 #degC^-1
+      self.tempDependenceOfBandGap = 0 #eV K^-1
+      self.refractionIndex = 0
+      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
 '''
 Quaternary
 '''
 class AlGaAsSb:
-   pass
+   '''
+   Material Properties and Object Parameters for a Custom Semiconductor
+   '''
+
+   group = GROUP[13] #Empty
+   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
+   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+
+   def __init__(self):
+      '''
+      Custom semiconductor material properties
+      All properties are initialized to 0. 
+      '''
+      self.abstemp = 0 #Kelvin
+      self.density = 0 #g cm^-3
+      self.bandGap = 0 #eV
+      self.gapType = '' #Direct/Indirect
+      self.debyeTemp = 0 #Kelvin
+      self.intrinsicDebyeLength = 0 #microns
+      self.electronAffinity = 0 #eV
+      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 0 #Angstroms
+      self.boltzmannTemp = 0 #eV
+      self.intrinsicCarrierConcentration = 0 #cm^-3
+      self.conductionDensityOfStates = 0 #cm^-3
+      self.valenceDensityOfStates = 0 #cm^-3
+      self.intrinsicResistivity = 0 #Ohm-cm
+      self.opticalPhononEnergy = 0 #eV
+      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 0 #V cm^-1
+      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalDiffusivity = 0 #cm^2 s^-1
+      self.linearThermalExpansion = 0 #degC^-1
+      self.tempDependenceOfBandGap = 0 #eV K^-1
+      self.refractionIndex = 0
+      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
 
 class GaInAsP:
-   pass
+   '''
+   Material Properties and Object Parameters for a Custom Semiconductor
+   '''
+
+   group = GROUP[13] #Empty
+   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
+   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+
+   def __init__(self):
+      '''
+      Custom semiconductor material properties
+      All properties are initialized to 0. 
+      '''
+      self.abstemp = 0 #Kelvin
+      self.density = 0 #g cm^-3
+      self.bandGap = 0 #eV
+      self.gapType = '' #Direct/Indirect
+      self.debyeTemp = 0 #Kelvin
+      self.intrinsicDebyeLength = 0 #microns
+      self.electronAffinity = 0 #eV
+      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = 0 #Angstroms
+      self.boltzmannTemp = 0 #eV
+      self.intrinsicCarrierConcentration = 0 #cm^-3
+      self.conductionDensityOfStates = 0 #cm^-3
+      self.valenceDensityOfStates = 0 #cm^-3
+      self.intrinsicResistivity = 0 #Ohm-cm
+      self.opticalPhononEnergy = 0 #eV
+      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 0 #V cm^-1
+      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalDiffusivity = 0 #cm^2 s^-1
+      self.linearThermalExpansion = 0 #degC^-1
+      self.tempDependenceOfBandGap = 0 #eV K^-1
+      self.refractionIndex = 0
+      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
+      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
 '''
 END ALLOY SEMICONDUCTORS
 '''
