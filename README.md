@@ -12,6 +12,28 @@
    - ...
    - TBD
 
+## TODO
+
+   - Implement quantum mechanics subpackage
+   - Complete material properties
+   - Complete Carrier Distribution, Transport and Band structure
+   - Start PN Junction
+   - Start Free Surfaces and Metal-Semiconductor Interfaces
+   - Start MOS Structure
+   - Start Heterostructures
+   - Start FETs and BJTs
+   - Start Diodes
+   - Start Opto-electronic Devices
+   - Add plotting support (undecided)
+   - Create documentation using Sphinx
+
+## Future considerations
+
+   - Try implementing some form of machine learning/deep learning
+   - Magnetic Semiconductors
+   - New device topologies
+   - New materials!
+
 ## Source Code
 
 The source code is currently hosted on GitHub at https://github.com/nkskumar/semic
@@ -20,6 +42,8 @@ The source code is currently hosted on GitHub at https://github.com/nkskumar/sem
 
    - Numpy
    - Pint
+   - Sympy
+   - Unittest
    - etc.
 
 ## License
