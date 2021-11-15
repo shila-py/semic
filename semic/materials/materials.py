@@ -39,7 +39,7 @@ class Semiconductor:
    def __init__(self):
       '''
       Custom semiconductor material properties
-      All properties are initialized to 0. 
+      All properties are initialized to 0 or empty string. 
       '''
       self.abstemp = 0 #Kelvin
       self.density = 0 #g cm^-3
