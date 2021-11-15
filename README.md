@@ -1,6 +1,6 @@
 
 
-# Semic : Semiconductor physics calculation and modeling Python package
+# Semic : Semiconductor physics calculation and modeling
 
 ## What is it? (WIP)
 
