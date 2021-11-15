@@ -40,7 +40,7 @@
 
 ## Source Code
 
-The source code is currently hosted on GitHub at https://github.com/nkskumar/semic
+The source code is currently hosted on [GitHub](https://github.com/nkskumar/semic)
 
 ## Dependencies (WIP)
 
@@ -68,7 +68,7 @@ This package was started as a result of the author's desire for an open source l
 
 ## Contributions
 
-All contributors are welcome! Please email [me](mailto:nithinkumar.santhakumar@utdallas.edu)
+All contributors are welcome! Please email [me](mailto:nithinkumar.santhakumar@utdallas.edu)!
 
 ## Bugs and Issues
 
