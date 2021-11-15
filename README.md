@@ -60,7 +60,7 @@ Documentation for this package will be hosted somewhere....soon....(undecided)
 
 ## Author
 
-This package is written by [Nithin Kumar Santha Kumar](mailto:nithinkumar.santhakumar@utdallas.edu)
+This package is written by [Nithin Kumar Santha Kumar](https://twitter.com/nithin_ksk)
 
 ## Background
 
