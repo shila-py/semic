@@ -9,7 +9,7 @@
 # 
 ##########################################
 
-from scipy import constants
+from semic.constants import constants
 from numpy import pi,sqrt,exp
 
 
@@ -31,7 +31,7 @@ def find_pn(temp=None,eg=None,ni=None,na=None,nd=None):
    Returns n and p concentrations as a tuple (n,p)
    '''
    #constants
-   #k = constants.codata.value('Boltzmann constant in eV/K')
+   #k = constants.value('Boltzmann constant in eV/K')
    #temp = float(input("Enter temperature (in Kelvin) : "))
    #eg = float(input("Enter bandgap value (in eV) : "))
    #nc = float(input("Enter Nc (#/cm^3) : "))
@@ -87,7 +87,7 @@ def find_ic(i_sat=None, vbe=None, temp=None):
    
    temp: The temperature in Kelvin
    '''
-   kt = constants.codata.value('Boltzmann constant in eV/K') * temp
+   kt = constants.value('Boltzmann constant in eV/K') * temp
    ic = i_sat * exp((vbe/kt)-1)
    return ic
 
@@ -106,7 +106,7 @@ def fermi_dirac(E=None,Ef=None,temp=None):
 
    f_df(E) = 1/(1+exp((E-Ef)/k*temp))
    '''
-   kT = constants.codata.value('Boltzmann constant in eV/K') * temp
+   kT = constants.value('Boltzmann constant in eV/K') * temp
    f_fd = 1/(1+exp((E-Ef)/(kT)))
 
    return f_fd
@@ -126,8 +126,8 @@ def bose_einstein(omega=None, temp=None):
 
    f_be(hbar*w) = 1/(exp((h_bar*omega)/(k_b*temp)) - 1)
    '''
-   kT = constants.codata.value('Boltzmann constant in eV/K') * temp
-   h_bar = constants.codata.value('reduced Planck constant in eV s')
+   kT = constants.value('Boltzmann constant in eV/K') * temp
+   h_bar = constants.value('reduced Planck constant in eV s')
 
    f_be = 1/(exp((h_bar*omega)/kT) - 1)
 
@@ -153,7 +153,7 @@ def n0(Nc=None,Ec=None,Ef=None,temp=None):
 
    n0 = Nc*exp(-(Ec-Ef)/(k_b*temp))
    '''
-   kT = constants.codata.value('Boltzmann constant in eV/K') * temp
+   kT = constants.value('Boltzmann constant in eV/K') * temp
    n_0 = Nc*exp(-(Ec-Ef)/kT)
 
    return n_0
@@ -173,8 +173,8 @@ def find_nc(mass_c=None,temp=None):
 
    Nc = 2*[mass_c*k_b*temp/(2pi*hbar^2)]^(3/2)
    '''
-   kT = constants.codata.value('Boltzmann constant in eV/K') * temp
-   h_bar = constants.codata.value('reduced Planck constant in eV s')
+   kT = constants.value('Boltzmann constant in eV/K') * temp
+   h_bar = constants.value('reduced Planck constant in eV s')
    Nc = 2*((mass_c*kT/(2*pi*(h_bar**2)))**(3/2))
 
    return Nc
@@ -197,7 +197,7 @@ def p0(Nv=None,Ev=None,Ef=None,temp=None):
    p0 = Nv*exp(Ev-Ef/k_b*temp)
    '''
 
-   kT = constants.codata.value('Boltzmann constant in eV/K') * temp
+   kT = constants.value('Boltzmann constant in eV/K') * temp
    p_0 = Nv*exp((Ev-Ef)/kT)
 
    return p_0
@@ -218,8 +218,8 @@ def find_nv(mass_v=None,temp=None):
    Nv = 2*[mass_v*k_b*temp/(2pi*hbar^2)]^(3/2)
    '''
 
-   kT = constants.codata.value('Boltzmann constant in eV/K') * temp
-   h_bar = constants.codata.value('reduced Planck constant in eV s')
+   kT = constants.value('Boltzmann constant in eV/K') * temp
+   h_bar = constants.value('reduced Planck constant in eV s')
 
    Nv = 2*(mass_v*kT/(2*pi*(h_bar**2)))**(3/2)
 
