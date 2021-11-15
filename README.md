@@ -40,5 +40,5 @@ This package was started as a result of the author's desire for an open source l
 
 ## Contributions
 
-All contributors are welcome! Please email [me](nithinkumar.santhakumar@utdallas.edu)
+All contributors are welcome! Please email [me](mailto:nithinkumar.santhakumar@utdallas.edu)
 
