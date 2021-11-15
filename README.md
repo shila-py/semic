@@ -4,7 +4,7 @@
 
 ## What is it? (WIP)
 
-**Semic** is a python package that allows you to calculate and model semiconductors.
+**Semic** is a python package that allows you to model semiconductors and perform calculations with them.
 
 ## Main Features (WIP)
 
