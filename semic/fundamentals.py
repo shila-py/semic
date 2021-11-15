@@ -49,7 +49,7 @@ def find_pn(temp=None,eg=None,ni=None,na=None,nd=None):
 
 def eg_temp(temp=None):
    '''
-   Function to find the bandgap value from temperature in Kelvin.
+   Function to find the bandgap value from temperature in Kelvin for Silicon.
    
    temp: Temperature in Kelvin
    '''
