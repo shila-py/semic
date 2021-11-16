@@ -425,7 +425,7 @@ class GaN:
       self.approxBreakdownField = 5e6 #V cm^-1
       self.thermalConductivity = 1.3 #W m^-1 K^-1
       self.thermalDiffusivity = 0.43 #cm^2 s^-1
-      self.linearThermalExpansion = {"\u03b1\u2090":5.59e-6,"\u03b1\u2092":3.17e-6} #degC^-1
+      self.linearThermalExpansion = {"\u03b1\u2090":5.59e-6,"\u03b1_c":3.17e-6} #degC^-1
       self.refractionIndex = 2.3 #infrared
       self.augerRecombinationCoefficientN = "unknown" #cm^6 s^-1
       self.augerRecombinationCoefficientP = "unknown" #cm^6 s^-1
