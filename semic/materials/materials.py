@@ -61,8 +61,7 @@ class Semiconductor:
       self.approxBreakdownField = 0 #V cm^-1
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
-      self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
+      self.linearThermalExpansion = 0 #degC^-1   
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
@@ -229,7 +228,6 @@ class AlN:
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
@@ -269,7 +267,6 @@ class AlP:
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
@@ -309,7 +306,6 @@ class AlAs:
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
@@ -349,7 +345,6 @@ class AlSb:
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
@@ -389,7 +384,6 @@ class BN:
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
@@ -429,7 +423,6 @@ class GaN:
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
@@ -469,7 +462,6 @@ class GaP:
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
@@ -510,7 +502,6 @@ class GaAs:
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
@@ -550,7 +541,6 @@ class GaSb:
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
@@ -590,7 +580,6 @@ class InN:
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
@@ -630,7 +619,6 @@ class InP:
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
@@ -670,7 +658,6 @@ class InAs:
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
@@ -710,7 +697,6 @@ class InSb:
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
@@ -752,7 +738,6 @@ class ZnO:
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
@@ -792,7 +777,6 @@ class ZnS:
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
@@ -832,7 +816,6 @@ class ZnSe:
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
@@ -872,7 +855,6 @@ class ZnTe:
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
@@ -912,7 +894,6 @@ class CdS:
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
@@ -952,7 +933,6 @@ class CdSe:
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
@@ -992,7 +972,6 @@ class CdTe:
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
@@ -1032,7 +1011,6 @@ class HgS:
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
@@ -1074,7 +1052,6 @@ class PbS:
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
@@ -1114,7 +1091,6 @@ class PbSe:
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
@@ -1154,7 +1130,6 @@ class PbTe:
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
@@ -1204,7 +1179,6 @@ class SiGe:
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
@@ -1247,7 +1221,6 @@ class AlGaAs:
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
@@ -1288,7 +1261,6 @@ class AlGaN:
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
@@ -1328,7 +1300,6 @@ class AlGaSb:
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
@@ -1368,7 +1339,6 @@ class CdMnTe:
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
@@ -1408,7 +1378,6 @@ class GaAsP:
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
@@ -1448,7 +1417,6 @@ class HgCdTe:
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
@@ -1488,7 +1456,6 @@ class InAlAs:
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
@@ -1528,7 +1495,6 @@ class InGaAs:
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
@@ -1568,7 +1534,6 @@ class InGaN:
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
@@ -1610,7 +1575,6 @@ class AlGaAsSb:
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
@@ -1650,7 +1614,6 @@ class GaInAsP:
       self.thermalConductivity = 0 #W m^-1 K^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
-      self.tempDependenceOfBandGap = 0 #eV K^-1
       self.refractionIndex = 0
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
