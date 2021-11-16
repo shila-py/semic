@@ -106,6 +106,9 @@ class Si:
       self.augerRecombinationCoefficientN = 1.1E-30 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 3.0E-31 #cm^6 s^-1
 
+   def tempDependence(self,temp):
+      pass
+
 class Ge:
    '''
    Material Properties and Object Parameters for Germanium
@@ -191,14 +194,14 @@ class SiC:
       self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
       self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
 '''
-III-V
+III-V -> GROUP[9]
 '''
 class AlN:
    '''
    Material Properties and Object Parameters for a Custom Semiconductor
    '''
 
-   group = GROUP[13] #Empty
+   group = GROUP[9] #III-V
    crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
    crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
 
@@ -237,7 +240,7 @@ class AlP:
    Material Properties and Object Parameters for a Custom Semiconductor
    '''
 
-   group = GROUP[13] #Empty
+   group = GROUP[9] #III-V
    crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
    crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
 
@@ -276,7 +279,7 @@ class AlAs:
    Material Properties and Object Parameters for a Custom Semiconductor
    '''
 
-   group = GROUP[13] #Empty
+   group = GROUP[9] #III-V
    crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
    crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
 
@@ -315,7 +318,7 @@ class AlSb:
    Material Properties and Object Parameters for a Custom Semiconductor
    '''
 
-   group = GROUP[13] #Empty
+   group = GROUP[9] #III-V
    crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
    crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
 
@@ -354,7 +357,7 @@ class BN:
    Material Properties and Object Parameters for a Custom Semiconductor
    '''
 
-   group = GROUP[13] #Empty
+   group = GROUP[9] #III-V
    crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
    crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
 
@@ -390,42 +393,42 @@ class BN:
 
 class GaN:
    '''
-   Material Properties and Object Parameters for a Custom Semiconductor
+   Material Properties and Object Parameters for Gallium Nitride
    '''
 
-   group = GROUP[13] #Empty
-   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
-   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+   group = GROUP[9] #III-V
+   crystal_structure = {"Wurzite":CRYSTAL_STRUCTURE[2],"Zincblende":CRYSTAL_STRUCTURE[1]} #Wurzite and Zincblende
+   crystal_orientation = {"Wurzite":CRYSTAL_ORIENTATION[13],"Zincblende":CRYSTAL_ORIENTATION[1]} #Hexagonal and Face-centered Cubic
 
    def __init__(self):
       '''
-      Custom semiconductor material properties
-      All properties are initialized to 0. 
+      GaN semiconductor material properties at 300K
       '''
-      self.abstemp = 0 #Kelvin
-      self.density = 0 #g cm^-3
-      self.bandGap = 0 #eV
-      self.gapType = '' #Direct/Indirect
-      self.debyeTemp = 0 #Kelvin
-      self.intrinsicDebyeLength = 0 #microns
-      self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
-      self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
-      self.intrinsicCarrierConcentration = 0 #cm^-3
-      self.conductionDensityOfStates = 0 #cm^-3
-      self.valenceDensityOfStates = 0 #cm^-3
-      self.intrinsicResistivity = 0 #Ohm-cm
-      self.opticalPhononEnergy = 0 #eV
-      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
-      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
-      self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
-      self.thermalDiffusivity = 0 #cm^2 s^-1
-      self.linearThermalExpansion = 0 #degC^-1
-      self.refractionIndex = 0
-      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
-      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
+      self.abstemp = 300 #Kelvin
+      self.density = 6.15 #g cm^-3
+      self.bandGap = {"Wurzite":3.39,"Zincblende":3.2} #eV
+      self.gapType = 'Direct' #Direct/Indirect
+      self.debyeTemp = 600 #Kelvin
+      self.intrinsicDebyeLength = "unknown" #microns
+      self.electronAffinity = 4.1 #eV
+      self.dieletricConstant = {"Wurzite":{"static":8.9,"high frequency":5.35},
+                                "Zincblende":{"static":9.7,"high frequency":5.3}} #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = {"Wurzite":{"a":3.189,"c":5.186},"Zincblende":4.52} #Angstroms
+      self.boltzmannTemp = 0.0259 #eV
+      self.intrinsicCarrierConcentration = {"Wurzite":3.847e-10,"Zincblende":1.045e-08} #cm^-3
+      self.conductionDensityOfStates = {"Wurzite":2.3e18,"Zincblende":1.2e18} #cm^-3
+      self.valenceDensityOfStates = {"Wurzite":4.6e19,"Zincblende":4.1e19} #cm^-3
+      self.intrinsicResistivity = {"Wurzite":1.622e25,"Zincblende":5.973e23} #Ohm-cm
+      self.opticalPhononEnergy = {"Wurzite":0.0912,"Zincblende":0.0873} #eV
+      self.electronDriftMobility = 1000 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = {"Wurzite":200,"Zincblende":350} #cm^2 V^-1 s^-1
+      self.approxBreakdownField = 5e6 #V cm^-1
+      self.thermalConductivity = 1.3 #W m^-1 K^-1
+      self.thermalDiffusivity = 0.43 #cm^2 s^-1
+      self.linearThermalExpansion = {"\u03b1\u2090":5.59e-6,"\u03b1\u2092":3.17e-6} #degC^-1
+      self.refractionIndex = 2.3 #infrared
+      self.augerRecombinationCoefficientN = "unknown" #cm^6 s^-1
+      self.augerRecombinationCoefficientP = "unknown" #cm^6 s^-1
 
 class GaP:
    '''
