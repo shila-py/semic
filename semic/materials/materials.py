@@ -48,7 +48,7 @@ class Semiconductor:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
@@ -88,7 +88,7 @@ class Si:
       self.debyeTemp = 640 #Kelvin
       self.intrinsicDebyeLength = 24 #microns
       self.electronAffinity = 4.05 #eV
-      self.dieletricConstant = 11.7 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 11.7 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 5.43095 #Angstroms
       self.boltzmannTemp = 0.0259 #eV
       self.intrinsicCarrierConcentration = 1E10 #cm^-3
@@ -128,7 +128,7 @@ class Ge:
       self.debyeTemp = 374 #Kelvin
       self.intrinsicDebyeLength = 0.68 #microns
       self.electronAffinity = 4.0 #eV
-      self.dieletricConstant = 16.0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 16.0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 5.658 #Angstroms
       self.boltzmannTemp = 0.0259 #eV
       self.intrinsicCarrierConcentration = 2.4E13 #cm^-3
@@ -176,7 +176,7 @@ class SiC:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
@@ -217,7 +217,7 @@ class AlN:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
@@ -256,7 +256,7 @@ class AlP:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
@@ -295,7 +295,7 @@ class AlAs:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
@@ -334,7 +334,7 @@ class AlSb:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
@@ -373,7 +373,7 @@ class BN:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
@@ -397,7 +397,7 @@ class GaN:
    '''
 
    group = GROUP[9] #III-V
-   crystal_structure = {"Wurzite":CRYSTAL_STRUCTURE[2],"Zincblende":CRYSTAL_STRUCTURE[1]} #Wurzite and Zincblende
+   crystal_structure = [CRYSTAL_STRUCTURE[2],CRYSTAL_STRUCTURE[1]] #Wurzite and Zincblende
    crystal_orientation = {"Wurzite":CRYSTAL_ORIENTATION[13],"Zincblende":CRYSTAL_ORIENTATION[1]} #Hexagonal and Face-centered Cubic
 
    def __init__(self):
@@ -411,7 +411,7 @@ class GaN:
       self.debyeTemp = 600 #Kelvin
       self.intrinsicDebyeLength = "unknown" #microns
       self.electronAffinity = 4.1 #eV
-      self.dieletricConstant = {"Wurzite":{"static":8.9,"high frequency":5.35},
+      self.dielectricConstant = {"Wurzite":{"static":8.9,"high frequency":5.35},
                                 "Zincblende":{"static":9.7,"high frequency":5.3}} #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = {"Wurzite":{"a":3.189,"c":5.186},"Zincblende":4.52} #Angstroms
       self.boltzmannTemp = 0.0259 #eV
@@ -451,7 +451,7 @@ class GaP:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
@@ -491,7 +491,7 @@ class GaAs:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
@@ -530,7 +530,7 @@ class GaSb:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
@@ -569,7 +569,7 @@ class InN:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
@@ -608,7 +608,7 @@ class InP:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
@@ -647,7 +647,7 @@ class InAs:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
@@ -686,7 +686,7 @@ class InSb:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
@@ -727,7 +727,7 @@ class ZnO:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
@@ -766,7 +766,7 @@ class ZnS:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
@@ -805,7 +805,7 @@ class ZnSe:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
@@ -844,7 +844,7 @@ class ZnTe:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
@@ -883,7 +883,7 @@ class CdS:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
@@ -922,7 +922,7 @@ class CdSe:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
@@ -961,7 +961,7 @@ class CdTe:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
@@ -1000,7 +1000,7 @@ class HgS:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
@@ -1041,7 +1041,7 @@ class PbS:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
@@ -1080,7 +1080,7 @@ class PbSe:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
@@ -1119,7 +1119,7 @@ class PbTe:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
@@ -1168,7 +1168,7 @@ class SiGe:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
@@ -1210,7 +1210,7 @@ class AlGaAs:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
@@ -1250,7 +1250,7 @@ class AlGaN:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
@@ -1289,7 +1289,7 @@ class AlGaSb:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
@@ -1328,7 +1328,7 @@ class CdMnTe:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
@@ -1367,7 +1367,7 @@ class GaAsP:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
@@ -1406,7 +1406,7 @@ class HgCdTe:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
@@ -1445,7 +1445,7 @@ class InAlAs:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
@@ -1484,7 +1484,7 @@ class InGaAs:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
@@ -1523,7 +1523,7 @@ class InGaN:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
@@ -1564,7 +1564,7 @@ class AlGaAsSb:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
@@ -1603,7 +1603,7 @@ class GaInAsP:
       self.debyeTemp = 0 #Kelvin
       self.intrinsicDebyeLength = 0 #microns
       self.electronAffinity = 0 #eV
-      self.dieletricConstant = 0 #Epsilon_R a.k.a K (Kappa)
+      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
       self.boltzmannTemp = 0 #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
