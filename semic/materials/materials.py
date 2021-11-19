@@ -9,6 +9,8 @@
 # 10/19/2021 - Added more functionality
 ##########################################
 
+from semic.constants.constants import *
+
 CRYSTAL_ORIENTATION = ['Simple Cubic','Face-centered Cubic', #1
                        'Body-centered Cubic', 'Simple Tetragonal', #3
                        'Body-centered Tetragonal', 'Simple Orthorhombic', #5
@@ -17,7 +19,7 @@ CRYSTAL_ORIENTATION = ['Simple Cubic','Face-centered Cubic', #1
                        'Base-centered Monoclinic', 'Triclinic', 'Trigonal', #12
                        'Hexagonal', ''] #14
 
-CRYSTAL_STRUCTURE = ['Diamond', 'Zincblende', 'Wurzite', 'Rock-Salt', '']
+CRYSTAL_STRUCTURE = ['Diamond', 'Zincblende', 'Wurtzite', 'Rock-Salt', '']
 
 ALLOYS = ['Binary', 'Ternary', 'Quaternary', '']
 
@@ -170,7 +172,7 @@ class SiC:
       Silicon Carbide material properties at 300 Kelvin for 3C,4H,6H
       '''
       self.abstemp = 300 #Kelvin
-      self.density = [3.21,3.211,3.211] #g cm^-3
+      self.density = {"3C":3.21,"4H":3.211,"6H":3.211} #g cm^-3
       self.bandGap = 0 #eV
       self.gapType = ''
       self.debyeTemp = 0 #Kelvin
@@ -198,42 +200,41 @@ III-V -> GROUP[9]
 '''
 class AlN:
    '''
-   Material Properties and Object Parameters for a Custom Semiconductor
+   Material Properties and Object Parameters for a Aluminum Nitride (Hexagonal Polytype)
    '''
 
    group = GROUP[9] #III-V
-   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
-   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+   crystal_structure = CRYSTAL_STRUCTURE[2] #Wurtzite
+   crystal_orientation = CRYSTAL_ORIENTATION[13] #Hexagonal
 
    def __init__(self):
       '''
-      Custom semiconductor material properties
-      All properties are initialized to 0. 
+      Aluminum Nitride material properties at 300K
       '''
-      self.abstemp = 0 #Kelvin
-      self.density = 0 #g cm^-3
-      self.bandGap = 0 #eV
-      self.gapType = '' #Direct/Indirect
-      self.debyeTemp = 0 #Kelvin
-      self.intrinsicDebyeLength = 0 #microns
-      self.electronAffinity = 0 #eV
-      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
-      self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
-      self.intrinsicCarrierConcentration = 0 #cm^-3
-      self.conductionDensityOfStates = 0 #cm^-3
-      self.valenceDensityOfStates = 0 #cm^-3
-      self.intrinsicResistivity = 0 #Ohm-cm
-      self.opticalPhononEnergy = 0 #eV
-      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
-      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
-      self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
-      self.thermalDiffusivity = 0 #cm^2 s^-1
-      self.linearThermalExpansion = 0 #degC^-1
-      self.refractionIndex = 0
-      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
-      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
+      self.abstemp = 300 #Kelvin
+      self.density = 3.23 #g cm^-3
+      self.bandGap = 6.2 #eV
+      self.gapType = 'Direct' #Direct/Indirect
+      self.debyeTemp = 1150 #Kelvin
+      self.intrinsicDebyeLength = "TBD" #microns
+      self.electronAffinity = 0.6 #eV
+      self.dielectricConstant = {"static":8.5,"high frequency":4.6} #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = {"a":3.112,"c":4.982} #Angstroms
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
+      self.intrinsicCarrierConcentration = 4.598e-33 #cm^-3
+      self.conductionDensityOfStates = 6.3e18 #cm^-3
+      self.valenceDensityOfStates = 4.8e20 #cm^-3
+      self.intrinsicResistivity = 4.525e48 #Ohm-cm
+      self.opticalPhononEnergy = 0.099 #eV
+      self.electronDriftMobility = 300 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = 14 #cm^2 V^-1 s^-1
+      self.approxBreakdownField = {"min":1.2e6,"max":1.8e6} #V cm^-1
+      self.thermalConductivity = 2.85 #W m^-1 K^-1
+      self.thermalDiffusivity = 1.47 #cm^2 s^-1
+      self.linearThermalExpansion = {"\u03b1\u2090":4.2e-6,"\u03b1_c":5.3e-6} #degC^-1
+      self.refractionIndex = 2.15
+      self.augerRecombinationCoefficientN = "unknown" #cm^6 s^-1
+      self.augerRecombinationCoefficientP = "unknown" #cm^6 s^-1
 
 class AlP:
    '''
@@ -397,8 +398,8 @@ class GaN:
    '''
 
    group = GROUP[9] #III-V
-   crystal_structure = [CRYSTAL_STRUCTURE[2],CRYSTAL_STRUCTURE[1]] #Wurzite and Zincblende
-   crystal_orientation = {"Wurzite":CRYSTAL_ORIENTATION[13],"Zincblende":CRYSTAL_ORIENTATION[1]} #Hexagonal and Face-centered Cubic
+   crystal_structure = [CRYSTAL_STRUCTURE[2],CRYSTAL_STRUCTURE[1]] #Wurtzite and Zincblende
+   crystal_orientation = {"Wurtzite":CRYSTAL_ORIENTATION[13],"Zincblende":CRYSTAL_ORIENTATION[1]} #Hexagonal and Face-centered Cubic
 
    def __init__(self):
       '''
@@ -406,22 +407,22 @@ class GaN:
       '''
       self.abstemp = 300 #Kelvin
       self.density = 6.15 #g cm^-3
-      self.bandGap = {"Wurzite":3.39,"Zincblende":3.2} #eV
+      self.bandGap = {"Wurtzite":3.39,"Zincblende":3.2} #eV
       self.gapType = 'Direct' #Direct/Indirect
       self.debyeTemp = 600 #Kelvin
       self.intrinsicDebyeLength = "unknown" #microns
       self.electronAffinity = 4.1 #eV
-      self.dielectricConstant = {"Wurzite":{"static":8.9,"high frequency":5.35},
+      self.dielectricConstant = {"Wurtzite":{"static":8.9,"high frequency":5.35},
                                 "Zincblende":{"static":9.7,"high frequency":5.3}} #Epsilon_R a.k.a K (Kappa)
-      self.latticeConstant = {"Wurzite":{"a":3.189,"c":5.186},"Zincblende":4.52} #Angstroms
+      self.latticeConstant = {"Wurtzite":{"a":3.189,"c":5.186},"Zincblende":4.52} #Angstroms
       self.boltzmannTemp = 0.0259 #eV
-      self.intrinsicCarrierConcentration = {"Wurzite":3.847e-10,"Zincblende":1.045e-08} #cm^-3
-      self.conductionDensityOfStates = {"Wurzite":2.3e18,"Zincblende":1.2e18} #cm^-3
-      self.valenceDensityOfStates = {"Wurzite":4.6e19,"Zincblende":4.1e19} #cm^-3
-      self.intrinsicResistivity = {"Wurzite":1.622e25,"Zincblende":5.973e23} #Ohm-cm
-      self.opticalPhononEnergy = {"Wurzite":0.0912,"Zincblende":0.0873} #eV
+      self.intrinsicCarrierConcentration = {"Wurtzite":3.847e-10,"Zincblende":1.045e-08} #cm^-3
+      self.conductionDensityOfStates = {"Wurtzite":2.3e18,"Zincblende":1.2e18} #cm^-3
+      self.valenceDensityOfStates = {"Wurtzite":4.6e19,"Zincblende":4.1e19} #cm^-3
+      self.intrinsicResistivity = {"Wurtzite":1.622e25,"Zincblende":5.973e23} #Ohm-cm
+      self.opticalPhononEnergy = {"Wurtzite":0.0912,"Zincblende":0.0873} #eV
       self.electronDriftMobility = 1000 #cm^2 V^-1 s^-1
-      self.holeDriftMobility = {"Wurzite":200,"Zincblende":350} #cm^2 V^-1 s^-1
+      self.holeDriftMobility = {"Wurtzite":200,"Zincblende":350} #cm^2 V^-1 s^-1
       self.approxBreakdownField = 5e6 #V cm^-1
       self.thermalConductivity = 1.3 #W m^-1 K^-1
       self.thermalDiffusivity = 0.43 #cm^2 s^-1
