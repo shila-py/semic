@@ -92,7 +92,7 @@ class Si:
       self.electronAffinity = 4.05 #eV
       self.dielectricConstant = 11.7 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 5.43095 #Angstroms
-      self.boltzmannTemp = 0.0259 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 1E10 #cm^-3
       self.conductionDensityOfStates = 2.8E19 #cm^-3
       self.valenceDensityOfStates = 1.0E19 #cm^-3
@@ -132,7 +132,7 @@ class Ge:
       self.electronAffinity = 4.0 #eV
       self.dielectricConstant = 16.0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 5.658 #Angstroms
-      self.boltzmannTemp = 0.0259 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 2.4E13 #cm^-3
       self.conductionDensityOfStates = 1.04E19 #cm^-3
       self.valenceDensityOfStates = 6.0E18 #cm^-3
@@ -415,7 +415,7 @@ class GaN:
       self.dielectricConstant = {"Wurtzite":{"static":8.9,"high frequency":5.35},
                                 "Zincblende":{"static":9.7,"high frequency":5.3}} #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = {"Wurtzite":{"a":3.189,"c":5.186},"Zincblende":4.52} #Angstroms
-      self.boltzmannTemp = 0.0259 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = {"Wurtzite":3.847e-10,"Zincblende":1.045e-08} #cm^-3
       self.conductionDensityOfStates = {"Wurtzite":2.3e18,"Zincblende":1.2e18} #cm^-3
       self.valenceDensityOfStates = {"Wurtzite":4.6e19,"Zincblende":4.1e19} #cm^-3
