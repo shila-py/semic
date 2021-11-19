@@ -159,13 +159,11 @@ IV-IV
 '''
 class SiC:
    '''
-   Material Properties and Object Parameters for Silicon Carbide Polytypes (3C,4H,6H)
-   Properties will be displayed as so: [3C value, 4H value, 6H value]
-
+   Material Properties and Object Parameters for Silicon Carbide [Polytypes:(3C,4H,6H)]
    '''
    group = GROUP[10] # IV-IV Semiconductor
-   crystal_structure = [CRYSTAL_STRUCTURE[1],CRYSTAL_STRUCTURE[2],CRYSTAL_STRUCTURE[2]] #Zincblende,Wurtzite,Wurtzite
-   crystal_orientation = [CRYSTAL_ORIENTATION[1],CRYSTAL_ORIENTATION[14],CRYSTAL_ORIENTATION[14]] #Cubic, Hexagonal, Hexagonal
+   crystal_structure = {"3C":CRYSTAL_STRUCTURE[1],"4H":CRYSTAL_STRUCTURE[2],"6H":CRYSTAL_STRUCTURE[2]} #Zincblende,Wurtzite,Wurtzite
+   crystal_orientation = {"3C":CRYSTAL_ORIENTATION[1],"4H":CRYSTAL_ORIENTATION[13],"6H":CRYSTAL_ORIENTATION[13]} #Cubic, Hexagonal, Hexagonal
 
    def __init__(self):
       '''
@@ -173,28 +171,34 @@ class SiC:
       '''
       self.abstemp = 300 #Kelvin
       self.density = {"3C":3.21,"4H":3.211,"6H":3.211} #g cm^-3
-      self.bandGap = 0 #eV
-      self.gapType = ''
-      self.debyeTemp = 0 #Kelvin
-      self.intrinsicDebyeLength = 0 #microns
-      self.electronAffinity = 0 #eV
-      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
-      self.latticeConstant = 0 #Angstroms
+      self.bandGap = {"3C":2.36,"4H":3.23,"6H":3.00} #eV
+      self.gapType = {"3C":"Indirect","4H":"Indirect","6H":"Indirect"}
+      self.debyeTemp = {"3C":1200,"4H":1300,"6H":1200} #Kelvin
+      self.intrinsicDebyeLength = "unknown" #microns
+      self.electronAffinity = "unknown" #eV
+      self.dielectricConstant = {"3C":{"static":9.72,"high frequency":6.52},
+                                 "4H":{"static":{"\u2225 to c axis":10.03,"\u27c2 to c axis":9.66},
+                                       "high frquency":{"\u2225 to c axis":6.70,"\u27c2 to c axis":6.52}},
+                                 "6H":{"static":{"\u2225 to c axis":10.03,"\u27c2 to c axis":9.66},
+                                       "high frquency":{"\u2225 to c axis":6.70,"\u27c2 to c axis":6.52}}} #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = {"3C":4.3596,"4H":{"a":3.0730,"c":10.053},"6H":{"a":3.0806,"c":15.1173}} #Angstroms
       self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
-      self.intrinsicCarrierConcentration = 0 #cm^-3
-      self.conductionDensityOfStates = 0 #cm^-3
-      self.valenceDensityOfStates = 0 #cm^-3
-      self.intrinsicResistivity = 0 #Ohm-cm
-      self.opticalPhononEnergy = 0 #eV
-      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
-      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
-      self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W cm^-1 degC^-1
-      self.thermalDiffusivity = 0 #cm^2 s^-1
-      self.linearThermalExpansion = 0 #degC^-1
-      self.refractionIndex = 0
-      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
-      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
+      self.intrinsicCarrierConcentration = {"3C":"","4H":"","6H":""} #cm^-3
+      self.conductionDensityOfStates = {"3C":1.5e19,"4H":1.7e19,"6H":8.9e19} #cm^-3
+      self.valenceDensityOfStates = {"3C":1.2e19,"4H":2.5e19,"6H":2.5e19} #cm^-3
+      self.intrinsicResistivity = "unknown" #Ohm-cm
+      self.opticalPhononEnergy = {"3C":102.8,"4H":104.2,"6H":104.2} #eV
+      self.electronDriftMobility = {"3C":800,"4H":900,"6H":400} #cm^2 V^-1 s^-1
+      self.holeDriftMobility = {"3C":320,"4H":120,"6H":90} #cm^2 V^-1 s^-1
+      self.approxBreakdownField = {"3C":1e6,"4H":{"min":3e6,"max":5e6},"6H":{"min":3e6,"max":5e6}} #V cm^-1
+      self.thermalConductivity = {"3C":3.6,"4H":3.7,"6H":4.9} #W cm^-1 degC^-1
+      self.thermalDiffusivity = {"3C":1.6,"4H":1.7,"6H":2.2} #cm^2 s^-1
+      self.linearThermalExpansion = {"3C":3.8e-6,"4H":"unknown",
+                                     "6H":{"\u2225 to c axis":4.7e-6,"\u27c2 to c axis":4.3e-6}} #degC^-1
+      self.refractionIndex = {"3C":2.55,"4H":{"\u2225 to c axis":2.59,"\u27c2 to c axis":2.55},
+                              "6H":{"\u2225 to c axis":2.59,"\u27c2 to c axis":2.55}}
+      self.augerRecombinationCoefficientN = "unknown" #cm^6 s^-1
+      self.augerRecombinationCoefficientP = "unknown" #cm^6 s^-1
 '''
 III-V -> GROUP[9]
 '''
