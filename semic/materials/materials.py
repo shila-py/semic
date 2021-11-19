@@ -52,7 +52,7 @@ class Semiconductor:
       self.electronAffinity = 0 #eV
       self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
       self.conductionDensityOfStates = 0 #cm^-3
       self.valenceDensityOfStates = 0 #cm^-3
@@ -61,7 +61,7 @@ class Semiconductor:
       self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalConductivity = 0 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1   
       self.refractionIndex = 0
@@ -101,7 +101,7 @@ class Si:
       self.electronDriftMobility = 1500 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 475 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 3E5 #V cm^-1
-      self.thermalConductivity = 148 #W m^-1 K^-1
+      self.thermalConductivity = 148 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0.8 #cm^2 s^-1
       self.linearThermalExpansion = 2.6E-6 #degC^-1
       self.refractionIndex = 3.42
@@ -141,7 +141,7 @@ class Ge:
       self.electronDriftMobility = 3900 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 1900 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 1E5 #V cm^-1
-      self.thermalConductivity = 0.6 #W cm^-1 K^-1
+      self.thermalConductivity = 0.6 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0.36 #cm^2 s^-1
       self.linearThermalExpansion = 5.8E-6 #degC^-1
       self.refractionIndex = 4.00
@@ -180,7 +180,7 @@ class SiC:
       self.electronAffinity = 0 #eV
       self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
       self.conductionDensityOfStates = 0 #cm^-3
       self.valenceDensityOfStates = 0 #cm^-3
@@ -189,7 +189,7 @@ class SiC:
       self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W cm^-1 K^-1
+      self.thermalConductivity = 0 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
       self.refractionIndex = 0
@@ -229,7 +229,7 @@ class AlN:
       self.electronDriftMobility = 300 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 14 #cm^2 V^-1 s^-1
       self.approxBreakdownField = {"min":1.2e6,"max":1.8e6} #V cm^-1
-      self.thermalConductivity = 2.85 #W m^-1 K^-1
+      self.thermalConductivity = 2.85 #W cm^-1 degC^-1
       self.thermalDiffusivity = 1.47 #cm^2 s^-1
       self.linearThermalExpansion = {"\u03b1\u2090":4.2e-6,"\u03b1_c":5.3e-6} #degC^-1
       self.refractionIndex = 2.15
@@ -259,7 +259,7 @@ class AlP:
       self.electronAffinity = 0 #eV
       self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
       self.conductionDensityOfStates = 0 #cm^-3
       self.valenceDensityOfStates = 0 #cm^-3
@@ -268,7 +268,7 @@ class AlP:
       self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalConductivity = 0 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
       self.refractionIndex = 0
@@ -298,7 +298,7 @@ class AlAs:
       self.electronAffinity = 0 #eV
       self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
       self.conductionDensityOfStates = 0 #cm^-3
       self.valenceDensityOfStates = 0 #cm^-3
@@ -307,7 +307,7 @@ class AlAs:
       self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalConductivity = 0 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
       self.refractionIndex = 0
@@ -337,7 +337,7 @@ class AlSb:
       self.electronAffinity = 0 #eV
       self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
       self.conductionDensityOfStates = 0 #cm^-3
       self.valenceDensityOfStates = 0 #cm^-3
@@ -346,7 +346,7 @@ class AlSb:
       self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalConductivity = 0 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
       self.refractionIndex = 0
@@ -376,7 +376,7 @@ class BN:
       self.electronAffinity = 0 #eV
       self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
       self.conductionDensityOfStates = 0 #cm^-3
       self.valenceDensityOfStates = 0 #cm^-3
@@ -385,7 +385,7 @@ class BN:
       self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalConductivity = 0 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
       self.refractionIndex = 0
@@ -424,7 +424,7 @@ class GaN:
       self.electronDriftMobility = 1000 #cm^2 V^-1 s^-1
       self.holeDriftMobility = {"Wurtzite":200,"Zincblende":350} #cm^2 V^-1 s^-1
       self.approxBreakdownField = 5e6 #V cm^-1
-      self.thermalConductivity = 1.3 #W m^-1 K^-1
+      self.thermalConductivity = 1.3 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0.43 #cm^2 s^-1
       self.linearThermalExpansion = {"\u03b1\u2090":5.59e-6,"\u03b1_c":3.17e-6} #degC^-1
       self.refractionIndex = 2.3 #infrared
@@ -454,7 +454,7 @@ class GaP:
       self.electronAffinity = 0 #eV
       self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
       self.conductionDensityOfStates = 0 #cm^-3
       self.valenceDensityOfStates = 0 #cm^-3
@@ -463,7 +463,7 @@ class GaP:
       self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalConductivity = 0 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
       self.refractionIndex = 0
@@ -494,7 +494,7 @@ class GaAs:
       self.electronAffinity = 0 #eV
       self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
       self.conductionDensityOfStates = 0 #cm^-3
       self.valenceDensityOfStates = 0 #cm^-3
@@ -503,7 +503,7 @@ class GaAs:
       self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalConductivity = 0 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
       self.refractionIndex = 0
@@ -533,7 +533,7 @@ class GaSb:
       self.electronAffinity = 0 #eV
       self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
       self.conductionDensityOfStates = 0 #cm^-3
       self.valenceDensityOfStates = 0 #cm^-3
@@ -542,7 +542,7 @@ class GaSb:
       self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalConductivity = 0 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
       self.refractionIndex = 0
@@ -551,42 +551,41 @@ class GaSb:
 
 class InN:
    '''
-   Material Properties and Object Parameters for a Custom Semiconductor
+   Material Properties and Object Parameters for Indium Nitride (hexagonal polytype)
    '''
 
-   group = GROUP[13] #Empty
-   crystal_structure = CRYSTAL_STRUCTURE[4] #Empty
-   crystal_orientation = CRYSTAL_ORIENTATION[14] #Empty
+   group = GROUP[9] #III-V
+   crystal_structure = CRYSTAL_STRUCTURE[2] #Wurtzite
+   crystal_orientation = CRYSTAL_ORIENTATION[13] #Hexagonal
 
    def __init__(self):
       '''
-      Custom semiconductor material properties
-      All properties are initialized to 0. 
+      Indium Nitride material properties at 300K 
       '''
-      self.abstemp = 0 #Kelvin
-      self.density = 0 #g cm^-3
-      self.bandGap = 0 #eV
-      self.gapType = '' #Direct/Indirect
-      self.debyeTemp = 0 #Kelvin
-      self.intrinsicDebyeLength = 0 #microns
-      self.electronAffinity = 0 #eV
-      self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
-      self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
+      self.abstemp = 300 #Kelvin
+      self.density = 6.81 #g cm^-3
+      self.bandGap = {"min":1.9,"max":2.05} #eV
+      self.gapType = 'Direct' #Direct/Indirect
+      self.debyeTemp = 660 #Kelvin
+      self.intrinsicDebyeLength = "unknown" #microns
+      self.electronAffinity = "unknown" #eV
+      self.dielectricConstant = {"static":15.3,"high frequency":8.4} #Epsilon_R a.k.a K (Kappa)
+      self.latticeConstant = {"a":3.533,"c":5.693} #Angstroms
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
-      self.conductionDensityOfStates = 0 #cm^-3
-      self.valenceDensityOfStates = 0 #cm^-3
+      self.conductionDensityOfStates = 9e17 #cm^-3
+      self.valenceDensityOfStates = 5.3e19 #cm^-3
       self.intrinsicResistivity = 0 #Ohm-cm
-      self.opticalPhononEnergy = 0 #eV
-      self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
-      self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
-      self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
-      self.thermalDiffusivity = 0 #cm^2 s^-1
-      self.linearThermalExpansion = 0 #degC^-1
-      self.refractionIndex = 0
-      self.augerRecombinationCoefficientN = 0 #cm^6 s^-1
-      self.augerRecombinationCoefficientP = 0 #cm^6 s^-1
+      self.opticalPhononEnergy = 0.073 #eV
+      self.electronDriftMobility = 3200 #cm^2 V^-1 s^-1
+      self.holeDriftMobility = "unknown" #cm^2 V^-1 s^-1
+      self.approxBreakdownField = "unknown" #V cm^-1
+      self.thermalConductivity = 0.45 #W cm^-1 degC^-1
+      self.thermalDiffusivity = 0.2 #cm^2 s^-1
+      self.linearThermalExpansion = {"\u03b1\u2090":3.8e-6,"\u03b1_c":2.9e-6} #degC^-1
+      self.refractionIndex = 2.9
+      self.augerRecombinationCoefficientN = "unknown" #cm^6 s^-1
+      self.augerRecombinationCoefficientP = "unknown" #cm^6 s^-1
 
 class InP:
    '''
@@ -611,7 +610,7 @@ class InP:
       self.electronAffinity = 0 #eV
       self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
       self.conductionDensityOfStates = 0 #cm^-3
       self.valenceDensityOfStates = 0 #cm^-3
@@ -620,7 +619,7 @@ class InP:
       self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalConductivity = 0 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
       self.refractionIndex = 0
@@ -650,7 +649,7 @@ class InAs:
       self.electronAffinity = 0 #eV
       self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
       self.conductionDensityOfStates = 0 #cm^-3
       self.valenceDensityOfStates = 0 #cm^-3
@@ -659,7 +658,7 @@ class InAs:
       self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalConductivity = 0 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
       self.refractionIndex = 0
@@ -689,7 +688,7 @@ class InSb:
       self.electronAffinity = 0 #eV
       self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
       self.conductionDensityOfStates = 0 #cm^-3
       self.valenceDensityOfStates = 0 #cm^-3
@@ -698,7 +697,7 @@ class InSb:
       self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalConductivity = 0 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
       self.refractionIndex = 0
@@ -730,7 +729,7 @@ class ZnO:
       self.electronAffinity = 0 #eV
       self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
       self.conductionDensityOfStates = 0 #cm^-3
       self.valenceDensityOfStates = 0 #cm^-3
@@ -739,7 +738,7 @@ class ZnO:
       self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalConductivity = 0 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
       self.refractionIndex = 0
@@ -769,7 +768,7 @@ class ZnS:
       self.electronAffinity = 0 #eV
       self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
       self.conductionDensityOfStates = 0 #cm^-3
       self.valenceDensityOfStates = 0 #cm^-3
@@ -778,7 +777,7 @@ class ZnS:
       self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalConductivity = 0 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
       self.refractionIndex = 0
@@ -808,7 +807,7 @@ class ZnSe:
       self.electronAffinity = 0 #eV
       self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
       self.conductionDensityOfStates = 0 #cm^-3
       self.valenceDensityOfStates = 0 #cm^-3
@@ -817,7 +816,7 @@ class ZnSe:
       self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalConductivity = 0 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
       self.refractionIndex = 0
@@ -847,7 +846,7 @@ class ZnTe:
       self.electronAffinity = 0 #eV
       self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
       self.conductionDensityOfStates = 0 #cm^-3
       self.valenceDensityOfStates = 0 #cm^-3
@@ -856,7 +855,7 @@ class ZnTe:
       self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalConductivity = 0 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
       self.refractionIndex = 0
@@ -886,7 +885,7 @@ class CdS:
       self.electronAffinity = 0 #eV
       self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
       self.conductionDensityOfStates = 0 #cm^-3
       self.valenceDensityOfStates = 0 #cm^-3
@@ -895,7 +894,7 @@ class CdS:
       self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalConductivity = 0 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
       self.refractionIndex = 0
@@ -925,7 +924,7 @@ class CdSe:
       self.electronAffinity = 0 #eV
       self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
       self.conductionDensityOfStates = 0 #cm^-3
       self.valenceDensityOfStates = 0 #cm^-3
@@ -934,7 +933,7 @@ class CdSe:
       self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalConductivity = 0 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
       self.refractionIndex = 0
@@ -964,7 +963,7 @@ class CdTe:
       self.electronAffinity = 0 #eV
       self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
       self.conductionDensityOfStates = 0 #cm^-3
       self.valenceDensityOfStates = 0 #cm^-3
@@ -973,7 +972,7 @@ class CdTe:
       self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalConductivity = 0 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
       self.refractionIndex = 0
@@ -1003,7 +1002,7 @@ class HgS:
       self.electronAffinity = 0 #eV
       self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
       self.conductionDensityOfStates = 0 #cm^-3
       self.valenceDensityOfStates = 0 #cm^-3
@@ -1012,7 +1011,7 @@ class HgS:
       self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalConductivity = 0 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
       self.refractionIndex = 0
@@ -1044,7 +1043,7 @@ class PbS:
       self.electronAffinity = 0 #eV
       self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
       self.conductionDensityOfStates = 0 #cm^-3
       self.valenceDensityOfStates = 0 #cm^-3
@@ -1053,7 +1052,7 @@ class PbS:
       self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalConductivity = 0 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
       self.refractionIndex = 0
@@ -1083,7 +1082,7 @@ class PbSe:
       self.electronAffinity = 0 #eV
       self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
       self.conductionDensityOfStates = 0 #cm^-3
       self.valenceDensityOfStates = 0 #cm^-3
@@ -1092,7 +1091,7 @@ class PbSe:
       self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalConductivity = 0 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
       self.refractionIndex = 0
@@ -1122,7 +1121,7 @@ class PbTe:
       self.electronAffinity = 0 #eV
       self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
       self.conductionDensityOfStates = 0 #cm^-3
       self.valenceDensityOfStates = 0 #cm^-3
@@ -1131,7 +1130,7 @@ class PbTe:
       self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalConductivity = 0 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
       self.refractionIndex = 0
@@ -1171,7 +1170,7 @@ class SiGe:
       self.electronAffinity = 0 #eV
       self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
       self.conductionDensityOfStates = 0 #cm^-3
       self.valenceDensityOfStates = 0 #cm^-3
@@ -1180,7 +1179,7 @@ class SiGe:
       self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalConductivity = 0 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
       self.refractionIndex = 0
@@ -1213,7 +1212,7 @@ class AlGaAs:
       self.electronAffinity = 0 #eV
       self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
       self.conductionDensityOfStates = 0 #cm^-3
       self.valenceDensityOfStates = 0 #cm^-3
@@ -1222,7 +1221,7 @@ class AlGaAs:
       self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalConductivity = 0 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
       self.refractionIndex = 0
@@ -1253,7 +1252,7 @@ class AlGaN:
       self.electronAffinity = 0 #eV
       self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
       self.conductionDensityOfStates = 0 #cm^-3
       self.valenceDensityOfStates = 0 #cm^-3
@@ -1262,7 +1261,7 @@ class AlGaN:
       self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalConductivity = 0 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
       self.refractionIndex = 0
@@ -1292,7 +1291,7 @@ class AlGaSb:
       self.electronAffinity = 0 #eV
       self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
       self.conductionDensityOfStates = 0 #cm^-3
       self.valenceDensityOfStates = 0 #cm^-3
@@ -1301,7 +1300,7 @@ class AlGaSb:
       self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalConductivity = 0 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
       self.refractionIndex = 0
@@ -1331,7 +1330,7 @@ class CdMnTe:
       self.electronAffinity = 0 #eV
       self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
       self.conductionDensityOfStates = 0 #cm^-3
       self.valenceDensityOfStates = 0 #cm^-3
@@ -1340,7 +1339,7 @@ class CdMnTe:
       self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalConductivity = 0 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
       self.refractionIndex = 0
@@ -1370,7 +1369,7 @@ class GaAsP:
       self.electronAffinity = 0 #eV
       self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
       self.conductionDensityOfStates = 0 #cm^-3
       self.valenceDensityOfStates = 0 #cm^-3
@@ -1379,7 +1378,7 @@ class GaAsP:
       self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalConductivity = 0 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
       self.refractionIndex = 0
@@ -1409,7 +1408,7 @@ class HgCdTe:
       self.electronAffinity = 0 #eV
       self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
       self.conductionDensityOfStates = 0 #cm^-3
       self.valenceDensityOfStates = 0 #cm^-3
@@ -1418,7 +1417,7 @@ class HgCdTe:
       self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalConductivity = 0 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
       self.refractionIndex = 0
@@ -1448,7 +1447,7 @@ class InAlAs:
       self.electronAffinity = 0 #eV
       self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
       self.conductionDensityOfStates = 0 #cm^-3
       self.valenceDensityOfStates = 0 #cm^-3
@@ -1457,7 +1456,7 @@ class InAlAs:
       self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalConductivity = 0 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
       self.refractionIndex = 0
@@ -1487,7 +1486,7 @@ class InGaAs:
       self.electronAffinity = 0 #eV
       self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
       self.conductionDensityOfStates = 0 #cm^-3
       self.valenceDensityOfStates = 0 #cm^-3
@@ -1496,7 +1495,7 @@ class InGaAs:
       self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalConductivity = 0 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
       self.refractionIndex = 0
@@ -1526,7 +1525,7 @@ class InGaN:
       self.electronAffinity = 0 #eV
       self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
       self.conductionDensityOfStates = 0 #cm^-3
       self.valenceDensityOfStates = 0 #cm^-3
@@ -1535,7 +1534,7 @@ class InGaN:
       self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalConductivity = 0 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
       self.refractionIndex = 0
@@ -1567,7 +1566,7 @@ class AlGaAsSb:
       self.electronAffinity = 0 #eV
       self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
       self.conductionDensityOfStates = 0 #cm^-3
       self.valenceDensityOfStates = 0 #cm^-3
@@ -1576,7 +1575,7 @@ class AlGaAsSb:
       self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalConductivity = 0 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
       self.refractionIndex = 0
@@ -1606,7 +1605,7 @@ class GaInAsP:
       self.electronAffinity = 0 #eV
       self.dielectricConstant = 0 #Epsilon_R a.k.a K (Kappa)
       self.latticeConstant = 0 #Angstroms
-      self.boltzmannTemp = 0 #eV
+      self.boltzmannTemp = value("Boltzmann constant in eV/K") * self.abstemp #eV
       self.intrinsicCarrierConcentration = 0 #cm^-3
       self.conductionDensityOfStates = 0 #cm^-3
       self.valenceDensityOfStates = 0 #cm^-3
@@ -1615,7 +1614,7 @@ class GaInAsP:
       self.electronDriftMobility = 0 #cm^2 V^-1 s^-1
       self.holeDriftMobility = 0 #cm^2 V^-1 s^-1
       self.approxBreakdownField = 0 #V cm^-1
-      self.thermalConductivity = 0 #W m^-1 K^-1
+      self.thermalConductivity = 0 #W cm^-1 degC^-1
       self.thermalDiffusivity = 0 #cm^2 s^-1
       self.linearThermalExpansion = 0 #degC^-1
       self.refractionIndex = 0
