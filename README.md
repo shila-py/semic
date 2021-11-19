@@ -28,7 +28,7 @@
    - Start FETs and BJTs
    - Start Diodes
    - Start Opto-electronic Devices
-   - Add plotting support (undecided)
+   - Add plotting support
    - Create documentation using Sphinx
 
 ## Future considerations
