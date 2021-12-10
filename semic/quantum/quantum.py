@@ -3,7 +3,7 @@
 # Author: Nithin Kumar Santha Kumar
 # Date: 10/10/2021
 ##########################################
-# Changelog: 
+# Changelog:
 # 4/25/2021 - Started Package
 # 10/28/2021 - Started quantum mechanics (quantum.py)
 # 10/28/2021 - Added more functionality
@@ -14,8 +14,14 @@ from sympy.physics.quantum.state import Bra, Ket
 from sympy.physics.quantum.operator import Operator
 from sympy.physics.quantum import InnerProduct, OuterProduct
 
-def wavefunction():
-   pass
+def wavefunction(*args):
+    """Function docstring"""
+    Dagger(*args)
+    Bra(*args)
+    Ket(*args)
+    Operator(*args)
+    InnerProduct(*args) 
+    OuterProduct(*args)
 
 def qstate():
-   pass
+    """Function for Quantum State"""
