@@ -9,8 +9,9 @@
 # 
 ##########################################
 
-from semic.constants.constants import value
 from numpy import pi,sqrt,exp
+from semic.constants.constants import value
+
 
 
 

@@ -38,7 +38,7 @@ def group_velocity(gradient_k=None,E=None):
 
    return v
 
-def Bloch_accel(force=None):
+def bloch_accel(force=None):
    '''
    Function to find the acceleration of a Bloch wave. The
    acceleration theorem states that a uniform force, F, will
