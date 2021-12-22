@@ -8,9 +8,9 @@
 # 9/09/2021 - Started hole dynamics physics (dynamics.py)
 # 
 ##########################################
-from scipy import constants
+from semic.constants.constants import value
 
-h_bar = constants.codata.value('reduced Planck constant')
+h_bar = value('reduced Planck constant')
 
 def group_velocity(gradient_k=None,E=None):
    '''
