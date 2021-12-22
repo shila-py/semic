@@ -1,13 +1,6 @@
-##########################################
-# Semiconductor Calculations Package
-# Author: Nithin Kumar Santha Kumar
-# Date: 4/25/2021
-##########################################
-# Changelog: 
-# 4/25/2021 - Started Package
-# 6/29/2021 - Added additional functions
-# 
-##########################################
+'''
+Module docstring for fundamentals.py
+'''
 
 from numpy import pi,sqrt,exp
 from semic.constants.constants import value
@@ -15,190 +8,189 @@ from semic.constants.constants import value
 
 
 
-def find_pn(temp=None,eg=None,ni=None,na=None,nd=None):
-   '''
-   Function to find n and p concentrations.
-   
-   temp : Temperature in Kelvin
-   
-   eg : Bandgap value in eV
-   
-   ni: Intrinsic concentration
-   
-   na: Acceptor concentration
-   
-   nd: Donor concentration
-   
-   Returns n and p concentrations as a tuple (n,p)
-   '''
-   #constants
-   #k = value('Boltzmann constant in eV/K')
-   #temp = float(input("Enter temperature (in Kelvin) : "))
-   #eg = float(input("Enter bandgap value (in eV) : "))
-   #nc = float(input("Enter Nc (#/cm^3) : "))
-   #nv = float(input("Enter Nv (#/cm^3) : "))
-   #ni = sqrt(nc * nv)*exp(-eg/(2*k*temp))
+def find_pn(temp=0,bandgap=0,n_a=0,n_d=0):
+    '''
+    Function to find n and p concentrations.
 
-   if na > nd:
-      p = ((na-nd) + sqrt((na-nd)**2 + 4*(ni**2))) / 2.0
-      n = (ni**2)/p
-   if nd > na:
-      n = ((nd-na) + sqrt((nd-na)**2 + 4*(ni**2))) / 2.0
-      p = (ni**2)/n  
-      
-   return n,p
+    temp : Temperature in Kelvin
 
-def eg_temp(temp=None):
-   '''
-   Function to find the bandgap value from temperature in Kelvin for Silicon.
-   
-   temp: Temperature in Kelvin
-   '''
-   eg = 1.17 - 4.73e-4*(temp**2/(temp+636))
-   return eg
+    bandgap : Bandgap value in eV
 
-def nc_temp(temp=None):
-   '''
-   Function to find thermal effective density of states in conduction band
-   from temperature in Kelvin.
-   
-   temp: Temperature in Kelvin
-   '''
-   nc = 6.2e15*temp**(3/2)
-   return nc
+    n_i: Intrinsic concentration
 
-def nv_temp(temp=None):
-   '''
-   Function to find thermal effective density of states in valence band
-   from temperature in Kelvin.
-   
-   temp: Temperature in Kelvin
-   '''
-   nv = 3.5e15*temp**(3/2)
-   return nv
+    n_a: Acceptor concentration
 
-def find_ic(i_sat=None, vbe=None, temp=None):
-   '''
-   Function to find the collector current of a bipolar transistor.
-   
-   i_sat: The saturation current
-   
-   vbe: The DC voltage between the base and the emitter of a bipolar
-        transistor.
-   
-   temp: The temperature in Kelvin
-   '''
-   kt = value('Boltzmann constant in eV/K') * temp
-   ic = i_sat * exp((vbe/kt)-1)
-   return ic
+    nd: Donor concentration
 
+    Returns n and p concentrations as a tuple (n,p)
+    '''
+    #constants
+    kb_t = value('Boltzmann constant in eV/K') * temp
+    #temp = float(input("Enter temperature (in Kelvin) : "))
+    #bandgap = float(input("Enter bandgap value (in eV) : "))
+    n_c = float(input("Enter n_c (#/cm^3) : "))
+    n_v = float(input("Enter n_v (#/cm^3) : "))
+    n_i = sqrt(n_c * n_v)*exp(-bandgap/(2*kb_t))
 
+    if n_a > n_d:
+        p_type = ((n_a-n_d) + sqrt((n_a-n_d)**2 + 4*(n_i**2))) / 2.0
+        n_type = (n_i**2)/p_type
+    if n_d > n_a:
+        n_type = ((n_d-n_a) + sqrt((n_d-n_a)**2 + 4*(n_i**2))) / 2.0
+        p_type = (n_i**2)/n_type
 
-def n0(Nc=None,Ec=None,Ef=None,temp=None):
-   '''
-   Function to find Equilibrium electron density
-   in the conduction band.
+    return n_type,p_type
 
-   Nc: Thermal effective density of states in the
-       conduction band.
-   
-   Ec: Conduction band edge energy in a semiconductor.
-       This is the potential energy of electrons, including
-       electrostatic potential.
+def bandgap_temp(temp=0):
+    '''
+    Function to find the bandgap value from temperature in Kelvin for Silicon.
 
-   Ef: Fermi energy, or the chemical potential for electrons.
+    temp: Temperature in Kelvin
+    '''
+    bandgap = 1.17 - 4.73e-4*(temp**2/(temp+636))
+    return bandgap
 
-   k_b: Boltzmann's constant in eV/K
+def nc_temp(temp=0):
+    '''
+    Function to find thermal effective density of states in conduction band
+    from temperature in Kelvin.
 
-   temp: Temperature in Kelvin
+    temp: Temperature in Kelvin
+    '''
+    n_c = 6.2e15*temp**(3/2)
+    return n_c
 
-   n0 = Nc*exp(-(Ec-Ef)/(k_b*temp))
-   '''
-   kT = value('Boltzmann constant in eV/K') * temp
-   n_0 = Nc*exp(-(Ec-Ef)/kT)
+def nv_temp(temp=0):
+    '''
+    Function to find thermal effective density of states in valence band
+    from temperature in Kelvin.
 
-   return n_0
+    temp: Temperature in Kelvin
+    '''
+    n_v = 3.5e15*temp**(3/2)
+    return n_v
 
-def find_nc(mass_c=None,temp=None):
-   '''
-   Function to find thermal effective density of states in
-   conduction band.
+def find_ic(i_sat=0, vbe=0, temp=0):
+    '''
+    Function to find the collector current of a bipolar transistor.
 
-   mass_c: The effective mass of a carrier in the conduction band
+    i_sat: The saturation current
 
-   k_b: Boltzmann constant in eV/K
+    vbe: The DC voltage between the base and the emitter of a bipolar
+            transistor.
 
-   temp: Temperature in Kelvin
-
-   hbar: reduced Planck constant in eV s
-
-   Nc = 2*[mass_c*k_b*temp/(2pi*hbar^2)]^(3/2)
-   '''
-   kT = value('Boltzmann constant in eV/K') * temp
-   h_bar = value('reduced Planck constant in eV s')
-   Nc = 2*((mass_c*kT/(2*pi*(h_bar**2)))**(3/2))
-
-   return Nc
-
-def p0(Nv=None,Ev=None,Ef=None,temp=None):
-   '''
-   Function to find the Equilibrium hole density
-   in the valence band.
-
-   Nv: Thermal effective density of states in valence band
-
-   Ev: Valence band edge energy in a semiconductor.
-       This is the potential energy of electrons, including
-       electrostatic potential.
-   
-   k_b: Boltzmann constant in eV/K
-
-   temp: Temperature in Kelvin
-
-   p0 = Nv*exp(Ev-Ef/k_b*temp)
-   '''
-
-   kT = value('Boltzmann constant in eV/K') * temp
-   p_0 = Nv*exp((Ev-Ef)/kT)
-
-   return p_0
-
-def find_nv(mass_v=None,temp=None):
-   '''
-   Function to find the thermal effective density
-   of states in valence band.
-
-   mass_v: The effective mass of of carrier in valence band
-
-   temp: Temperature in Kelvin
-
-   k_b: Boltzmann constant in eV/K
-
-   hbar: reduced Planck constant in eV s
-
-   Nv = 2*[mass_v*k_b*temp/(2pi*hbar^2)]^(3/2)
-   '''
-
-   kT = value('Boltzmann constant in eV/K') * temp
-   h_bar = value('reduced Planck constant in eV s')
-
-   Nv = 2*(mass_v*kT/(2*pi*(h_bar**2)))**(3/2)
-
-   return Nv
+    temp: The temperature in Kelvin
+    '''
+    kb_t = value('Boltzmann constant in eV/K') * temp
+    i_c = i_sat * exp((vbe/kb_t)-1)
+    return i_c
 
 
-def ni(n_0 = None, p_0 = None):
-   '''
-   Function to find the intrinsic carrier density
 
-   n_0 = Equilibrium carrier density of electrons in conduction band
+def find_n0(n_c=0,conduction_band_energy=0,fermi_energy=0,temp=0):
+    '''
+    Function to find Equilibrium electron density
+    in the conduction band.
 
-   p_0 = Equilibrium carrier density of holes in valence band
+    n_c: Thermal effective density of states in the
+        conduction band.
 
-   ni = sqrt(n_0*p_0)
-   '''
+    conduction_band_energy: Conduction band edge energy in a semiconductor.
+        This is the potential energy of electrons, including
+        electrostatic potential.
 
-   n_i = sqrt(n_0 * p_0)
+    fermi_energy: Fermi energy, or the chemical potential for electrons.
 
-   return n_i
+    k_b: Boltzmann's constant in eV/K
 
+    temp: Temperature in Kelvin
+
+    n0 = n_c*exp(-(conduction_band_energy-fermi_energy)/(k_b*temp))
+    '''
+    kb_t = value('Boltzmann constant in eV/K') * temp
+    n_0 = n_c*exp(-(conduction_band_energy-fermi_energy)/kb_t)
+
+    return n_0
+
+def find_nc(mass_c=0,temp=0):
+    '''
+    Function to find thermal effective density of states in
+    conduction band.
+
+    mass_c: The effective mass of a carrier in the conduction band
+
+    k_b: Boltzmann constant in eV/K
+
+    temp: Temperature in Kelvin
+
+    hbar: reduced Planck constant in eV s
+
+    n_c = 2*[mass_c*k_b*temp/(2pi*hbar^2)]^(3/2)
+    '''
+    kb_t = value('Boltzmann constant in eV/K') * temp
+    h_bar = value('reduced Planck constant in eV s')
+    n_c = 2*((mass_c*kb_t/(2*pi*(h_bar**2)))**(3/2))
+
+    return n_c
+
+def find_p0(n_v=0,valence_band_energy=0,fermi_energy=0,temp=0):
+    '''
+    Function to find the Equilibrium hole density
+    in the valence band.
+
+    n_v: Thermal effective density of states in valence band
+
+    valence_band_energy: Valence band edge energy in a semiconductor.
+        This is the potential energy of electrons, including
+        electrostatic potential.
+
+    k_b: Boltzmann constant in eV/K
+
+    temp: Temperature in Kelvin
+
+    p0 = n_v*exp(valence_band_energy-fermi_energy/k_b*temp)
+    '''
+
+    kb_t = value('Boltzmann constant in eV/K') * temp
+    p_0 = n_v*exp((valence_band_energy-fermi_energy)/kb_t)
+
+    return p_0
+
+def find_nv(mass_v=0,temp=0):
+    '''
+    Function to find the thermal effective density
+    of states in valence band.
+
+    mass_v: The effective mass of of carrier in valence band
+
+    temp: Temperature in Kelvin
+
+    k_b: Boltzmann constant in eV/K
+
+    hbar: reduced Planck constant in eV s
+
+    n_v = 2*[mass_v*k_b*temp/(2pi*hbar^2)]^(3/2)
+    '''
+
+    kb_t = value('Boltzmann constant in eV/K') * temp
+    h_bar = value('reduced Planck constant in eV s')
+
+    n_v = 2*(mass_v*kb_t/(2*pi*(h_bar**2)))**(3/2)
+
+    return n_v
+
+
+def find_ni(n_0 = 0, p_0 = 0):
+    '''
+    Function to find the intrinsic carrier density
+
+    n_0 = Equilibrium carrier density of electrons in conduction band
+
+    p_0 = Equilibrium carrier density of holes in valence band
+
+    n_i = sqrt(n_0*p_0)
+    '''
+
+    n_i = sqrt(n_0 * p_0)
+
+    return n_i
