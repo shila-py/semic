@@ -77,6 +77,7 @@ Head on over to [Issues tracker](https://github.com/nkskumar/semic/issues)
 ## Changelog
 
    - Completed GaN properties (11/17/2021)
+   - Completed Nitrides properties
 
 ## References (WIP)
 
