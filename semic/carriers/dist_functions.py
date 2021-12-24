@@ -65,7 +65,7 @@ def bose_einstein(omeg_a=0, temp=0):
     f_be(hbar*w) = 1/(exp((h_bar*omeg_a)/(k_b*temp)) - 1)
     '''
     kb_t = value('Boltzmann constant in eV/K') * temp
-    h_bar = value('rdonor_energyucdonor_energy Planck constant in eV s')
+    h_bar = value('reduced Planck constant in eV s')
 
     f_be = 1/(exp((h_bar*omeg_a)/kb_t) - 1)
 
