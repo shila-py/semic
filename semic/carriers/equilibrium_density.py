@@ -112,3 +112,45 @@ def find_ni(n_0 = 0, p_0 = 0):
     n_i = sqrt(n_0 * p_0)
 
     return n_i
+
+def n0_from_ni(n_i=0,fermi_energy=0,in_fermi_level=0,temp=1):
+    '''
+    Function to find the equilibrium electron density from the
+    intrinsic carrier density of a semiconductor.
+
+    n_i: Intrinsic carrier density of a semiconductor
+
+    fermi_energy: Fermi energy, or the chemical potential of an electron
+
+    in_fermi_level: Fermi level of an intrinsic semiconductor
+
+    temp: Temperature in Kelvin
+
+    n0 = ni*exp((Ef-Efi)/kbT)
+    '''
+    kb_t = value('Boltzmann constant in eV/K') * temp
+    exponential = exp((fermi_energy-in_fermi_level)/kb_t)
+    n_0 = n_i*exponential
+    
+    return n_0
+
+def p0_from_ni(n_i=0,fermi_energy=0,in_fermi_level=0,temp=1):
+    '''
+    Function to find the equilibrium hole density from the
+    intrinsic carrier density of a semiconductor.
+
+    n_i: Intrinsic carrier density of a semiconductor
+
+    fermi_energy: Fermi energy, or the chemical potential of an electron
+
+    in_fermi_level: Fermi level of an intrinsic semiconductor
+
+    temp: Temperature in Kelvin
+
+    p0 = ni*exp((Efi-Ef)/kbT)
+    '''
+    kb_t = value('Boltzmann constant in eV/K') * temp
+    exponential = exp((in_fermi_level-fermi_energy)/kb_t)
+    p_0 = n_i*exponential
+
+    return p_0
