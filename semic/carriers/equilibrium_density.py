@@ -4,6 +4,7 @@ module docstring for carrier equilibrium density
 
 from numpy import exp,sqrt,pi
 from semic.constants.constants import value
+from semic.semic.math.fdint import fdint_approx
 
 def find_n0(n_c=0,conduction_band_energy=0,fermi_energy=0,temp=0):
     '''
@@ -154,3 +155,29 @@ def p0_from_ni(n_i=0,fermi_energy=0,in_fermi_level=0,temp=1):
     p_0 = n_i*exponential
 
     return p_0
+
+def p0_approx(n_v=0,eta=0):
+    '''
+    Function to find the equilibrium hole density
+    using an approximation of the Fermi-Dirac integral
+    of order 1/2.
+
+    n_v: The thermal effective density of states in the valence band.
+
+    eta: (Ev - Ef)/kT
+    '''
+    p_0 = n_v*fdint_approx(eta)
+
+    return p_0
+
+def n0_approx(n_c=0,eta=0):
+    '''
+    Function to find the equilibrium electron density
+    using an approximation of the Fermi-Dirac integral
+    of order 1/2.
+
+    n_c: The thermal effective density of states in the conduction band.
+
+    eta: (Ef - Ec)/kT
+    '''
+    n_0 = n_c*fdint_approx(eta)
