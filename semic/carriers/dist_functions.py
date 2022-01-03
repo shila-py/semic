@@ -6,7 +6,7 @@ from numpy import exp,sqrt,pi
 from semic.constants.constants import value
 
 
-def maxwell_boltzmann(velocity=0,m_star=0,temp=0):
+def maxwell_boltzmann(velocity=0,m_star=0,temp=1):
     '''
     Function to find the the average number of electrons in
     state f using the Maxwell-Boltzmann distribution function.
@@ -29,7 +29,7 @@ def maxwell_boltzmann(velocity=0,m_star=0,temp=0):
 
     return f_mb
 
-def fermi_dirac(energy=0,fermi_energy=0,temp=0):
+def fermi_dirac(energy=0,fermi_energy=0,temp=1):
     '''
     Function to find the average number of electrons in state f
     using the Fermi-Dirac distribution function.
@@ -49,14 +49,14 @@ def fermi_dirac(energy=0,fermi_energy=0,temp=0):
 
     return f_fd
 
-def bose_einstein(omeg_a=0, temp=0):
+def bose_einstein(omega=0, temp=1):
     '''
     Function to find the average number of bosons in state f
     using the Bose-Einstein Distribution function.
 
-    hbar: Rdonor_energyucdonor_energy Planck Constant in eV s
+    hbar: Reduced Planck Constant in eV s
 
-    omeg_a (w) : angular frequency in radians per second
+    omega (w) : angular frequency in radians per second
 
     k_b: Boltzmann Constant in eV/K
 
@@ -65,13 +65,13 @@ def bose_einstein(omeg_a=0, temp=0):
     f_be(hbar*w) = 1/(exp((h_bar*omeg_a)/(k_b*temp)) - 1)
     '''
     kb_t = value('Boltzmann constant in eV/K') * temp
-    h_bar = value('reduced Planck constant in eV s')
+    h_bar = value('Reduced Planck constant in eV s')
 
-    f_be = 1/(exp((h_bar*omeg_a)/kb_t) - 1)
+    f_be = 1/(exp((h_bar*omega)/kb_t) - 1)
 
     return f_be
 
-def donor_distribution(g_d=0,fermi_energy=0,donor_energy=0,temp=0):
+def donor_distribution(g_d=0,fermi_energy=0,donor_energy=0,temp=1):
     '''
     Function to find the distribution of donor states in a
     semiconductor
@@ -95,7 +95,7 @@ def donor_distribution(g_d=0,fermi_energy=0,donor_energy=0,temp=0):
 
     return f_d
 
-def acceptor_distribution(g_a=0,fermi_energy=0,acceptor_energy=0,temp=0):
+def acceptor_distribution(g_a=0,fermi_energy=0,acceptor_energy=0,temp=1):
     '''
     Function to find the distribution of acceptor states in a
     semiconductor
