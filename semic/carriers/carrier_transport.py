@@ -206,3 +206,33 @@ def electron_quasi_fermi_level(band_edge_energy=0,
     fn = band_edge_energy - phi + (kb_t * ifdint_approx(n_nc))
 
     return fn
+
+def hole_quasi_fermi_level(band_edge_energy=0,
+                           phi=0, temp=0, density=0,
+                           density_of_states=1):
+    """
+    Finds the Quasi Fermi level for holes
+
+    Parameters
+    ----------
+    band_edge_energy : TYPE, optional
+        DESCRIPTION. The default is 0.
+    phi : TYPE, optional
+        DESCRIPTION. The default is 0.
+    temp : TYPE, optional
+        DESCRIPTION. The default is 0.
+    density : TYPE, optional
+        DESCRIPTION. The default is 0.
+    density_of_states : TYPE, optional
+        DESCRIPTION. The default is 1.
+
+    Returns
+    -------
+    None.
+
+    """
+    kb_t = value('Boltzmann constant in eV/K') * temp
+    p_nv = density / density_of_states
+    fp = band_edge_energy - phi - (kb_t * ifdint_approx(p_nv))
+
+    return fp
