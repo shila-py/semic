@@ -4,8 +4,12 @@ module docstring for plottting E-k plots
 
 import seaborn as sns
 import matplotlib.pyplot as plt
+import plotly.graph_objects as go
+#import plotly.io as pio
 import numpy as np
 from semic.carriers.dist_functions import fermi_dirac,maxwell_boltzmann,bose_einstein
+
+#pio.renderers.default = 'svg'
 
 def ekplot(energy=0,k=0):
     '''
@@ -51,19 +55,20 @@ def distribution_function_plot(distribution_function=None,
     Parameters
     ----------
     distribution_function : str, required
-        DESCRIPTION. The default is None.
+        Distribution Functions (Fermi-Dirac,Maxwell-Boltzmann, Bose-Einstein).
+        The default is None.
     energy : float, optional
         DESCRIPTION. The default is 0.
     fermi_energy : float, optional
         DESCRIPTION. The default is 0.
     omega : float, optional
-        DESCRIPTION. The default is 0.
+        angular frequency in rad/s. The default is 0.
     velocity : float, optional
-        DESCRIPTION. The default is 0.
+        velocity or group velocity of electrons. The default is 0.
     m_star : float, optional
-        DESCRIPTION. The default is 0.
+        effective mass in carrier band. The default is 0.
     temp : float, optional
-        DESCRIPTION. The default is 300.
+        Temperature in Kelvin. The default is 1.
 
     Returns
     -------
@@ -71,12 +76,19 @@ def distribution_function_plot(distribution_function=None,
 
     '''
     if(distribution_function == 'Fermi-Dirac'):
-        x = np.linspace(start = (energy-fermi_energy) - 1,
-                        stop = (energy-fermi_energy) + 1)
+        x = np.arange(start = (energy-fermi_energy) - 1,
+                        stop = (energy-fermi_energy) + 1.1, step=0.1)
+
+        fig = go.Figure(data = go.Scatter(x = x,y = fermi_dirac(x,0,temp)))
+        fig.update_layout(title="Fermi-Dirac Distribution",
+                          xaxis_title = '(E-Ef)/kbT',
+                          yaxis_title = 'f_FD (E)')
+        fig.show()
+        '''
         sns.lineplot(x=x,y=fermi_dirac(x,0,temp))
         plt.xlabel("E-Ef (eV)")
         plt.ylabel("f_FD(E)")
-        plt.title("Fermi-Dirac Distribution")
+        plt.title("Fermi-Dirac Distribution")'''
     elif(distribution_function == 'Maxwell-Boltzmann'):
         x = np.linspace(start = 0,stop = velocity + 1000)
         sns.lineplot(x=x,y=maxwell_boltzmann(x,m_star,temp))
