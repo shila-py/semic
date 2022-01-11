@@ -8,6 +8,12 @@ Description: Module docstring for carrier transport
 TODO:
     ADD 3-D hole and electron current density.
     ADD 3-D net electrical current density.
+    ADD Continuity equation.
+    ADD Analytically Solvable Approximations
+    ADD Displacement Current and Carrier Inertia
+    ADD Induced Terminal Current
+    ADD Noise Currents
+    ADD Magnetic Fields: Hall Effect
 """
 
 from semic.constants.constants import value
