@@ -5,11 +5,13 @@ module docstring for plottting E-k plots
 import seaborn as sns
 import matplotlib.pyplot as plt
 import plotly.graph_objects as go
-#import plotly.io as pio
+import plotly.express as px
+import pandas as pd
+import plotly.io as pio
 import numpy as np
 from semic.carriers.dist_functions import fermi_dirac,maxwell_boltzmann,bose_einstein
 
-#pio.renderers.default = 'svg'
+pio.renderers.default = 'browser'
 
 def ekplot(energy=0,k=0):
     '''
@@ -28,20 +30,42 @@ def ekplot(energy=0,k=0):
     '''
     pass
 
-def iv_curve(data=None):
+def iv_curve(file=None,x=None,y=None,sheetname=None):
     '''
+    Plots an IV curve from a file.
 
     Parameters
     ----------
-    data : TYPE, optional
-        DESCRIPTION. The default is None.
+    data : string, required
+        file object, path object, or string. The default is None.
+    x : string, required
+        Name of your voltage column in your file. The default is None.
+    y : string, required
+        Name of your current column in your file. The default is None.
+    sheetname : string, optional
+        Sheetname of the chosen excel file. The default is None.
 
     Returns
     -------
-    None.
+    Displays a plot in your browser
 
     '''
-    pass
+    if (file.endswith('.csv')):
+        d = pd.read_csv(file)
+    elif(file.endswith(('.xls','.xlsx',))):
+        d = pd.read_excel(file,sheet_name=sheetname)
+    else:
+        raise ValueError('Incorrect file type!')
+
+    fig = go.Figure(data = go.Scatter(x=d[x], y=d[y]))
+    fig.update_layout(title='I-V Curve')
+    fig.update_xaxes(title_text = 'Voltage (V)')
+    fig.update_yaxes(title_text = 'Current (mA)')
+    fig.show()
+
+    fig1 = px.line(d,x=x,y=y,title='I-V Curve',markers=True)
+    fig1.show()
+
 
 def distribution_function_plot(distribution_function=None,
                                energy=0,
