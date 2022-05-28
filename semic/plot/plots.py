@@ -36,7 +36,7 @@ def iv_curve(file=None,x=None,y=None,sheetname=None):
 
     Parameters
     ----------
-    data : string, required
+    file : string, required
         file object, path object, or string. The default is None.
     x : string, required
         Name of your voltage column in your file. The default is None.
