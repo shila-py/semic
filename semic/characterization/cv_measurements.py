@@ -85,3 +85,6 @@ def n_inv():
 
 def eff_mob():
     pass
+
+def dummy():
+    pass
