@@ -78,6 +78,7 @@ def find_constants(search_term):
    Finds constants based on search term
    """
    if search_term is None:
+      print("Here is the list of constants available:\n")
       list_constants()
    else:
       for key in constants:
