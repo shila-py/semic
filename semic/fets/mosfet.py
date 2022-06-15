@@ -5,113 +5,148 @@ class MOSFET:
     """
     Class describing MOSFET based on LEVEL 1-3,6 parameters from ngspice
     """
-    def __init__(self,length,width,lat_len,lat_width,vto,kp,gamma,
-                 phi,modulation,r_d,r_s,r_g,r_b,r_ds,r_sh,i_s,j_s,
-                 p_b,c_bd,c_bs,c_j,c_jsw,m_j,m_jsw,f_c,c_gso,c_gdo,
-                 c_gbo,n_sub,n_ss,n_fs,t_ox,t_p_g,x_j,mu_crit,mu_exp,
-                 v_max,n_eff,x_qc,delta,theta,eta,kappa,k_f,a_f) -> None:
-        """
-        BLAH BLAH BLAH
+    def __init__(self,
+                 length: float=1.0e-4,
+                 width: float=1.0e-4,
+                 lat_len: float=0.0,
+                 lat_width: float=0.0,
+                 vto: float=0.0,
+                 kp: float=0.0,
+                 gamma: float=0.0,
+                 phi: float=0.0,
+                 modulation: float=0.0,
+                 r_d: float=0.0,
+                 r_s: float=0.0,
+                 r_g: float=0.0,
+                 r_b: float=0.0,
+                 r_ds: float=np.inf,
+                 r_sh: float=0.0,
+                 i_s: float=1.0e-16,
+                 j_s: float=1.0e-4,
+                 p_b: float=0.8,
+                 c_bd: float=0.0,
+                 c_bs: float=0.0,
+                 c_j: float=0.0,
+                 c_jsw: float=0.0,
+                 m_j: float=0.5,
+                 m_jsw: float=0.33,
+                 f_c: float=0.5,
+                 c_gso: float=0.0,
+                 c_gdo: float=0.0,
+                 c_gbo: float=0.0,
+                 n_sub: float=1.0e15,
+                 n_ss: float=0.0,
+                 n_fs: float=0.0,
+                 t_ox: float=1.0e-7,
+                 t_p_g: int=1,
+                 x_j: float=0.0,
+                 mu_crit: float=1000.0,
+                 mu_exp: float=0.0,
+                 v_max: float=0.0,
+                 n_eff: float=1.0,
+                 x_qc: float=1.0,
+                 delta: float=0.0,
+                 theta: float=0.0,
+                 eta: float=0.0,
+                 kappa: float=0.2,
+                 k_f: float=0.0,
+                 a_f: float=1.0) -> None:
+        """_summary_
 
         Parameters
         ----------
-        length : TYPE
-            DESCRIPTION.
-        width : TYPE
-            DESCRIPTION.
-        lat_len : TYPE
-            DESCRIPTION.
-        lat_width : TYPE
-            DESCRIPTION.
-        vto : TYPE
-            DESCRIPTION.
-        kp : TYPE
-            DESCRIPTION.
-        gamma : TYPE
-            DESCRIPTION.
-        phi : TYPE
-            DESCRIPTION.
-        modulation : TYPE
-            DESCRIPTION.
-        r_d : TYPE
-            DESCRIPTION.
-        r_s : TYPE
-            DESCRIPTION.
-        r_g : TYPE
-            DESCRIPTION.
-        r_b : TYPE
-            DESCRIPTION.
-        r_ds : TYPE
-            DESCRIPTION.
-        r_sh : TYPE
-            DESCRIPTION.
-        i_s : TYPE
-            DESCRIPTION.
-        j_s : TYPE
-            DESCRIPTION.
-        p_b : TYPE
-            DESCRIPTION.
-        c_bd : TYPE
-            DESCRIPTION.
-        c_bs : TYPE
-            DESCRIPTION.
-        c_j : TYPE
-            DESCRIPTION.
-        c_jsw : TYPE
-            DESCRIPTION.
-        m_j : TYPE
-            DESCRIPTION.
-        m_jsw : TYPE
-            DESCRIPTION.
-        f_c : TYPE
-            DESCRIPTION.
-        c_gso : TYPE
-            DESCRIPTION.
-        c_gdo : TYPE
-            DESCRIPTION.
-        c_gbo : TYPE
-            DESCRIPTION.
-        n_sub : TYPE
-            DESCRIPTION.
-        n_ss : TYPE
-            DESCRIPTION.
-        n_fs : TYPE
-            DESCRIPTION.
-        t_ox : TYPE
-            DESCRIPTION.
-        t_p_g : TYPE
-            DESCRIPTION.
-        x_j : TYPE
-            DESCRIPTION.
-        mu_crit : TYPE
-            DESCRIPTION.
-        mu_exp : TYPE
-            DESCRIPTION.
-        v_max : TYPE
-            DESCRIPTION.
-        n_eff : TYPE
-            DESCRIPTION.
-        x_qc : TYPE
-            DESCRIPTION.
-        delta : TYPE
-            DESCRIPTION.
-        theta : TYPE
-            DESCRIPTION.
-        eta : TYPE
-            DESCRIPTION.
-        kappa : TYPE
-            DESCRIPTION.
-        k_f : TYPE
-            DESCRIPTION.
-        a_f : TYPE
-            DESCRIPTION.
-
-        Returns
-        -------
-        None
-            DESCRIPTION.
-
+        length : float, optional
+            _description_, by default 1.0e-4
+        width : float, optional
+            _description_, by default 1.0e-4
+        lat_len : float, optional
+            _description_, by default 0.0
+        lat_width : float, optional
+            _description_, by default 0.0
+        vto : float, optional
+            _description_, by default 0.0
+        kp : float, optional
+            _description_, by default 0.0
+        gamma : float, optional
+            _description_, by default 0.0
+        phi : float, optional
+            _description_, by default 0.0
+        modulation : float, optional
+            _description_, by default 0.0
+        r_d : float, optional
+            _description_, by default 0.0
+        r_s : float, optional
+            _description_, by default 0.0
+        r_g : float, optional
+            _description_, by default 0.0
+        r_b : float, optional
+            _description_, by default 0.0
+        r_ds : float, optional
+            _description_, by default np.inf
+        r_sh : float, optional
+            _description_, by default 0.0
+        i_s : float, optional
+            _description_, by default 1.0e-16
+        j_s : float, optional
+            _description_, by default 1.0e-4
+        p_b : float, optional
+            _description_, by default 0.8
+        c_bd : float, optional
+            _description_, by default 0.0
+        c_bs : float, optional
+            _description_, by default 0.0
+        c_j : float, optional
+            _description_, by default 0.0
+        c_jsw : float, optional
+            _description_, by default 0.0
+        m_j : float, optional
+            _description_, by default 0.5
+        m_jsw : float, optional
+            _description_, by default 0.33
+        f_c : float, optional
+            _description_, by default 0.5
+        c_gso : float, optional
+            _description_, by default 0.0
+        c_gdo : float, optional
+            _description_, by default 0.0
+        c_gbo : float, optional
+            _description_, by default 0.0
+        n_sub : float, optional
+            _description_, by default 1.0e15
+        n_ss : float, optional
+            _description_, by default 0.0
+        n_fs : float, optional
+            _description_, by default 0.0
+        t_ox : float, optional
+            _description_, by default 1.0e-7
+        t_p_g : int, optional
+            _description_, by default 1
+        x_j : float, optional
+            _description_, by default 0.0
+        mu_crit : float, optional
+            _description_, by default 1000.0
+        mu_exp : float, optional
+            _description_, by default 0.0
+        v_max : float, optional
+            _description_, by default 0.0
+        n_eff : float, optional
+            _description_, by default 1.0
+        x_qc : float, optional
+            _description_, by default 1.0
+        delta : float, optional
+            _description_, by default 0.0
+        theta : float, optional
+            _description_, by default 0.0
+        eta : float, optional
+            _description_, by default 0.0
+        kappa : float, optional
+            _description_, by default 0.2
+        k_f : float, optional
+            _description_, by default 0.0
+        a_f : float, optional
+            _description_, by default 1.0
         """
+        
         self.ch_length = length
         self.ch_width = width
         self.lat_diff_len = lat_len
