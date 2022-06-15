@@ -45,9 +45,12 @@ The source code is currently hosted on [GitHub](https://github.com/nkskumar/semi
 ## Dependencies (WIP)
 
    - Numpy
+   - pandas
    - Pint
    - Scipy
-   - etc.
+   - Plotly
+   - Matplotlib
+   - seaborn
 
 ## License
 
