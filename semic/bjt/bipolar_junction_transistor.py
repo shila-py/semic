@@ -6,64 +6,65 @@ Created on Mon Jan 10 19:12:19 2022
 Description: Bipolar Junction Transistor equations
 """
 
-def vbe(vb=0,ve=0):
-    """
-
+def vbe(vb: float=0.0,
+        ve: float=0.0)-> float:
+    """_summary_
 
     Parameters
     ----------
-    vb : TYPE, optional
-        DESCRIPTION. The default is 0.
-    ve : TYPE, optional
-        DESCRIPTION. The default is 0.
+    vb : float, optional
+        _description_, by default 0.0
+    ve : float, optional
+        _description_, by default 0.0
 
     Returns
     -------
-    None.
-
+    float
+        _description_
     """
     voltage = vb-ve
     return voltage
 
-def vbc(vb=0,vc=0):
-    """
-
+def vbc(vb: float=0.0,
+        vc: float=0.0)-> float:
+    """_summary_
 
     Parameters
     ----------
-    vb : TYPE, optional
-        DESCRIPTION. The default is 0.
-    vc : TYPE, optional
-        DESCRIPTION. The default is 0.
+    vb : float, optional
+        _description_, by default 0.0
+    vc : float, optional
+        _description_, by default 0.0
 
     Returns
     -------
-    None.
-
+    float
+        _description_
     """
     voltage = vb - vc
     return voltage
 
-def vce(vc=0,ve=0):
-    """
-
+def vce(vc: float=0.0,
+        ve: float=0.0)-> float:
+    """_summary_
 
     Parameters
     ----------
-    vc : TYPE, optional
-        DESCRIPTION. The default is 0.
-    ve : TYPE, optional
-        DESCRIPTION. The default is 0.
+    vc : float, optional
+        _description_, by default 0.0
+    ve : float, optional
+        _description_, by default 0.0
 
     Returns
     -------
-    None.
-
+    float
+        _description_
     """
     voltage = vc - ve
     return voltage
 
-def i_e(i_en=0,i_ep=0):
+def i_e(i_en: float=0.0,
+        i_ep: float=0.0)-> float:
     """
     Emitter current in a Bipolar Junction Transistor
 
@@ -82,7 +83,9 @@ def i_e(i_en=0,i_ep=0):
     ie = i_en + i_ep
     return ie
 
-def i_b(i_ep=0,i_br=0,i_cp=0):
+def i_b(i_ep: float=0.0,
+        i_br: float=0.0,
+        i_cp: float=0.0)-> float:
     """
     Base current in a Bipolar Junction Transistor
 
@@ -103,7 +106,8 @@ def i_b(i_ep=0,i_br=0,i_cp=0):
     ib = i_ep + i_br - i_cp
     return ib
 
-def i_c(i_cn=0,i_cp=0):
+def i_c(i_cn: float=0.0,
+        i_cp: float=0.0)-> float:
     """
     Collector current in a Bipolar Junction Transistor
 
@@ -122,7 +126,8 @@ def i_c(i_cn=0,i_cp=0):
     ic = i_cn + i_cp
     return ic
 
-def emitter_injection_efficiency(i_en=0,i_e=1):
+def emitter_injection_efficiency(i_en: float=0.0,
+                                 i_e: float=1.0)-> float:
     """
     The emitter injection efficiency measures the fraction
     of the emitter current carried by the desired electrons
@@ -144,7 +149,8 @@ def emitter_injection_efficiency(i_en=0,i_e=1):
     gamma = i_en / i_e
     return gamma
 
-def base_transport_factor(i_cn=0,i_en=1):
+def base_transport_factor(i_cn: float=0.0,
+                          i_en: float=1.0)-> float:
     """
     The base transport factor measures the fraction of
     electrons that make it into the collector after injection
@@ -165,7 +171,10 @@ def base_transport_factor(i_cn=0,i_en=1):
     alpha_t = i_cn / i_en
     return alpha_t
 
-def common_base_current_gain(spec=None,i_c=0,i_e=1,beta=0):
+def common_base_current_gain(spec: str=None,
+                             i_c: float=0.0,
+                             i_e: float=1.0,
+                             beta: float=0.0)-> float:
     """
     The low frequency common-base current gain of a bipolar
     junction transistor.
@@ -194,7 +203,10 @@ def common_base_current_gain(spec=None,i_c=0,i_e=1,beta=0):
         alpha_dc = i_c / i_e
     return alpha_dc
 
-def common_emitter_current_gain(spec=None,i_c=0,i_b=1,alpha=0):
+def common_emitter_current_gain(spec: str=None,
+                                i_c: float=0.0,
+                                i_b: float=1.0,
+                                alpha: float=0.0)-> float:
     """
     The common-emitter current gain of a bipolar
     junction transistor.
