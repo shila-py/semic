@@ -3,13 +3,53 @@ Module docstring
 """
 class Diode:
     """Diode class description"""
-    def __init__(self,sat_current,series_resistance,emission_coeff,
-                 transit_time,junction_capacitance,junction_potential,
-                 junction_grading_coeff,activation_energy,temp_exponent,
-                 flicker_noise_coeff,flicker_noise_exp,forward_capacitance,
-                 reverse_breakdown_voltage,reverse_breakdown_current):
-        """
-        Sample docstring
+    def __init__(self,
+                 sat_current: float,
+                 series_resistance: float,
+                 emission_coeff: float,
+                 transit_time: float,
+                 junction_capacitance: float,
+                 junction_potential: float,
+                 junction_grading_coeff: float,
+                 activation_energy: float,
+                 temp_exponent: float,
+                 flicker_noise_coeff: float,
+                 flicker_noise_exp: float,
+                 forward_capacitance: float,
+                 reverse_breakdown_voltage: float,
+                 reverse_breakdown_current: float)-> None:
+        """_summary_
+
+        Parameters
+        ----------
+        sat_current : float
+            _description_
+        series_resistance : float
+            _description_
+        emission_coeff : float
+            _description_
+        transit_time : float
+            _description_
+        junction_capacitance : float
+            _description_
+        junction_potential : float
+            _description_
+        junction_grading_coeff : float
+            _description_
+        activation_energy : float
+            _description_
+        temp_exponent : float
+            _description_
+        flicker_noise_coeff : float
+            _description_
+        flicker_noise_exp : float
+            _description_
+        forward_capacitance : float
+            _description_
+        reverse_breakdown_voltage : float
+            _description_
+        reverse_breakdown_current : float
+            _description_
         """
         self.i_s = sat_current
         self.r_s = series_resistance
