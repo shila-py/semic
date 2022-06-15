@@ -18,15 +18,15 @@
 
 ## TODO
 
-   - Implement quantum mechanics subpackage
+   - Implement quantum mechanics subpackage (under review)
    - Complete material properties
    - Complete Carrier Distribution, Transport and Band structure
    - Start PN Junction
    - Start Free Surfaces and Metal-Semiconductor Interfaces
-   - Start MOS Structure
+   - Start MOS Structure (Done!)
    - Start Heterostructures
-   - Start FETs and BJTs
-   - Start Diodes
+   - Start FETs and BJTs (Done!)
+   - Start Diodes (Done!)
    - Start Opto-electronic Devices
    - Add plotting support
    - Create documentation using Sphinx
@@ -46,8 +46,7 @@ The source code is currently hosted on [GitHub](https://github.com/nkskumar/semi
 
    - Numpy
    - Pint
-   - Sympy
-   - Unittest
+   - Scipy
    - etc.
 
 ## License
@@ -73,11 +72,6 @@ All contributors are welcome! Please email [me](mailto:nithinkumar.santhakumar@u
 ## Bugs and Issues
 
 Head on over to [Issues tracker](https://github.com/nkskumar/semic/issues)
-
-## Changelog
-
-   - Completed GaN properties (11/17/2021)
-   - Completed Nitrides properties
 
 ## References (WIP)
 
