@@ -106,7 +106,8 @@ class JFET:
     def gate_current(self,
                      area: float=0.0,
                      vgs: float=0.0,
-                     vgd: float=0.0)-> float:
+                     vgd: float=0.0,
+                     vds: float=0.0)-> float:
         """_summary_
 
         Parameters
@@ -117,13 +118,15 @@ class JFET:
             _description_, by default 0.0
         vgd : float, optional
             _description_, by default 0.0
+        vds : float, optional
+            _description_, by default 0.0
 
         Returns
         -------
         float
             _description_
         """
-        return area * (self.__gate_source_leakage_current(vgs) + self.__gate_drain_leakage_current(vgd))
+        return area * (self.__gate_source_leakage_current(vgs) + self.__gate_drain_leakage_current(vgd,vgs,vds))
 
     def __gate_source_leakage_current(self,
                                       vgs: float=0.0)-> float:
@@ -226,4 +229,89 @@ class JFET:
         float
             _description_
         """
-        pass
+        vdif = vds - (vgs-self.threshold_voltage)
+        if 0 < (vgs-self.threshold_voltage) < vds:
+            ii = self.i_drain(vgs,vds) * self.ionization_coeff * vdif * np.exp(-self.ionization_knee_voltage/vdif)
+        else:
+            ii = 0
+        return ii
+
+    def drain_current(self,
+                      area: float=0.0,
+                      vgd: float=0.0,
+                      vgs: float=0.0,
+                      vds: float=0.0)-> float:
+        """_summary_
+
+        Parameters
+        ----------
+        area : float, optional
+            _description_, by default 0.0
+        vgd : float, optional
+            _description_, by default 0.0
+        vgs : float, optional
+            _description_, by default 0.0
+        vds : float, optional
+            _description_, by default 0.0
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        return area * (self.i_drain(vgs,vds) - self.__gate_drain_leakage_current(vgd,vgs,vds))
+    
+    def source_current(self,
+                       area: float=0.0,
+                       vgs: float=0.0,
+                       vds: float=0.0)-> float:
+        """_summary_
+
+        Parameters
+        ----------
+        area : float, optional
+            _description_, by default 0.0
+        vgs : float, optional
+            _description_, by default 0.0
+        vds : float, optional
+            _description_, by default 0.0
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        return area * (-self.i_drain() - self.__gate_source_leakage_current(vgs))
+
+    def i_drain(self,
+                vgs: float=0.0,
+                vds: float=0.0)-> float:
+        """_summary_
+
+        Parameters
+        ----------
+        vgs : float, optional
+            _description_, by default 0.0
+        vds : float, optional
+            _description_, by default 0.0
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        if vds >= 0.0:
+            if (vgs-self.threshold_voltage) <= 0.0:
+                idrain = 0
+            elif vds <= (vgs-self.threshold_voltage):
+                idrain = self.transconductance_coeff * (1 + self.ch_len_modulation * vds) * vds * (2 * (vgs-self.threshold_voltage) - vds)
+            elif 0 < (vgs - self.threshold_voltage) < vds:
+                idrain = self.transconductance_coeff * (1 + (self.ch_len_modulation * vds)) * ((vgs-self.threshold_voltage)**2)
+        else:
+            if (vgs-self.threshold_voltage) >= 0.0:
+                idrain = 0
+            elif (vgs-self.threshold_voltage) <= vds:
+                idrain = self.transconductance_coeff * (1 + self.ch_len_modulation * vds) * vds * (2 * (vgs-self.threshold_voltage) + vds)
+            elif 0 > (vgs - self.threshold_voltage) > vds:
+                idrain = self.transconductance_coeff * (1 + (self.ch_len_modulation * vds)) * ((vgs-self.threshold_voltage)**2)
+        return idrain
