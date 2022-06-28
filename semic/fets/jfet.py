@@ -364,7 +364,7 @@ class JFET:
         return cgd
     
     def vto(self,
-            temp: float=300.15,
+            temp: float=298.15,
             tnom: float=TNOM)-> float:
         """threshold voltage with temperature dependence
 
@@ -383,7 +383,7 @@ class JFET:
         return self.threshold_voltage + self.vto_temp_coeff * (temp - tnom)
     
     def beta(self,
-             temp: float=300.15,
+             temp: float=298.15,
              tnom: float=TNOM)-> float:
         """_summary_
 
@@ -402,7 +402,7 @@ class JFET:
         return self.transconductance_coeff * (1.01**(self.beta_exp_temp_coeff*(temp-tnom)))
     
     def i_s(self,
-            temp: float=300.15,
+            temp: float=298.15,
             tnom: float=TNOM,
             eg: float=1.11)-> float:
         """_summary_
@@ -425,7 +425,7 @@ class JFET:
         return self.gate_pn_sat_current * np.exp((temp/tnom - 1) * eg / (self.gate_pn_emission_coeff * vt)) * ((temp/tnom)**(self.sat_current_temp_coeff/self.gate_pn_emission_coeff))
 
     def isr(self,
-            temp: float=300.15,
+            temp: float=298.15,
             tnom: float=TNOM,
             eg: float=1.11)-> float:
         """_summary_
@@ -473,7 +473,7 @@ class JFET:
         return eg
     
     def pb(self,
-           temp: float=300.15,
+           temp: float=298.15,
            tnom: float=TNOM)-> float:
         """_summary_
 
@@ -494,7 +494,7 @@ class JFET:
         return pb
     
     def cgs(self,
-            temp: float=300.15,
+            temp: float=298.15,
             tnom: float=TNOM)-> float:
         """_summary_
 
@@ -518,7 +518,7 @@ class JFET:
         return cgs * (1 + m * ((0.0004 * tdiff) + (1-self.pb(temp)/pb)))
 
     def cgd(self,
-            temp: float=300.15,
+            temp: float=298.15,
             tnom: float=TNOM)-> float:
         """_summary_
 
@@ -540,3 +540,75 @@ class JFET:
         tdiff = temp - tnom
 
         return cgd * (1 + m * ((0.0004 * tdiff) + (1-self.pb(temp)/pb)))
+
+    def source_thermal_noise(self,
+                             area: float=0.0,
+                             temp: float=298.15)-> float:
+        """Parasitic source resistance thermal noise
+
+        Parameters
+        ----------
+        area : float, optional
+            _description_, by default 0.0
+        temp : float, optional
+            _description_, by default 298.15
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        noise = (4 * BOLTZMANN * temp) / (self.source_ohmic_resist / area)
+        return noise
+    
+    def drain_thermal_noise(self,
+                            area: float=0.0,
+                            temp: float=298.15)-> float:
+        """Parasitic drain resistance thermal noise
+
+        Parameters
+        ----------
+        area : float, optional
+            _description_, by default 0.0
+        temp : float, optional
+            _description_, by default 298.15
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        noise = (4 * BOLTZMANN * temp) / (self.drain_ohmic_resist / area)
+        return noise
+    
+    def intrinsic_noise(self,
+                        temp: float=298.15,
+                        gm: float=0.0,
+                        vgs: float=0.0,
+                        vds: float=0.0,
+                        freq: float=1.0)-> float:
+        """_summary_
+
+        Parameters
+        ----------
+        temp : float, optional
+            _description_, by default 298.15
+        gm : float, optional
+            _description_, by default 0.0
+        vgs : float, optional
+            _description_, by default 0.0
+        vds : float, optional
+            _description_, by default 0.0
+        freq : float, optional
+            _description_, by default 1.0
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        thermal = (8/3) * BOLTZMANN * temp * gm
+        flicker = self.flicker_noise_coeff * (self.i_drain(vgs,vds) ** self.flicker_noise_exp) / freq
+        noise = thermal + flicker
+
+        return noise
