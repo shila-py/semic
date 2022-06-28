@@ -587,7 +587,7 @@ class JFET:
                         vgs: float=0.0,
                         vds: float=0.0,
                         freq: float=1.0)-> float:
-        """_summary_
+        """Intrinsic JFET thermal and flicker noise
 
         Parameters
         ----------
