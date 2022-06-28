@@ -4,6 +4,7 @@ from semic.constants.constants import value
 
 CHARGE = value('Elementary charge')
 BOLTZMANN = value('Boltzmann constant in eV/K')
+TNOM = 300.15 #27 deg Celsius in Kelvin
 
 class JFET:
     """JFET Class
@@ -281,7 +282,7 @@ class JFET:
         float
             _description_
         """
-        return area * (-self.i_drain() - self.__gate_source_leakage_current(vgs))
+        return area * (-self.i_drain(vgs,vds) - self.__gate_source_leakage_current(vgs))
 
     def i_drain(self,
                 vgs: float=0.0,
@@ -315,3 +316,227 @@ class JFET:
             elif 0 > (vgs - self.threshold_voltage) > vds:
                 idrain = self.transconductance_coeff * (1 + (self.ch_len_modulation * vds)) * ((vgs-self.threshold_voltage)**2)
         return idrain
+    
+    def gate_source_depletion_capacitance(self,
+                                          area: float=0.0,
+                                          vgs: float=0.0)-> float:
+        """gate-source depletion capacitance
+
+        Parameters
+        ----------
+        area : float, optional
+            _description_, by default 0.0
+        vgs : float, optional
+            _description_, by default 0.0
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        if vgs <= (self.fwd_bias_depl_cap_coeff * self.gate_pn_potential):
+            cgs = area * self.zero_bias_gate_source_pn_cap * ((1 - (vgs/self.gate_pn_potential)) ** -self.gate_pn_grading_coeff)
+        else:
+            cgs = area * self.zero_bias_gate_source_pn_cap * ((1 - self.fwd_bias_depl_cap_coeff) ** -(1+self.gate_pn_grading_coeff)) * (1 - self.fwd_bias_depl_cap_coeff * (1 + self.gate_pn_grading_coeff) + self.gate_pn_grading_coeff * (vgs/self.gate_pn_potential))
+        return cgs
+
+    def gate_drain_depletion_capacitance(self,
+                                         area: float=0.0,
+                                         vgd: float=0.0)-> float:
+        """gate-drain depletion capacitance
+
+        Parameters
+        ----------
+        area : float, optional
+            _description_, by default 0.0
+        vgd : float, optional
+            _description_, by default 0.0
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        if vgd <= (self.fwd_bias_depl_cap_coeff * self.gate_pn_potential):
+            cgd = area * self.zero_bias_gate_drain_pn_cap * ((1 - (vgd/self.gate_pn_potential)) ** -self.gate_pn_grading_coeff)
+        else:
+            cgd = area * self.zero_bias_gate_drain_pn_cap * ((1 - self.fwd_bias_depl_cap_coeff) ** -(1+self.gate_pn_grading_coeff)) * (1 - self.fwd_bias_depl_cap_coeff * (1 + self.gate_pn_grading_coeff) + self.gate_pn_grading_coeff * (vgd/self.gate_pn_potential))
+        return cgd
+    
+    def vto(self,
+            temp: float=300.15,
+            tnom: float=TNOM)-> float:
+        """threshold voltage with temperature dependence
+
+        Parameters
+        ----------
+        temp : float, optional
+            _description_, by default 300.15
+        tnom : float, optional
+            _description_, by default 300.15
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        return self.threshold_voltage + self.vto_temp_coeff * (temp - tnom)
+    
+    def beta(self,
+             temp: float=300.15,
+             tnom: float=TNOM)-> float:
+        """_summary_
+
+        Parameters
+        ----------
+        temp : float, optional
+            _description_, by default 300.15
+        tnom : float, optional
+            _description_, by default TNOM
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        return self.transconductance_coeff * (1.01**(self.beta_exp_temp_coeff*(temp-tnom)))
+    
+    def i_s(self,
+            temp: float=300.15,
+            tnom: float=TNOM,
+            eg: float=1.11)-> float:
+        """_summary_
+
+        Parameters
+        ----------
+        temp : float, optional
+            _description_, by default 300.15
+        tnom : float, optional
+            _description_, by default TNOM
+        eg : float, optional
+            _description_, by default 1.11
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        vt = BOLTZMANN * temp / CHARGE
+        return self.gate_pn_sat_current * np.exp((temp/tnom - 1) * eg / (self.gate_pn_emission_coeff * vt)) * ((temp/tnom)**(self.sat_current_temp_coeff/self.gate_pn_emission_coeff))
+
+    def isr(self,
+            temp: float=300.15,
+            tnom: float=TNOM,
+            eg: float=1.11)-> float:
+        """_summary_
+
+        Parameters
+        ----------
+        temp : float, optional
+            _description_, by default 300.15
+        tnom : float, optional
+            _description_, by default TNOM
+        eg : float, optional
+            _description_, by default 1.11
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        vt = BOLTZMANN * temp / CHARGE
+        return self.gate_pn_rec_current_param * np.exp((temp/tnom - 1) * eg / (self.emission_coeff_isr * vt)) * ((temp/tnom)**(self.sat_current_temp_coeff/self.emission_coeff_isr))
+
+    def __eg(self,
+             temp: float=0.0)-> float:
+        """Si bandgap energy 
+
+        Parameters
+        ----------
+        temp : float, optional
+            _description_, by default 0.0
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        if 0 < temp <= 190:
+            A = 1.17
+            B = 1.059e-5
+            C = 6.05e-7
+        if 150 <= temp <= 301:
+            A = 1.1785
+            B = -9.025e-5
+            C = 3.05e-7
+        eg = A + (B * temp) - (C * (temp**2))
+        return eg
+    
+    def pb(self,
+           temp: float=300.15,
+           tnom: float=TNOM)-> float:
+        """_summary_
+
+        Parameters
+        ----------
+        temp : float, optional
+            _description_, by default 300.15
+        tnom : float, optional
+            _description_, by default TNOM
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        vt = BOLTZMANN * temp / CHARGE
+        pb = self.gate_pn_potential * (temp/tnom) - (3 * vt * np.log(temp/tnom)) - (self.__eg(tnom) * temp/tnom) + self.__eg(temp)
+        return pb
+    
+    def cgs(self,
+            temp: float=300.15,
+            tnom: float=TNOM)-> float:
+        """_summary_
+
+        Parameters
+        ----------
+        temp : float, optional
+            _description_, by default 300.15
+        tnom : float, optional
+            _description_, by default TNOM
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        cgs = self.zero_bias_gate_source_pn_cap
+        m = self.gate_pn_grading_coeff
+        pb = self.gate_pn_potential
+        tdiff = temp - tnom
+
+        return cgs * (1 + m * ((0.0004 * tdiff) + (1-self.pb(temp)/pb)))
+
+    def cgd(self,
+            temp: float=300.15,
+            tnom: float=TNOM)-> float:
+        """_summary_
+
+        Parameters
+        ----------
+        temp : float, optional
+            _description_, by default 300.15
+        tnom : float, optional
+            _description_, by default TNOM
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        cgd = self.zero_bias_gate_drain_pn_cap
+        m = self.gate_pn_grading_coeff
+        pb = self.gate_pn_potential
+        tdiff = temp - tnom
+
+        return cgd * (1 + m * ((0.0004 * tdiff) + (1-self.pb(temp)/pb)))
