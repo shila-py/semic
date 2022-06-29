@@ -215,7 +215,8 @@ class JFET:
     
     def __impact_ionization_current(self,
                                     vgs: float=0.0,
-                                    vds: float=0.0)-> float:
+                                    vds: float=0.0,
+                                    vgd: float=0.0)-> float:
         """_summary_
 
         Parameters
@@ -223,6 +224,8 @@ class JFET:
         vgs : float, optional
             _description_, by default 0.0
         vds : float, optional
+            _description_, by default 0.0
+        vgd : float, optional
             _description_, by default 0.0
 
         Returns
@@ -232,7 +235,7 @@ class JFET:
         """
         vdif = vds - (vgs-self.threshold_voltage)
         if 0 < (vgs-self.threshold_voltage) < vds:
-            ii = self.i_drain(vgs,vds) * self.ionization_coeff * vdif * np.exp(-self.ionization_knee_voltage/vdif)
+            ii = self.i_drain(vgs,vds,vgd) * self.ionization_coeff * vdif * np.exp(-self.ionization_knee_voltage/vdif)
         else:
             ii = 0
         return ii
@@ -260,12 +263,13 @@ class JFET:
         float
             _description_
         """
-        return area * (self.i_drain(vgs,vds) - self.__gate_drain_leakage_current(vgd,vgs,vds))
+        return area * (self.i_drain(vgs,vds,vgd) - self.__gate_drain_leakage_current(vgd,vgs,vds))
     
     def source_current(self,
                        area: float=0.0,
                        vgs: float=0.0,
-                       vds: float=0.0)-> float:
+                       vds: float=0.0,
+                       vgd: float=0.0)-> float:
         """_summary_
 
         Parameters
@@ -276,24 +280,31 @@ class JFET:
             _description_, by default 0.0
         vds : float, optional
             _description_, by default 0.0
+        vgd : float, optional
+            _description_, by default 0.0
 
         Returns
         -------
         float
             _description_
         """
-        return area * (-self.i_drain(vgs,vds) - self.__gate_source_leakage_current(vgs))
+        return area * (-self.i_drain(vgs,vds,vgd) - self.__gate_source_leakage_current(vgs))
 
     def i_drain(self,
                 vgs: float=0.0,
-                vds: float=0.0)-> float:
-        """_summary_
+                vds: float=0.0,
+                vgd: float=0.0)-> float:
+        """DC characteristic of JFET which is represented by nonlinear current source, i_drain().
+        For p-channel JFET, the polarities of Vgs,Vds, and Vgd must be reversed. The direction of
+        i_drain must also be reversed.
 
         Parameters
         ----------
         vgs : float, optional
             _description_, by default 0.0
         vds : float, optional
+            _description_, by default 0.0
+        vgd : float, optional
             _description_, by default 0.0
 
         Returns
@@ -304,17 +315,17 @@ class JFET:
         if vds >= 0.0:
             if (vgs-self.threshold_voltage) <= 0.0:
                 idrain = 0
-            elif vds <= (vgs-self.threshold_voltage):
-                idrain = self.transconductance_coeff * (1 + self.ch_len_modulation * vds) * vds * (2 * (vgs-self.threshold_voltage) - vds)
-            elif 0 < (vgs - self.threshold_voltage) < vds:
-                idrain = self.transconductance_coeff * (1 + (self.ch_len_modulation * vds)) * ((vgs-self.threshold_voltage)**2)
-        else:
-            if (vgs-self.threshold_voltage) >= 0.0:
+            elif 0 < (vgs - self.threshold_voltage) <= vds:
+                idrain = self.transconductance_coeff * ((vgs - self.threshold_voltage) ** 2) * (1 + (self.ch_len_modulation * vds))
+            elif 0 < vds < (vgs - self.threshold_voltage):
+                idrain = self.transconductance_coeff * vds * ((2 * (vgs - self.threshold_voltage)) - vds) * (1 + (self.ch_len_modulation * vds))
+        if vds < 0:
+            if (vgd-self.threshold_voltage) <= 0.0:
                 idrain = 0
-            elif (vgs-self.threshold_voltage) <= vds:
-                idrain = self.transconductance_coeff * (1 + self.ch_len_modulation * vds) * vds * (2 * (vgs-self.threshold_voltage) + vds)
-            elif 0 > (vgs - self.threshold_voltage) > vds:
-                idrain = self.transconductance_coeff * (1 + (self.ch_len_modulation * vds)) * ((vgs-self.threshold_voltage)**2)
+            elif 0 < (vgd-self.threshold_voltage) <= -vds:
+                idrain = -self.transconductance_coeff * ((vgd - self.threshold_voltage) ** 2) * (1 + (self.ch_len_modulation * vds))
+            elif 0 < -vds < (vgd - self.threshold_voltage):
+                idrain = self.transconductance_coeff * vds * ((2 * (vgd - self.threshold_voltage)) - vds) * (1 + (self.ch_len_modulation * vds))
         return idrain
     
     def gate_source_depletion_capacitance(self,
@@ -586,6 +597,7 @@ class JFET:
                         gm: float=0.0,
                         vgs: float=0.0,
                         vds: float=0.0,
+                        vgd: float=0.0,
                         freq: float=1.0)-> float:
         """Intrinsic JFET thermal and flicker noise
 
@@ -599,6 +611,8 @@ class JFET:
             _description_, by default 0.0
         vds : float, optional
             _description_, by default 0.0
+        vgd : float, optional
+            _description_, by default 0.0
         freq : float, optional
             _description_, by default 1.0
 
@@ -608,7 +622,7 @@ class JFET:
             _description_
         """
         thermal = (8/3) * BOLTZMANN * temp * gm
-        flicker = self.flicker_noise_coeff * (self.i_drain(vgs,vds) ** self.flicker_noise_exp) / freq
+        flicker = self.flicker_noise_coeff * (self.i_drain(vgs,vds,vgd) ** self.flicker_noise_exp) / freq
         noise = thermal + flicker
 
         return noise
