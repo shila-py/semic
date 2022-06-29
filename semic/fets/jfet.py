@@ -315,16 +315,16 @@ class JFET:
         if vds >= 0.0:
             if (vgs-self.threshold_voltage) <= 0.0:
                 return 0
-            elif vds <= (vgs - self.threshold_voltage):
+            elif 0 < vds <= (vgs - self.threshold_voltage):
                 return self.transconductance_coeff * vds * ((2 * (vgs - self.threshold_voltage)) - vds) * (1 + (self.ch_len_modulation * vds))
             elif 0 < (vgs - self.threshold_voltage) < vds:
                 return self.transconductance_coeff * ((vgs - self.threshold_voltage) ** 2) * (1 + (self.ch_len_modulation * vds))
         else: 
             if (vgd-self.threshold_voltage) <= 0.0:
                 return 0
-            elif (-1*vds) <= (vgd - self.threshold_voltage):
+            elif 0 < -vds <= (vgd - self.threshold_voltage):
                 return self.transconductance_coeff * vds * ((2 * (vgd - self.threshold_voltage)) - vds) * (1 + (self.ch_len_modulation * vds))
-            elif 0 < (vgd-self.threshold_voltage) < (-1*vds):
+            elif 0 < (vgd-self.threshold_voltage) < -vds:
                 return -self.transconductance_coeff * ((vgd - self.threshold_voltage) ** 2) * (1 + (self.ch_len_modulation * vds))
     
     def gate_source_depletion_capacitance(self,
