@@ -2,7 +2,7 @@
 from semic.constants.constants import value
 
 CHARGE = value('Elementary charge')
-BOLTZMANN = value('Boltzmann constant in eV/K')
+BOLTZMANN = value('Boltzmann constant in J/K')
 
 class BJT:
     """BJT Class
