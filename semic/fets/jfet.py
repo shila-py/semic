@@ -3,7 +3,7 @@ import numpy as np
 from semic.constants.constants import value
 
 CHARGE = value('Elementary charge')
-BOLTZMANN = value('Boltzmann constant in eV/K')
+BOLTZMANN = value('Boltzmann constant in J/K')
 TNOM = 300.15 #27 deg Celsius in Kelvin
 
 class JFET:
