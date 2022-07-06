@@ -17,6 +17,8 @@
 
    Leonard J. Brillson, "Appendix 4: Semiconductor Properties," in Surfaces and Interfaces of Electronic Materials , IEEE, 2010, pp.549-550, doi: 10.1002/9783527665709.app4.
 
+   P. K. Boer and R. A. Groot, “The conduction bands of MgO, MgS and HfO2,” Journal of Physics: Condensed Matter, vol. 10, no. 45, pp. 10241–10248, 1998. doi:10.1088/0953-8984/10/45/011
+
 ## Devices
 
    R. F. Pierret, Semiconductor device fundamentals. New Delhi, NCT: Pearson/Education, 2008.
