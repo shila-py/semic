@@ -15,6 +15,8 @@
 
    S. Adachi, Physical properties of III - V Semiconductor Compounds: InP, InAs, GaAs, GaP, InGaAs, and InGaAsP. Weinheim, Baden-Wurttemberg: Wiley-VCH, 2004.
 
+   Leonard J. Brillson, "Appendix 4: Semiconductor Properties," in Surfaces and Interfaces of Electronic Materials , IEEE, 2010, pp.549-550, doi: 10.1002/9783527665709.app4.
+
 ## Devices
 
    R. F. Pierret, Semiconductor device fundamentals. New Delhi, NCT: Pearson/Education, 2008.
