@@ -1,5 +1,5 @@
 """
-Created on Sun Jun  5 23:11:01 2022
+Created on Wed July  6 17:58:10 2022
 
 @author: Nithin Kumar Santha Kumar
 
@@ -7,7 +7,5 @@ Description:
 """
 from semic.materials.semiconductor import Semiconductor
 
-class SiC(Semiconductor):
-    """
-    """
+class MgO(Semiconductor):
     pass
