@@ -8,5 +8,5 @@ Description:
 
 from semic.materials.semiconductor import Semiconductor
 
-class InGaAs(Semiconductor):
+class GaInN(Semiconductor):
     pass
