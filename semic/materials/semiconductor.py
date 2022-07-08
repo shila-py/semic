@@ -432,6 +432,20 @@ class Semiconductor:
             raise Exception("thermalConductivity must be greater than or equal to 0!")
         self._thermalConductivity = value
     
+    thermalDiffusivity = property(operator.attrgetter('_thermalDiffusivity'))
+
+    @property
+    def thermalDiffusivity(self):
+        return self._thermalDiffusivity
+    
+    @thermalDiffusivity.setter
+    def thermalDiffusivity(self,value):
+        if type(value) != float:
+            raise Exception("thermalDiffusivity must be float")
+        if value < 0:
+            raise Exception("thermalDiffusivity must be greater than or equal to 0!")
+        self._thermalDiffusivity = value
+
     linearThermalExpansion = property(operator.attrgetter('_linearThermalExpansion'))
 
     @property
@@ -487,17 +501,4 @@ class Semiconductor:
         if value < 0:
             raise Exception("augerRecombinationCoefficientP must be greater than or equal to 0!")
         self._augerRecombinationCoefficientP = value
-    
-    thermalDiffusivity = property(operator.attrgetter('_thermalDiffusivity'))
 
-    @property
-    def thermalDiffusivity(self):
-        return self._thermalDiffusivity
-    
-    @thermalDiffusivity.setter
-    def thermalDiffusivity(self,value):
-        if type(value) != float:
-            raise Exception("thermalDiffusivity must be float")
-        if value < 0:
-            raise Exception("thermalDiffusivity must be greater than or equal to 0!")
-        self._thermalDiffusivity = value
