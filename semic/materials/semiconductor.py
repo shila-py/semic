@@ -69,26 +69,26 @@ class Semiconductor:
             _description_, by default "IV"
         structure : str, optional
             _description_, by default "Diamond"
-        orientation : _type_, optional
-            _description_, by default None
-        temp : float, optional
+        orientation : str, optional
+            _description_, by default "FCC"
+        temp : float or int, optional
             _description_, by default 300
-        density : float, optional
+        density : float or int, optional
             _description_, by default None
-        bandGap : float, optional
+        bandGap : float or int, optional
             _description_, by default None
         gapType : str, optional
             _description_, by default None
-        debyeTemp : float, optional
+        debyeTemp : float or int, optional
             _description_, by default None
-        debyeLength : float, optional
+        debyeLength : float or int, optional
             _description_, by default None
-        affinity : float, optional
+        affinity : float or int, optional
             _description_, by default None
-        dielectric : float, optional
-            _description_, by default None
-        lattice : float, optional
-            _description_, by default None
+        dielectric : float or list or dict, optional
+            _description_, by default 11.8
+        lattice : float or list or dict, optional
+            _description_, by default 5.43
         carrierConcentration : float, optional
             _description_, by default None
         densityOfStatesC : float, optional
