@@ -328,6 +328,50 @@ class BJT:
             _description_
         """
         ibe1 = self.forward_diffusion_current(vbe)
+        ibc1 = self.reverse_diffusion_current(vbc)
+        ibc2 = self.non_ideal_base_collector_current(vbc)
+        kqb = self.base_charge_factor(vbe,vbc)
+        br = self.reverse_beta()
+
+        return self.area * ((ibe1 / kqb) - (ibc1 / kqb) - (ibc1 / br) - ibc2)
+
+    def forward_beta(self)-> float:
+        """_summary_
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        t_tnom = self.temperature / self.nominal_temperature
+        return self.fwd_beta_hi_current * (t_tnom ** self.fwd_rev_beta_temp_coeff)
+
+    def reverse_beta(self)-> float:
+        """_summary_
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        t_tnom = self.temperature / self.nominal_temperature
+        return self.rev_beta_hi_current * (t_tnom ** self.fwd_rev_beta_temp_coeff)
+
+    def __eg(self,
+             temp: float or int)-> float:
+        """_summary_
+
+        Parameters
+        ----------
+        temp : _type_
+            _description_
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        return 1.16 - ((7.02e-4 * temp ** 2) / (temp + 1108))    
     
     def forward_diffusion_current(self,
                                   voltage: float=0.0)-> float:
@@ -451,7 +495,33 @@ class BJT:
         float
             _description_
         """
-        pass    
+        if self.rb_half_current == np.inf:
+            return (self.minimum_base_resistance() + ((self.maximum_base_resistance() - self.minimum_base_resistance()) / self.base_charge_factor(vbe,vbc))) / self.area
+        elif self.rb_half_current > 0:
+            x = (np.sqrt((1 + (144 / (np.pi ** 2))) * self.base_current(vbe,vbc) / (self.area * self.rb_half_current)) - 1) / ((24 / (np.pi ** 2)) * np.sqrt(self.base_current(vbe,vbc) / (self.area * self.rb_half_current)))
+            return (self.minimum_base_resistance() + 3 * (self.maximum_base_resistance() - self.minimum_base_resistance()) * ((np.tan(x) - x) / (x * (np.tan(x)) ** 2))) / self.area
+        else:
+            raise Exception("IRB is less than 0!")
+
+    def minimum_base_resistance(self)-> float:
+        """_summary_
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        pass
+        
+    def maximum_base_resistance(self)-> float:
+        """_summary_
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        pass
 
 class NPN(BJT):
     """_summary_
