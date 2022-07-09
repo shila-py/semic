@@ -20,7 +20,7 @@ CRYSTAL_ORIENTATION = ['Simple Cubic','Face-centered Cubic', #1
                        'Hexagonal', ''] #14
 
 CRYSTAL_STRUCTURE = ['Diamond', 'Zincblende', 'Wurtzite',
-                     'Rock-Salt', '', 'Hexagonal']
+                     'Rock-Salt', 'Hexagonal', '']
 
 ALLOYS = ['Binary', 'Ternary', 'Quaternary', '']
 
@@ -39,28 +39,28 @@ class Semiconductor:
                  structure: str="Diamond",
                  orientation: str="FCC",
                  temp: (float or int)=300,
-                 density: (float or int)=None,
-                 bandGap: (float or int)=None,
-                 gapType: str=None,
-                 debyeTemp: (float or int)=None,
-                 debyeLength: (float or int)=None,
-                 affinity: (float or int)=None,
+                 density: (float or int)=2.33,
+                 bandGap: (float or int)=1.11,
+                 gapType: str='Indirect',
+                 debyeTemp: (float or int)=640,
+                 debyeLength: (float or int)=2.0,
+                 affinity: (float or int)=4.05,
                  dielectric: (float or list or dict)=11.8,
-                 lattice: (float or list or dict)=5.43,
-                 carrierConcentration: float=None,
-                 densityOfStatesC: float=None,
-                 densityOfStatesV: float=None,
-                 resistivity: float=None,
-                 phononEnergy: float=None,
-                 driftMobE: float=None,
-                 driftMobH: float=None,
-                 breakdownField: float=None,
-                 conductivityTh: float=None,
-                 diffusivityTh: float=None,
-                 expansionThLin: float=None,
-                 refraction: float=None,
-                 recombinationAugerN: float=None,
-                 recombinationAugerP: float=None):
+                 lattice: (float or list or dict or tuple)=5.43,
+                 carrierConcentration: float=1e10,
+                 densityOfStatesC: float=3.2e19,
+                 densityOfStatesV: float=1.8e19,
+                 resistivity: float=3.2e5,
+                 phononEnergy: float=63e-3,
+                 driftMobE: float=1.4e3,
+                 driftMobH: float=0.45e3,
+                 breakdownField: float=3e5,
+                 conductivityTh: float=1.3,
+                 diffusivityTh: float=0.8,
+                 expansionThLin: float=2.6e-6,
+                 refraction: float=3.42,
+                 recombinationAugerN: float=1.1e-30,
+                 recombinationAugerP: float=3e-31):
         """_summary_
 
         Parameters
@@ -87,7 +87,7 @@ class Semiconductor:
             _description_, by default None
         dielectric : float or list or dict, optional
             _description_, by default 11.8
-        lattice : float or list or dict, optional
+        lattice : float or list or dict or tuple, optional
             _description_, by default 5.43
         carrierConcentration : float, optional
             _description_, by default None
@@ -204,7 +204,7 @@ class Semiconductor:
     
     @density.setter
     def density(self,value):
-        if type(value) != (int or float):
+        if type(value) != int and type(value) != float:
             raise Exception("density must be int or float types!")
         elif value <= 0:
             raise Exception("density must be non-zero and positive!")
@@ -218,7 +218,7 @@ class Semiconductor:
     
     @bandGap.setter
     def bandGap(self,value):
-        if type(value) != (int or float):
+        if type(value) != int and type(value) != float:
             raise Exception("bandGap must be int or float")
         if value < 0:
             raise Exception("bandGap must be greater than or equal to 0!")
@@ -244,7 +244,7 @@ class Semiconductor:
     
     @debyeTemp.setter
     def debyeTemp(self,value):
-        if type(value) != (int or float):
+        if type(value) != int and type(value) != float:
             raise Exception("debyeTemp must be int or float")
         if value < 0:
             raise Exception("debyeTemp must be greater than or equal to 0!")
@@ -258,7 +258,7 @@ class Semiconductor:
     
     @intrinsicDebyeLength.setter
     def intrinsicDebyeLength(self,value):
-        if type(value) != (int or float):
+        if type(value) != int and type(value) != float:
             raise Exception("intrinsicDebyeLength must be int or float")
         if value < 0:
             raise Exception("intrinsicDebyeLength must be greater than or equal to 0!")
@@ -272,7 +272,7 @@ class Semiconductor:
     
     @electronAffinity.setter
     def electronAffinity(self,value):
-        if type(value) != (int or float):
+        if type(value) != int and type(value) != float:
             raise Exception("electronAffinity must be int or float")
         if value < 0:
             raise Exception("electronAffinity must be greater than or equal to 0!")
@@ -286,8 +286,8 @@ class Semiconductor:
     
     @dielectricConstant.setter
     def dielectricConstant(self,value):
-        if type(value) != (float or list or dict):
-            raise Exception("dielectricConstant must be float or list or dict")
+        if type(value) != float and type(value) != list and type(value) != dict:
+            raise Exception("dielectricConstant must be float,list, or dict")
         if value < 0:
             raise Exception("dielectricConstant must be greater than or equal to 0!")
         self._dielectricConstant = value
@@ -300,8 +300,8 @@ class Semiconductor:
     
     @latticeConstant.setter
     def latticeConstant(self,value):
-        if type(value) != (float or list or dict):
-            raise Exception("latticeConstant must be float or list or dict")
+        if type(value) != float and type(value) != list and type(value) != dict and type(value) != tuple:
+            raise Exception("latticeConstant must be float,list, dict, or tuple!")
         if value <= 0:
             raise Exception("latticeConstant must be greater than 0!")
         self._latticeConstant = value
