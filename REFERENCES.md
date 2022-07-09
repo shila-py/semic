@@ -19,8 +19,13 @@
 
    P. K. Boer and R. A. Groot, “The conduction bands of MgO, MgS and HfO2,” Journal of Physics: Condensed Matter, vol. 10, no. 45, pp. 10241–10248, 1998. doi:10.1088/0953-8984/10/45/011
 
+   W. M. Yim and R. J. Paff, "Thermal expansion of AlN, sapphire, and silicon", Journal of Applied Physics 45, 1456-1457 (1974) doi.org/10.1063/1.1663432 
+
 ## Devices
 
    R. F. Pierret, Semiconductor device fundamentals. New Delhi, NCT: Pearson/Education, 2008.
 
    W. R. Frensley, Understanding Electron Devices. Dallas, TX: William R. Frensley, 1998.
+
+   G. Massobrio and P. Antognetti. Semiconductor Device Modeling with SPICE. 2nd Edition. New York: McGraw-Hill, 1993.
+
