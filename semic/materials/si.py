@@ -49,13 +49,13 @@ class Si(Semiconductor):
         temp = self.abstemp if temperature is None else temperature
         eg = self.bandgap_temp_dependence(temp)
         two_kb_t = 2 * BOLTZMANN * temp
-        nc = self.conduction_dos(temp)
-        nv = self.valence_dos(temp)
+        nc = self.cdos(temp)
+        nv = self.vdos(temp)
 
         return np.sqrt(nc * nv) * np.exp(-eg / two_kb_t)
 
-    def conduction_dos(self,
-                       temperature: float=None)-> float:
+    def cdos(self,
+             temperature: float=None)-> float:
         """_summary_
 
         Parameters
@@ -73,8 +73,8 @@ class Si(Semiconductor):
 
         return nc
     
-    def valence_dos(self,
-                    temperature: float=None)-> float:
+    def vdos(self,
+             temperature: float=None)-> float:
         """_summary_
 
         Parameters
@@ -131,10 +131,28 @@ class Si(Semiconductor):
         ValueError
             Temperature is outside of range specified
         """
-        temp = self.abstemp if temp is None else temp
+        temperature = self.abstemp if temp is None else temp
 
-        if 77 < temp < 400:
-            return 3.38 * (1 + (3.9e-5 * temp))
+        if 77 < temperature < 400:
+            return 3.38 * (1 + (3.9e-5 * temperature))
         else:
-            raise ValueError("Temperature outside of specified range (77 < temp < 400)!")
+            raise ValueError("Temperature outside of specified range (77 < temperature < 400)!")
+    
+    def lattice_parameter(self,
+                          temp: float=None)-> float:
+        """_summary_
+
+        Parameters
+        ----------
+        temp : float, optional
+            temperature in degrees C, by default None
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        temperature = (self.abstemp - 273.15) if temp is None else temp
+        a0 = 5.4304 #Angstroms
         
+        return a0 + (1.8138e-5 * temperature) + (1.542e-9 * (temperature ** 2))
