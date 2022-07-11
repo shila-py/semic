@@ -284,6 +284,16 @@ class BJT:
         self.transit_time_bias_dependence_coeff = xtf
         self.is_temperature_exp = xti
 
+    def thermal_voltage(self)-> float:
+        """_summary_
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        return BOLTZMANN * self.temperature / CHARGE
+
     def base_current(self,
                      vbe: float=0.0,
                      vbc: float=0.0)-> float:
@@ -387,7 +397,9 @@ class BJT:
         float
             _description_
         """
-        pass
+        vt = self.thermal_voltage()
+        return self.saturation_current() * (np.exp(voltage/(vt * self.fwd_current_emission_coeff)) - 1)
+        
 
     def non_ideal_base_emitter_current(self,
                                        voltage: float=0.0)-> float:
