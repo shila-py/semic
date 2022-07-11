@@ -74,49 +74,49 @@ class Semiconductor:
         temp : float or int, optional
             _description_, by default 300
         density : float or int, optional
-            _description_, by default None
+            _description_, by default 2.33
         bandGap : float or int, optional
-            _description_, by default None
+            _description_, by default 1.11
         gapType : str, optional
-            _description_, by default None
+            _description_, by default 'Indirect'
         debyeTemp : float or int, optional
-            _description_, by default None
+            _description_, by default 640
         debyeLength : float or int, optional
-            _description_, by default None
+            _description_, by default 2.0
         affinity : float or int, optional
-            _description_, by default None
+            _description_, by default 4.05
         dielectric : float or list or dict, optional
             _description_, by default 11.8
         lattice : float or list or dict or tuple, optional
             _description_, by default 5.43
         carrierConcentration : float, optional
-            _description_, by default None
+            _description_, by default 1e10
         densityOfStatesC : float, optional
-            _description_, by default None
+            _description_, by default 3.2e19
         densityOfStatesV : float, optional
-            _description_, by default None
+            _description_, by default 1.8e19
         resistivity : float, optional
-            _description_, by default None
+            _description_, by default 3.2e5
         phononEnergy : float, optional
-            _description_, by default None
+            _description_, by default 63e-3
         driftMobE : float, optional
-            _description_, by default None
+            _description_, by default 1.4e3
         driftMobH : float, optional
-            _description_, by default None
+            _description_, by default 0.45e3
         breakdownField : float, optional
-            _description_, by default None
+            _description_, by default 3e5
         conductivityTh : float, optional
-            _description_, by default None
+            _description_, by default 1.3
         diffusivityTh : float, optional
-            _description_, by default None
+            _description_, by default 0.8
         expansionThLin : float, optional
-            _description_, by default None
+            _description_, by default 2.6e-6
         refraction : float, optional
-            _description_, by default None
+            _description_, by default 3.42
         recombinationAugerN : float, optional
-            _description_, by default None
+            _description_, by default 1.1e-30
         recombinationAugerP : float, optional
-            _description_, by default None
+            _description_, by default 3e-31
         """
         
         self.group = group #Group Number
@@ -190,7 +190,7 @@ class Semiconductor:
     
     @abstemp.setter
     def abstemp(self,temp):
-        if type(temp) != (int or float):
+        if type(temp) != int and type(temp) != float:
             raise Exception("abstemp must be int or float types!")
         elif temp < 0:
             raise Exception("abstemp must be greater than or equal to 0!")
