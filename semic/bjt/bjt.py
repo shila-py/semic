@@ -1,4 +1,7 @@
-"""BJT Class Module"""
+"""
+BJT Class Module
+Based on https://www.seas.upenn.edu/~jan/spice/PSpice_ReferenceguideOrCAD.pdf
+"""
 from semic.constants.constants import value
 import numpy as np
 from scipy.misc import derivative
@@ -381,7 +384,7 @@ class BJT:
         float
             _description_
         """
-        return 1.16 - ((7.02e-4 * temp ** 2) / (temp + 1108))    
+        return 1.17 - ((7.02e-4 * temp ** 2) / (temp + 1108))    
     
     def forward_diffusion_current(self,
                                   voltage: float=0.0)-> float:
@@ -400,6 +403,17 @@ class BJT:
         vt = self.thermal_voltage()
         return self.saturation_current() * (np.exp(voltage/(vt * self.fwd_current_emission_coeff)) - 1)
         
+    def saturation_current(self)-> float:
+        """_summary_
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        t_tnom = self.temperature / self.nominal_temperature
+        vt = self.thermal_voltage()
+        return self.sat_current * np.exp((t_tnom - 1) * self.__eg(self.temperature) / vt) * (t_tnom ** self.is_temperature_exp)
 
     def non_ideal_base_emitter_current(self,
                                        voltage: float=0.0)-> float:
@@ -415,7 +429,36 @@ class BJT:
         float
             _description_
         """
-        pass
+        vt = self.thermal_voltage()
+        ise = self.base_emitter_leakage_current()
+
+        return ise * (np.exp(voltage / (vt * self.base_emitter_leak_emission_coeff)) - 1)
+    
+    def base_emitter_leakage_current(self)-> float:
+        """_summary_
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        t_tnom = self.temperature / self.nominal_temperature
+        vt = self.thermal_voltage()
+
+        return (self.base_emitter_leak_is / (t_tnom ** self.fwd_rev_beta_temp_coeff)) * np.exp((t_tnom - 1) * self.__eg(self.temperature) / (vt * self.base_emitter_leak_emission_coeff)) * (t_tnom ** (self.is_temperature_exp / self.base_emitter_leak_emission_coeff))
+    
+    def base_collector_leakage_current(self)-> float:
+        """_summary_
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        t_tnom = self.temperature / self.nominal_temperature
+        vt = self.thermal_voltage()
+
+        return (self.base_collector_leak_is / (t_tnom ** self.fwd_rev_beta_temp_coeff)) * np.exp((t_tnom - 1) * self.__eg(self.temperature) / (vt * self.base_collector_leak_emission_coeff)) * (t_tnom ** (self.is_temperature_exp / self.base_collector_leak_emission_coeff))
 
     def reverse_diffusion_current(self,
                                   voltage: float=0.0)-> float:
@@ -431,7 +474,9 @@ class BJT:
         float
             _description_
         """
-        pass
+        vt = self.thermal_voltage()
+
+        return self.saturation_current() * (np.exp(voltage / (self.rev_current_emission_coeff * vt)) - 1)
 
     def non_ideal_base_collector_current(self,
                                          voltage: float=0.0)-> float:
@@ -447,7 +492,9 @@ class BJT:
         float
             _description_
         """
-        pass
+        vt = self.thermal_voltage()
+
+        return self.base_collector_leakage_current() * (np.exp(voltage / (self.base_collector_leak_emission_coeff * vt)) - 1)
 
     def base_charge_factor(self,
                            vbe: float=0.0,
@@ -490,6 +537,19 @@ class BJT:
 
         return self.area * iss * (np.exp(vjs / (self.substrate_emission_coeff * vt)) - 1)
 
+    def substrate_saturation_current(self)-> float:
+        """_summary_
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        t_tnom = self.temperature / self.nominal_temperature
+        vt = self.thermal_voltage()
+
+        return (self.substrate_pn_sat_current / (t_tnom ** self.fwd_rev_beta_temp_coeff)) * np.exp((t_tnom - 1) * self.__eg(self.temperature) / (vt * self.substrate_emission_coeff)) * (t_tnom ** (self.is_temperature_exp / self.substrate_emission_coeff))
+
     def actual_base_parasitic_resistance(self,
                                          vbe: float=0.0,
                                          vbc: float=0.0)-> float:
@@ -523,7 +583,8 @@ class BJT:
         float
             _description_
         """
-        pass
+        t_tnom = self.temperature - self.nominal_temperature
+        return self.min_base_resistance * (1 + (self.rbm_temp_coeff_lin * t_tnom) + (self.rbm_temp_coeff_quad * (t_tnom ** 2)))
         
     def maximum_base_resistance(self)-> float:
         """_summary_
@@ -533,7 +594,8 @@ class BJT:
         float
             _description_
         """
-        pass
+        t_tnom = self.temperature - self.nominal_temperature
+        return self.zero_bias_max_base_resistance * (1 + (self.rb_temp_coeff_lin* t_tnom) + (self.rb_temp_coeff_quad * (t_tnom ** 2)))
 
 class NPN(BJT):
     """_summary_
