@@ -275,9 +275,9 @@ class BJT:
         self.fwd_early_voltage = vaf
         self.rev_early_voltage = var
         self.qsat_bandgap_voltage_zero_k = vg
-        self.base_collector_potential = vjc
-        self.base_emitter_potential = vje
-        self.substrate_potential = vjs
+        self.base_collector_pot = vjc
+        self.base_emitter_pot = vje
+        self.substrate_pot = vjs
         self.carrier_mobility_knee_voltage = vo
         self.transit_time_dependency_Vbc = vtf
         self.frac_cjc_internal_rb = xcjc
@@ -525,7 +525,9 @@ class BJT:
         Parameters
         ----------
         vjs : float, optional
-            _description_, by default 0.0
+            intrinsic collector-substrate voltage (NPN), by default 0.0 V
+            intrinsic substrate-collector voltage (PNP)
+            intrinsic base-substrate voltage (LPNP)
 
         Returns
         -------
@@ -597,6 +599,258 @@ class BJT:
         t_tnom = self.temperature - self.nominal_temperature
         return self.zero_bias_max_base_resistance * (1 + (self.rb_temp_coeff_lin* t_tnom) + (self.rb_temp_coeff_quad * (t_tnom ** 2)))
 
+    def collector_resistance(self)-> float:
+        """_summary_
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        t_tnom = self.temperature - self.nominal_temperature
+        return self.collector_ohmic_resistance * (1 + (self.rc_temp_coeff_lin * t_tnom) + (self.rc_temp_coeff_quad * (t_tnom ** 2)))
+    
+    def emitter_resistance(self)-> float:
+        """_summary_
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        t_tnom = self.temperature - self.nominal_temperature
+        return self.emitter_ohmic_resistance * (1 + (self.re_temp_coeff_lin * t_tnom) + (self.re_temp_coeff_quad * (t_tnom ** 2)))
+
+    def base_emitter_potential(self)-> float:
+        """_summary_
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        vt = self.thermal_voltage()
+        t_tnom = self.temperature / self.nominal_temperature
+        
+        return (self.base_emitter_pot * t_tnom) - (3 * vt * np.log(t_tnom)) - (self.__eg(self.nominal_temperature) * t_tnom) + self.__eg(self.temperature)
+
+    def base_collector_potential(self)-> float:
+        """_summary_
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        vt = self.thermal_voltage()
+        t_tnom = self.temperature / self.nominal_temperature
+
+        return (self.base_collector_pot * t_tnom) - (3 * vt * np.log(t_tnom)) - (self.__eg(self.nominal_temperature) * t_tnom) + self.__eg(self.temperature)
+
+    def substrate_potential(self)-> float:
+        """_summary_
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        vt = self.thermal_voltage()
+        t_tnom = self.temperature / self.nominal_temperature
+
+        return (self.substrate_pot * t_tnom) - (3 * vt * np.log(t_tnom)) - (self.__eg(self.nominal_temperature) * t_tnom) + self.__eg(self.temperature) 
+
+    def temp_dep_base_emitter_capacitance(self)-> float:
+        """_summary_
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        t_tnom = self.temperature - self.nominal_temperature
+        mje = self.base_emitter_grading_factor
+
+        return self.base_emitter_pn_cap * (1 + (mje * (4e-4 * t_tnom + (1 - (self.base_emitter_potential() / self.base_emitter_pot)))))
+    
+    def temp_dep_base_collector_capacitance(self)-> float:
+        """_summary_
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        t_tnom = self.temperature - self.nominal_temperature
+        mjc = self.base_collector_grading_factor
+
+        return self.base_collector_pn_cap * (1 + (mjc * (4e-4 * t_tnom + (1 - (self.base_collector_potential() / self.base_collector_pot)))))
+
+    def temp_dep_substrate_capacitance(self)-> float:
+        """_summary_
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        t_tnom = self.temperature - self.nominal_temperature
+        mjs = self.substrate_grading_factor
+
+        return self.substrate_pn_cap * (1 + (mjs * (4e-4 * t_tnom + (1 - (self.substrate_potential() / self.substrate_pot)))))
+
+    def base_emitter_capacitance(self,
+                                 vbe: float=0.0,
+                                 vbc: float=0.0)-> float:
+        """_summary_
+
+        Parameters
+        ----------
+        vbe : float, optional
+            _description_, by default 0.0
+        vbc : float, optional
+            _description_, by default 0.0
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        return self.transit_time_capacitance_be(vbc,vbe) + (self.area * self.base_emitter_junction_capacitance(vbe))
+
+    def base_emitter_current(self,
+                             vbe: float=0.0)-> float:
+        """_summary_
+
+        Parameters
+        ----------
+        vbe : float, optional
+            _description_, by default 0.0
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        return self.forward_diffusion_current(vbe) + self.non_ideal_base_emitter_current(vbe)
+    
+    def base_collector_current(self,
+                               vbc: float=0.0)-> float:
+        """_summary_
+
+        Parameters
+        ----------
+        vbc : float, optional
+            _description_, by default 0.0
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        return self.reverse_diffusion_current(vbc) + self.non_ideal_base_collector_current(vbc)
+
+    def transit_time_capacitance_be(self,
+                                 vbc: float=0.0,
+                                 vbe: float=0.0)-> float:
+        """_summary_
+
+        Parameters
+        ----------
+        vbc : float, optional
+            _description_, by default 0.0
+        vbe : float, optional
+            _description_, by default 0.0
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        vbc_comp = np.exp(vbc / (1.44 * self.transit_time_dependency_Vbc))
+        sq_term = np.square(self.forward_diffusion_current(vbe) / (self.forward_diffusion_current(vbe) + (self.area * self.transit_time_dependency_IC)))
+        tf = self.ideal_fwd_transit_time * (1 + (self.transit_time_bias_dependence_coeff * sq_term * vbc_comp))
+        
+        return tf * self.dc_conductance(self.base_emitter_current,vbe)
+
+    def dc_conductance(self,
+                       func,
+                       voltage: float=0.0,
+                       dV: float=1.0e-6)-> float:
+        """_summary_
+
+        Parameters
+        ----------
+        func : _type_
+            _description_
+        voltage : float, optional
+            _description_, by default 0.0
+        dV : float, optional
+            _description_, by default 1.0e-6
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        return derivative(func, voltage, dx=dV) 
+    
+    def base_emitter_junction_capacitance(self,
+                                          vbe: float=0.0)-> float:
+        """_summary_
+
+        Parameters
+        ----------
+        vbe : float, optional
+            _description_, by default 0.0
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        fc = self.fwd_bias_dep_cap_coeff
+        vje = self.base_emitter_potential()
+        mje = self.base_emitter_grading_factor
+        cje = self.temp_dep_base_emitter_capacitance()
+
+        if (fc * vje) >= vbe:
+            return cje * ((1 - (vbe / vje)) ** -mje)
+        else:
+            return cje * ((1 - fc) ** -(1 + mje)) * (1 - (fc * (1 + mje)) + (mje * vbe / vje))
+    '''
+    def base_collector_capacitance(self,
+                                   vbc: float=0.0)-> float:
+        """_summary_
+
+        Parameters
+        ----------
+        vbc : float, optional
+            _description_, by default 0.0
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        return self.transit_time_capacitance_bc + (self.area * self.frac_cjc_internal_rb * self.base_collector_junction_capacitance(vbc))
+
+    def transit_time_capacitance_bc(self,
+                                    vbc)-> float:
+        """_summary_
+
+        Parameters
+        ----------
+        vbc : _type_
+            _description_
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        return self.ideal_rev_transit_time * self.dc_conductance(self.base_collector_current,vbc)
+'''
 class NPN(BJT):
     """_summary_
 
