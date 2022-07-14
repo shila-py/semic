@@ -24,7 +24,7 @@ def fdint_approx(eta=0)-> float:
     return fd
 
 def fermi_dirac_int(order=0.5,
-                    eta=0.0) -> float:
+                    eta=0.0)-> float:
     """
     Fermi-Dirac integral
 
@@ -44,7 +44,7 @@ def fermi_dirac_int(order=0.5,
     intgrl = quad(lambda t: ((t ** order) / (1 + np.exp(t - eta))),a=0,b=np.inf,epsabs=1e-300,epsrel=1e-8,limit=100)
     return reciprocal_gamma * intgrl[0]
 
-def ifdint_approx(eta=0) -> float:
+def ifdint_approx(eta=0)-> float:
     """The Inverse Fermi-Dirac Integral of Order 1/2 approximation.
 
     Parameters
