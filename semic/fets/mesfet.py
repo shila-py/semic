@@ -4,6 +4,6 @@
 class MESFET:
     """_summary_
     """
-    def __init__(self)-> None:
+    def __init__(self):
         pass
     pass
