@@ -278,7 +278,7 @@ class BJT:
         self.base_collector_pot = vjc
         self.base_emitter_pot = vje
         self.substrate_pot = vjs
-        self.carrier_mobility_knee_voltage = vo
+        self.carrier_mob_knee_voltage = vo
         self.transit_time_dependency_Vbc = vtf
         self.frac_cjc_internal_rb = xcjc
         self.frac_cjc_internal_rb2 = xcjc2
@@ -879,8 +879,32 @@ class BJT:
         else:
             return cjc * ((1 - fc) ** -(1 + mjc)) * (1 - (fc * (1 + mjc)) + (mjc * vbc / vjc))
 
-    def extrinsic_base_intrinsic_collector_capacitance(self,
-                                                       vbx: float=0.0)-> float:
+    def extrinsic_base_collector_capacitance(self,
+                                             vbx: float=0.0,
+                                             cnode: str="intrinsic")-> float:
+        """_summary_
+
+        Parameters
+        ----------
+        vbx : float, optional
+            _description_, by default 0.0
+        cnode : str, optional
+            _description_, by default "intrinsic"
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        if cnode == "intrinsic":
+            return self.area * (1 - self.frac_cjc_internal_rb) * self.bx_junction_capacitance(vbx)
+        elif cnode == "extrinsic":
+            return self.area * (1 - self.frac_cjc_internal_rb2) * self.bx_junction_capacitance(vbx)
+        else:
+            raise Exception("cnode must be 'intrinsic' or 'extrinsic'!")
+
+    def bx_junction_capacitance(self,
+                                vbx: float=0.0)-> float:
         """_summary_
 
         Parameters
@@ -893,7 +917,220 @@ class BJT:
         float
             _description_
         """
-        pass
+        cjc = self.temp_dep_base_collector_capacitance()
+        vjc = self.base_collector_potential()
+        mjc = self.base_collector_grading_factor
+        fc = self.fwd_bias_dep_cap_coeff
+
+        if vbx <= (fc * vjc):
+            return cjc * ((1 - (vbx / vjc)) ** -mjc)
+        else:
+            return cjc * ((1 - fc) ** -(1 + mjc)) * (1 - (fc * (1 + mjc)) + (mjc * vbx / vjc))
+    
+    def substrate_junction_capacitance(self,
+                                       vjs: float=0.0)-> float:
+        """_summary_
+
+        Parameters
+        ----------
+        vjs : float, optional
+            _description_, by default 0.0
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        vj_s = self.substrate_potential()
+        cjs = self.temp_dep_substrate_capacitance()
+        mjs = self.substrate_grading_factor
+
+        if vjs <= 0:
+            return self.area * cjs * ((1 - (vjs / vj_s)) ** -mjs)
+        else:
+            return self.area * cjs * (1 + (mjs * vjs / vj_s))
+    
+    def epitaxial_region_doping_factor(self)-> float:
+        """_summary_
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        gamma = self.epitaxial_reg_doping_factor
+        tnom = self.nominal_temperature
+        t = self.temperature
+        t_tnom = self.temperature / self.nominal_temperature
+        vg = self.qsat_bandgap_voltage_zero_k
+        q = CHARGE
+        k = BOLTZMANN
+
+        return gamma * (t_tnom ** 3) * np.exp((-q * vg / k) * ((1 / t) - (1 / tnom)))
+    
+    def epitaxial_region_resistance(self)-> float:
+        """_summary_
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        rco = self.epitaxial_reg_resistance
+        t_tnom = self.temperature / self.nominal_temperature
+
+        return rco * (t_tnom ** self.qsat_temp_coeff_hm)
+
+    def carrier_mobility_knee_voltage(self)-> float:
+        """_summary_
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        cn_d = self.qsat_temp_coeff_hm - self.qsat_temp_coeff_hcv
+        t_tnom = self.temperature / self.nominal_temperature
+        vo = self.carrier_mob_knee_voltage
+
+        return vo * (t_tnom ** cn_d)
+
+    def quasisaturation_effect(self,
+                               vbc: float=0.0,
+                               vbn: float=0.0)-> dict:
+        """_summary_
+
+        Parameters
+        ----------
+        vbc : float, optional
+            _description_, by default 0.0
+        vbn : float, optional
+            _description_, by default 0.0
+
+        Returns
+        -------
+        dict
+            _description_
+        """
+        if self.qsat_flag == 0:
+            vo = self.carrier_mob_knee_voltage
+            rco = self.epitaxial_reg_resistance
+            gamma = self.epitaxial_reg_doping_factor
+        else:
+            vo = self.carrier_mobility_knee_voltage()
+            rco = self.epitaxial_region_resistance()
+            gamma = self.epitaxial_region_doping_factor()
+        
+        if rco == 0:
+            raise Exception("RCO must be greater than 0 for Epitaxial Region Current and Charge!")
+        else:
+            vt = self.thermal_voltage()
+            qco = self.epitaxial_reg_charge_factor
+            iepi = self.area * (vo * (vt * (self.k_v(gamma,vbc) - self.k_v(gamma,vbn) - np.log((1 + self.k_v(gamma,vbc)) / (1 + self.k_v(gamma,vbn)))) + vbc - vbn)) / (rco * (np.abs(vbc - vbn) + vo))
+            qo = self.area * qco * (self.k_v(gamma,vbc) - 1 - (gamma / 2))
+            qw = self.area * qco * (self.k_v(gamma,vbn) - 1 - (gamma / 2))
+            qepi = qo + qw
+            return {"Epitaxial Region Current" : iepi, "Epitaxial Region Charge" : qepi}
+    
+    def k_v(self,
+            gamma: float,
+            voltage: float=0.0)-> float:
+        """_summary_
+
+        Parameters
+        ----------
+        gamma : float
+            _description_
+        voltage : float, optional
+            _description_, by default 0.0
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        vt = self.thermal_voltage()
+        return np.sqrt(1 + (gamma * np.exp(voltage / vt)))
+    
+    def parasitic_collector_resistance_thermal_noise(self)-> float:
+        """_summary_
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        return 4 * BOLTZMANN * self.temperature / (self.collector_resistance() / self.area)
+    
+    def parasitic_base_resistance_thermal_noise(self,
+                                                vbe: float=0.0,
+                                                vbc: float=0.0)-> float:
+        """_summary_
+
+        Parameters
+        ----------
+        vbe : float, optional
+            _description_, by default 0.0
+        vbc : float, optional
+            _description_, by default 0.0
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        return 4 * BOLTZMANN * self.temperature / self.actual_base_parasitic_resistance(vbe,vbc)
+    
+    def parasitic_emitter_resistance_thermal_noise(self)-> float:
+        """_summary_
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        return 4 * BOLTZMANN * self.temperature / (self.emitter_resistance() / self.area)
+    
+    def base_current_noise(self,
+                           freq: float=1.0,
+                           vbe: float=0.0,
+                           vbc: float=0.0)-> float:
+        """_summary_
+
+        Parameters
+        ----------
+        freq : float, optional
+            _description_, by default 1.0
+        vbe : float, optional
+            _description_, by default 0.0
+        vbc : float, optional
+            _description_, by default 0.0
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        return 2 * CHARGE * self.base_current(vbe,vbc) + (self.flicker_noise_coeff * (self.base_current(vbe,vbc) ** self.flicker_noise_exp) / freq)
+
+    def collector_current_noise(self,
+                                vbe: float=0.0,
+                                vbc: float=0.0)-> float:
+        """_summary_
+
+        Parameters
+        ----------
+        vbe : float, optional
+            _description_, by default 0.0
+        vbc : float, optional
+            _description_, by default 0.0
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        return 2 * CHARGE * self.collector_current(vbe,vbc)
 
 class NPN(BJT):
     """_summary_
