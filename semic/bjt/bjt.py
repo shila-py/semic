@@ -13,7 +13,7 @@ class BJT:
     """BJT Class
     """
     def __init__(self,
-                 temp: float=298,
+                 temp: float=300,
                  tnom: float=300,
                  area: float=1.0,
                  af: float=1.0,
@@ -818,7 +818,7 @@ class BJT:
             return cje * ((1 - (vbe / vje)) ** -mje)
         else:
             return cje * ((1 - fc) ** -(1 + mje)) * (1 - (fc * (1 + mje)) + (mje * vbe / vje))
-    '''
+    
     def base_collector_capacitance(self,
                                    vbc: float=0.0)-> float:
         """_summary_
@@ -833,7 +833,10 @@ class BJT:
         float
             _description_
         """
-        return self.transit_time_capacitance_bc + (self.area * self.frac_cjc_internal_rb * self.base_collector_junction_capacitance(vbc))
+        if (0.0 < self.frac_cjc_internal_rb2 < 1.0):
+            return self.transit_time_capacitance_bc(vbc) + (self.area * self.frac_cjc_internal_rb2 * self.base_collector_junction_capacitance(vbc))
+        else:
+            return self.transit_time_capacitance_bc(vbc) + (self.area * self.frac_cjc_internal_rb * self.base_collector_junction_capacitance(vbc))
 
     def transit_time_capacitance_bc(self,
                                     vbc)-> float:
@@ -850,7 +853,48 @@ class BJT:
             _description_
         """
         return self.ideal_rev_transit_time * self.dc_conductance(self.base_collector_current,vbc)
-'''
+
+    def base_collector_junction_capacitance(self,
+                                            vbc: float=0.0)-> float:
+        """_summary_
+
+        Parameters
+        ----------
+        vbc : float, optional
+            _description_, by default 0.0
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        fc = self.fwd_bias_dep_cap_coeff
+        vjc = self.base_collector_potential()
+        mjc = self.base_collector_grading_factor
+        cjc = self.temp_dep_base_collector_capacitance()
+
+
+        if vbc < (fc * vjc):
+            return cjc * ((1 - (vbc / vjc)) ** -mjc)
+        else:
+            return cjc * ((1 - fc) ** -(1 + mjc)) * (1 - (fc * (1 + mjc)) + (mjc * vbc / vjc))
+
+    def extrinsic_base_intrinsic_collector_capacitance(self,
+                                                       vbx: float=0.0)-> float:
+        """_summary_
+
+        Parameters
+        ----------
+        vbx : float, optional
+            _description_, by default 0.0
+
+        Returns
+        -------
+        float
+            _description_
+        """
+        pass
+
 class NPN(BJT):
     """_summary_
 
