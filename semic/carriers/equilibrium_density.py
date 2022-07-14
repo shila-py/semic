@@ -4,7 +4,7 @@ module docstring for carrier equilibrium density
 
 from numpy import exp,sqrt,pi
 from semic.constants.constants import value
-from semic.math.fdint import fdint_approx
+from semic.math.functions import fdint_approx
 
 def find_n0(n_c=0,conduction_band_energy=0,fermi_energy=0,temp=0):
     '''
