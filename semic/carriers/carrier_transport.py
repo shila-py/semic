@@ -17,9 +17,10 @@ TODO:
 """
 
 from semic.constants.constants import value
-from semic.math.fdint import ifdint_approx
+from semic.math.functions import ifdint_approx
 
-def mobility(tau=0,effective_mass=1):
+def mobility(tau=0,
+             effective_mass=1):
     '''
 
     Parameters
@@ -38,8 +39,10 @@ def mobility(tau=0,effective_mass=1):
     mu = value('Elementary charge') * tau / effective_mass
     return mu
 
-def particle_current_density_drift(spec=None, mu=0,
-                                   density=0, d_phi_d_z=0):
+def particle_current_density_drift(spec=None, 
+                                   mu=0,
+                                   density=0, 
+                                   d_phi_d_z=0):
     """
 
     Parameters
@@ -91,7 +94,8 @@ def particle_current_density_diffusion(diffusivity=0,
     j = -diffusivity*d_dz
     return j
 
-def diffusivity(temp=300,mu=0):
+def diffusivity(temp=300,
+                mu=0):
     """
     Returns the electron or hole diffusivity
 
@@ -111,8 +115,11 @@ def diffusivity(temp=300,mu=0):
     d = kb_t * mu
     return d
 
-def electron_current_density(mu=0,density=0,d_phi_d_z=0,
-                             diffusivity=0,dn_dz=0):
+def electron_current_density(mu=0,
+                             density=0,
+                             d_phi_d_z=0,
+                             diffusivity=0,
+                             dn_dz=0):
     """
     returns the electron current density
 
@@ -137,8 +144,11 @@ def electron_current_density(mu=0,density=0,d_phi_d_z=0,
     j = (mu*density*d_phi_d_z) - (diffusivity*dn_dz)
     return j
 
-def hole_current_density(mu=0,density=0,d_phi_d_z=0,
-                         diffusivity=0,dp_dz=0):
+def hole_current_density(mu=0,
+                         density=0,
+                         d_phi_d_z=0,
+                         diffusivity=0,
+                         dp_dz=0):
     """
     returns the hole current density
 
@@ -163,7 +173,8 @@ def hole_current_density(mu=0,density=0,d_phi_d_z=0,
     j = -(mu*density*d_phi_d_z) - (diffusivity*dp_dz)
     return j
 
-def electrical_current_density(j_n=0,j_p=0):
+def electrical_current_density(j_n=0,
+                               j_p=0):
     """
     returns the net electrical current density, J.
 
@@ -184,7 +195,9 @@ def electrical_current_density(j_n=0,j_p=0):
     return current_density
 
 def electron_quasi_fermi_level(band_edge_energy=0,
-                               phi=0, temp=0, density=0,
+                               phi=0, 
+                               temp=0, 
+                               density=0,
                                density_of_states=1):
     """
     Finds the Quasi Fermi Level for electrons
@@ -214,7 +227,9 @@ def electron_quasi_fermi_level(band_edge_energy=0,
     return fn
 
 def hole_quasi_fermi_level(band_edge_energy=0,
-                           phi=0, temp=0, density=0,
+                           phi=0,
+                           temp=0,
+                           density=0,
                            density_of_states=1):
     """
     Finds the Quasi Fermi level for holes
