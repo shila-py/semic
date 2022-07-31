@@ -78,3 +78,57 @@ def eff_mass_matrix(mxx: float=0.0,
         Matrix corresponding to the Effective Mass Matrix. 
     """
     return np.array([[mxx,mxy,mxz],[mxy,myy,myz],[mxz,myz,mzz]])
+
+def conduction_band_DOS(mde,
+                        E,
+                        Ec):
+    """_summary_
+
+    Parameters
+    ----------
+    mde : _type_
+        _description_
+    E : _type_
+        _description_
+    Ec : _type_
+        _description_
+    """
+    if (E < Ec):
+        return 0
+    else:
+        return (np.sqrt(2) / np.square(np.pi)) * ((mde / np.square(HBAR)) ** (1.5)) * np.sqrt(E - Ec)
+
+def valence_band_DOS(mde,
+                     E,
+                     Ev):
+    """_summary_
+
+    Parameters
+    ----------
+    mde : _type_
+        _description_
+    E : _type_
+        _description_
+    Ev : _type_
+        _description_
+    """
+    if (E > Ev):
+        return 0
+    else:
+        return (np.sqrt(2) / np.square(np.pi)) * ((mde / np.square(HBAR)) ** (1.5)) * np.sqrt(Ev - E)
+
+def effective_mass_DOS(mx,
+                       my,
+                       mz):
+    """_summary_
+
+    Parameters
+    ----------
+    mx : _type_
+        _description_
+    my : _type_
+        _description_
+    mz : _type_
+        _description_
+    """
+    return (mx * my * mz) ** (1 / 3)
