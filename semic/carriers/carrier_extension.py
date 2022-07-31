@@ -5,3 +5,4 @@ Created on Mon Jan 10 14:50:40 2022
 
 Description: Extensions to carrier transport
 """
+raise NotImplementedError("This module has not yet been implemented!")
