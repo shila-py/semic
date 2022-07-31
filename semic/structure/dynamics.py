@@ -10,7 +10,7 @@
 ##########################################
 from semic.constants.constants import value
 
-h_bar = value('reduced Planck constant')
+HBAR = value('reduced Planck constant')
 
 def group_velocity(gradient_k=None,E=None):
    '''
@@ -34,8 +34,7 @@ def group_velocity(gradient_k=None,E=None):
    group_velocity = (gradient_k * energy)/(h_bar)
    '''
 
-   v = (gradient_k*E)/h_bar
-
+   v = (gradient_k*E)/HBAR
    return v
 
 def bloch_accel(force=None):
@@ -50,8 +49,7 @@ def bloch_accel(force=None):
    force, and hbar is the reduced Planck constant. 
    '''
 
-   dk_dt = force/h_bar
-
+   dk_dt = force/HBAR
    return dk_dt
 
 def momentum(k=None):
@@ -71,8 +69,7 @@ def momentum(k=None):
    p = hbar*k
    '''
 
-   p = h_bar*k
-
+   p = HBAR*k
    return p
 
 def energy(Eb=None,k=None):
@@ -91,7 +88,6 @@ def energy(Eb=None,k=None):
    E = Eb(k)
    '''
 
-   E = Eb*(k)
-
+   E = Eb*k
    return E
    

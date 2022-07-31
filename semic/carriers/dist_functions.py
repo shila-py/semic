@@ -91,9 +91,9 @@ def donor_distribution(g_d=0,fermi_energy=0,donor_energy=0,temp=1):
     '''
 
     kb_t = value('Boltzmann constant in eV/K') * temp
-    f_d = 1 / (1 + g_d*exp((fermi_energy-donor_energy)/kb_t))
+    f_D = 1 / (1 + g_d*exp((fermi_energy-donor_energy)/kb_t))
 
-    return f_d
+    return f_D
 
 def acceptor_distribution(g_a=0,fermi_energy=0,acceptor_energy=0,temp=1):
     '''
@@ -115,6 +115,6 @@ def acceptor_distribution(g_a=0,fermi_energy=0,acceptor_energy=0,temp=1):
     '''
 
     kb_t = value('Boltzmann constant in eV/K') * temp
-    f_d = 1 / (1 + g_a*exp((acceptor_energy-fermi_energy)/kb_t))
+    f_A = 1 / (1 + g_a*exp((acceptor_energy-fermi_energy)/kb_t))
 
-    return f_d
+    return f_A

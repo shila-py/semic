@@ -1,5 +1,5 @@
 '''
-module docstring for Fermi-Dirac Integrals
+module docstring for special functions
 '''
 import numpy as np
 from scipy.integrate import quad
