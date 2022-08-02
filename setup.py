@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="semic",
+    name="semicpy",
     version="0.0.1",
     author="Nithin Kumar Santha Kumar",
     author_email="nxs169230@utdallas.edu",
@@ -21,7 +21,7 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent"
     ],
-    package_dir={'':"semic"},
-    packages=find_packages("semic"),
+    package_dir={'':"semicpy"},
+    packages=find_packages("semicpy"),
     python_requires=">=3.5",
 )

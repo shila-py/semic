@@ -5,7 +5,7 @@ Created on Wed Jul  6 18:39:11 2022
 
 Description:
 """
-from semic.semic.materials.semiconductor import Semiconductor
+from semicpy.materials.semiconductor import Semiconductor
 
 
 class GaAsSb(Semiconductor):
