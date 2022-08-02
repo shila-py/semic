@@ -12,9 +12,9 @@
    - ...
    - TBD
 
-## Installation (WIP)
+## Installation
 
-   - TBD
+    pip install semic
 
 ## TODO
 
