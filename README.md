@@ -1,10 +1,10 @@
 
 
-# Semic : Semiconductor physics calculation and modeling
+# Semicpy : Semiconductor physics calculation and modeling
 
 ## What is it?
 
-**Semic** is a python package that allows you to model semiconductors and perform calculations with them.
+**Semicpy** is a python package that allows you to model semiconductors and perform calculations with them.
 
 ## Main Features
 
@@ -14,7 +14,7 @@
 
 ## Installation
 
-    pip install semic
+    pip install semicpy
 
 ## Future considerations
 
