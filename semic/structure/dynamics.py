@@ -10,7 +10,7 @@
 ##########################################
 from semic.constants.constants import value
 
-HBAR = value('reduced Planck constant')
+HBAR = value('reduced Planck constant in eV s')
 
 def group_velocity(gradient_k=None,E=None):
    '''
