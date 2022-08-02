@@ -9,7 +9,7 @@
 # 10/28/2021 - Added more functionality
 ##########################################
 
-from semic.constants.constants import value
+from semicpy.constants.constants import value
 
 from sympy.physics.quantum.dagger import Dagger
 from sympy.physics.quantum.state import Bra, Ket

@@ -3,7 +3,7 @@ This module contains the distribution functions
 '''
 
 from numpy import exp,sqrt,pi
-from semic.constants.constants import value
+from semicpy.constants.constants import value
 
 
 def maxwell_boltzmann(velocity=0,m_star=0,temp=1):

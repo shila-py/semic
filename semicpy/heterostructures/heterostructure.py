@@ -2,7 +2,7 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
-from semic.math.coordinate import Rectangular2D
+from semicpy.math.coordinate import Rectangular2D
 
 VACUUM = Rectangular2D(0,0)
 

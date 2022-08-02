@@ -8,7 +8,7 @@
 # 9/09/2021 - Started hole dynamics physics (dynamics.py)
 # 
 ##########################################
-from semic.constants.constants import value
+from semicpy.constants.constants import value
 
 HBAR = value('reduced Planck constant in eV s')
 

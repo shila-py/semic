@@ -3,7 +3,7 @@ Module docstring
 """
 import numpy as np
 from scipy.misc import derivative
-from semic.constants.constants import value
+from semicpy.constants.constants import value
 
 BOLTZMANN = value('Boltzmann constant in J/K')
 CHARGE = value('Elementary charge')

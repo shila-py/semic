@@ -1,6 +1,6 @@
 """JFET Class Module"""
 import numpy as np
-from semic.constants.constants import value
+from semicpy.constants.constants import value
 
 CHARGE = value('Elementary charge')
 BOLTZMANN = value('Boltzmann constant in J/K')

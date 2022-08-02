@@ -1,4 +1,4 @@
-from semic.constants.constants import value
+from semicpy.constants.constants import value
 import numpy as np
 
 class MOSFET:

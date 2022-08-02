@@ -9,7 +9,7 @@ import plotly.express as px
 import pandas as pd
 import plotly.io as pio
 import numpy as np
-from semic.carriers.dist_functions import fermi_dirac,maxwell_boltzmann,bose_einstein
+from semicpy.carriers.dist_functions import fermi_dirac,maxwell_boltzmann,bose_einstein
 
 pio.renderers.default = 'browser'
 

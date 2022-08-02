@@ -2,7 +2,7 @@
 BJT Class Module
 Based on https://www.seas.upenn.edu/~jan/spice/PSpice_ReferenceguideOrCAD.pdf
 """
-from semic.constants.constants import value
+from semicpy.constants.constants import value
 import numpy as np
 from scipy.misc import derivative
 

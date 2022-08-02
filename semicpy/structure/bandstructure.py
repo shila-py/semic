@@ -2,7 +2,7 @@
 
 #raise NotImplementedError("Bandstructure has not been implemented yet!")
 
-from semic.constants.constants import value
+from semicpy.constants.constants import value
 import numpy as np
 import numpy.typing as npt
 

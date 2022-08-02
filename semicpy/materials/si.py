@@ -5,8 +5,8 @@ Created on Sun Jun  5 23:11:01 2022
 
 Description:
 """
-from semic.constants.constants import value
-from semic.materials.semiconductor import Semiconductor
+from semicpy.constants.constants import value
+from semicpy.materials.semiconductor import Semiconductor
 import numpy as np
 
 BOLTZMANN = value("Boltzmann constant in eV/K")

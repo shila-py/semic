@@ -16,8 +16,8 @@ TODO:
     ADD Magnetic Fields: Hall Effect
 """
 
-from semic.constants.constants import value
-from semic.math.functions import ifdint_approx
+from semicpy.constants.constants import value
+from semicpy.math.functions import ifdint_approx
 
 def mobility(tau=0,
              effective_mass=1):

@@ -2,7 +2,7 @@
 module docstring for density of states
 '''
 from numpy import exp,sqrt,pi
-from semic.constants.constants import value
+from semicpy.constants.constants import value
 
 def density_of_states(m_star=0,energy=0,conduction_band_energy=0):
     '''

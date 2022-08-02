@@ -6,7 +6,7 @@ Created on Sun Jun  5 23:11:01 2022
 Description: Zinc Telluride
 """
 
-from semic.materials.semiconductor import Semiconductor
+from semicpy.materials.semiconductor import Semiconductor
 
 class ZnTe(Semiconductor):
     pass

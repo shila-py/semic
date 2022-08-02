@@ -3,7 +3,7 @@ Module docstring for fundamentals.py
 '''
 
 from numpy import pi,sqrt,exp
-from semic.constants.constants import value
+from semicpy.constants.constants import value
 
 
 def find_pn(temp=0,bandgap=0,n_a=0,n_d=0):

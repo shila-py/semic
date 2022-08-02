@@ -1,6 +1,6 @@
 """module docstring for schottky barrier
 """
-from semic.math.coordinate import Rectangular2D
+from semicpy.math.coordinate import Rectangular2D
 import matplotlib.pyplot as plt
 import numpy as np
 

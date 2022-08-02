@@ -5,7 +5,7 @@ Created on Wed Jul  6 19:04:51 2022
 
 Description:
 """
-from semic.materials.semiconductor import Semiconductor
+from semicpy.materials.semiconductor import Semiconductor
 
 class InAsSb(Semiconductor):
     pass
