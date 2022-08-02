@@ -1,14 +1,27 @@
-from distutils.core import setup
+import setuptools
+from setuptools import setup, find_packages
 
-setup(
-    name = 'semic',
-    packages = ['semic'],
-    version = '0.0.1',
-    description = 'A package for semiconductor physics, calculations, and modeling',
-    author = 'Nithin Kumar Santha Kumar',
-    author_email = 'nxs169230@utdallas.edu',
-    url = 'https://github.com/nkskumar/semic',
-    download_url = 'https://github.com/nkskumar/semic/archive/refs/tags/v0.0.1.tar.gz',
-    keywords = ['tag1', 'tag2'],
-    classifiers = [],
+with open("README.md", "r", encoding="utf-8") as fh:
+    long_description = fh.read()
+
+setuptools.setup(
+    name="semic",
+    version="0.0.1",
+    author="Nithin Kumar Santha Kumar",
+    author_email="nxs169230@utdallas.edu",
+    description="Semiconductor physics calculation and modeling",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    url="https://github.com/nkskumar/semic",
+    project_urls={
+        "Bug Tracker": "https://github.com/nkskumar/semic/issues",
+    },
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent"
+    ],
+    package_dir={'':"semic"},
+    packages=find_packages("semic"),
+    python_requires=">=3.5",
 )
