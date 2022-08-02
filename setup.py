@@ -23,5 +23,5 @@ setuptools.setup(
     ],
     package_dir={'':"semicpy"},
     packages=find_packages("semicpy"),
-    python_requires=">=3.5",
+    python_requires=">=3.0",
 )
