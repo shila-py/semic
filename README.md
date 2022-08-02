@@ -43,7 +43,7 @@ The source code is currently hosted on [GitHub](https://github.com/nkskumar/semi
 
 ## Documentation
 
-Documentation for this package will be hosted soon.
+Documentation for this package will be hosted on ReadTheDocs soon.
 
 ## Author
 
