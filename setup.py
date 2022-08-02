@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="semicpy",
-    version="0.0.1",
+    version="0.0.2",
     author="Nithin Kumar Santha Kumar",
     author_email="nxs169230@utdallas.edu",
     description="Semiconductor physics calculation and modeling",
