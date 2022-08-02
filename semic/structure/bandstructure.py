@@ -79,28 +79,49 @@ def eff_mass_matrix(mxx: float=0.0,
     """
     return np.array([[mxx,mxy,mxz],[mxy,myy,myz],[mxz,myz,mzz]])
 
-def conduction_band_DOS(mde,
-                        E,
-                        Ec):
+def conduction_band_DOS(me,
+                        mde,
+                        E: float=0.0,
+                        Ec: float=0.0,
+                        iso: str="iso"):
     """_summary_
 
     Parameters
     ----------
+    me : _type_
+        _description_
     mde : _type_
         _description_
-    E : _type_
-        _description_
-    Ec : _type_
+    E : float, optional
+        _description_, by default 0.0
+    Ec : float, optional
+        _description_, by default 0.0
+    iso : str, optional
+        _description_, by default "iso"
+
+    Returns
+    -------
+    _type_
         _description_
     """
+    if iso == "iso":
+        m = me
+    elif iso == "aniso":
+        m = mde
+    else:
+        raise ValueError("iso specifier must be 'iso' or 'aniso'!")
+
     if (E < Ec):
         return 0
     else:
-        return (np.sqrt(2) / np.square(np.pi)) * ((mde / np.square(HBAR)) ** (1.5)) * np.sqrt(E - Ec)
+        return (np.sqrt(2) / np.square(np.pi)) * ((m / np.square(HBAR)) ** (1.5)) * np.sqrt(E - Ec)
 
-def valence_band_DOS(mde,
-                     E,
-                     Ev):
+
+def valence_band_DOS(mh,
+                     mdh,
+                     E: float=0.0,
+                     Ev: float=0.0,
+                     iso: str="iso"):
     """_summary_
 
     Parameters
@@ -112,10 +133,17 @@ def valence_band_DOS(mde,
     Ev : _type_
         _description_
     """
+    if iso == "iso":
+        m = mh
+    elif iso == "aniso":
+        m = mdh
+    else:
+        raise ValueError("iso specifier must be 'iso' or 'aniso'!")
+
     if (E > Ev):
         return 0
     else:
-        return (np.sqrt(2) / np.square(np.pi)) * ((mde / np.square(HBAR)) ** (1.5)) * np.sqrt(Ev - E)
+        return (np.sqrt(2) / np.square(np.pi)) * ((m / np.square(HBAR)) ** (1.5)) * np.sqrt(Ev - E)
 
 def effective_mass_DOS(mx,
                        my,
