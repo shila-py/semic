@@ -7,7 +7,7 @@
 # 4/25/2021 - Started Package
 # 10/30/2021 - Started constants (constants.py)
 # 10/30/2021 - Added more functionality
-# 11/13/2021 - Constants.py is complete as of today
+# 11/13/2021 - Constants.py is complete as of date listed
 ##########################################
 """
 All constant values are from the 2018 CODATA publication.
