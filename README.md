@@ -2,34 +2,19 @@
 
 # Semic : Semiconductor physics calculation and modeling
 
-## What is it? (WIP)
+## What is it?
 
 **Semic** is a python package that allows you to model semiconductors and perform calculations with them.
 
-## Main Features (WIP)
+## Main Features
 
    - instantiate semiconductors as objects for calculations and modeling
-   - ...
-   - TBD
+   - perform data analysis on semiconductors
+   - etc.
 
 ## Installation
 
     pip install semic
-
-## TODO
-
-   - Implement quantum mechanics subpackage (under review)
-   - Complete material properties
-   - Complete Carrier Distribution, Transport and Band structure
-   - Start PN Junction
-   - Start Free Surfaces and Metal-Semiconductor Interfaces
-   - Start MOS Structure (Done!)
-   - Start Heterostructures
-   - Start FETs and BJTs (Done!)
-   - Start Diodes (Done!)
-   - Start Opto-electronic Devices
-   - Add plotting support (ongoing)
-   - Create documentation using Sphinx
 
 ## Future considerations
 
@@ -42,7 +27,7 @@
 
 The source code is currently hosted on [GitHub](https://github.com/nkskumar/semic)
 
-## Dependencies (WIP)
+## Dependencies
 
    - Numpy
    - pandas
@@ -56,9 +41,9 @@ The source code is currently hosted on [GitHub](https://github.com/nkskumar/semi
 
 [MIT](LICENSE)
 
-## Documentation (WIP)
+## Documentation
 
-Documentation for this package will be hosted somewhere....soon....(undecided)
+Documentation for this package will be hosted soon.
 
 ## Author
 
@@ -76,6 +61,6 @@ All contributors are welcome! Please email [me](mailto:nithinkumar.santhakumar@u
 
 Head on over to [Issues tracker](https://github.com/nkskumar/semic/issues)
 
-## References (WIP)
+## References
 
 [References](REFERENCES.md)
