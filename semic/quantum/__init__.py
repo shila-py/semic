@@ -1,1 +1,1 @@
-from quantum import *
+raise NotImplementedError("quantum module not implemented yet!")
