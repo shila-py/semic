@@ -20,6 +20,8 @@ class Light:
     wavelength : float = 555.0e-9
     polarization : str = None
     direction : str = "z"
+    E_dir : str = "x"
+    H_dir : str = "y"
     intensity : float = 1.0
     relative_permittivity : float = 1.0
     relative_permeability : float = 1.0
