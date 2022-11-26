@@ -2,6 +2,8 @@
 
 # Semicpy : Semiconductor physics calculation and modeling
 
+## UPDATE: Currently in hiatus!
+
 ## What is it?
 
 **Semicpy** is a python package that allows you to model semiconductors and perform calculations with them.
