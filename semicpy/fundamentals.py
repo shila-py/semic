@@ -18,7 +18,7 @@ def find_pn(temp=0,bandgap=0,n_a=0,n_d=0):
 
     n_a: Acceptor concentration
 
-    nd: Donor concentration
+    n_d: Donor concentration
 
     Returns n and p concentrations as a tuple (n,p)
     '''
